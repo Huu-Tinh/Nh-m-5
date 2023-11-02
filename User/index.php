@@ -28,6 +28,7 @@ https://templatemo.com/tm-559-zay-shop
 <body>
 
     <?php
+    
     if (isset($_GET['act'])) {
         switch ($_GET['action']) {
             case 'home':
