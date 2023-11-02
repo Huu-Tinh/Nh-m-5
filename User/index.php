@@ -28,14 +28,21 @@ https://templatemo.com/tm-559-zay-shop
 <body>
 
     <?php
+    include("./includes/nav.php");
+    include("./includes/header.php");
+
+
     if (isset($_GET['act'])) {
-        switch ($_GET['action']) {
+
+        switch ($_GET['act']) {
             case 'home':
                 include './pages/home.php';
                 break;
-            case 'value':
+            case '':
                 # code...
+                include './pages/home.php';
                 break;
+
             default:
                 include './pages/home.php';
                 break;
@@ -43,6 +50,7 @@ https://templatemo.com/tm-559-zay-shop
     } else {
         include './pages/home.php';
     }
+    include("./includes/footer.php.php");
     ?>
 
     <!-- Start Script -->
