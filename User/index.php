@@ -38,19 +38,33 @@ https://templatemo.com/tm-559-zay-shop
             case 'home':
                 include './pages/home.php';
                 break;
-            case '':
+            case 'about':
                 # code...
-                include './pages/home.php';
+                include './pages/about.php';
                 break;
-
+            case 'contact':
+                # code...
+                include './pages/contact.php';
+                break;
+            case 'shop':
+                # code...
+                include './pages/shop.php';
+                break;
+            case 'shop-single':
+                # code...
+                include './pages/shop-single.php';
+                break;
             default:
                 include './pages/home.php';
                 break;
+
         }
     } else {
         include './pages/home.php';
+
     }
     include("./includes/footer.php.php");
+    
     ?>
 
     <!-- Start Script -->
