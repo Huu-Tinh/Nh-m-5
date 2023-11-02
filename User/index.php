@@ -31,6 +31,7 @@ https://templatemo.com/tm-559-zay-shop
     include("./includes/nav.php");
     include("./includes/header.php");
 
+
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
             case 'home':
@@ -55,7 +56,7 @@ https://templatemo.com/tm-559-zay-shop
     } else {
         include './pages/home.php';
     }
-    include("./includes/footer.php.php");
+    include("./includes/footer.php");
 
     ?>
 
