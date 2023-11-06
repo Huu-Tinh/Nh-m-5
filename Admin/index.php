@@ -10,32 +10,80 @@
 </head>
 
 <body>
-    <?php
-    if (isset($_GET['act'])) {
-        switch ($_GET['act']) {
-            case 'home':
-                include './pages/home.php';
-                break;
-            case 'user':
-                switch ($_GET['get']) {
-                    case 'list':
-                        include './pages/user/listUser.php';
-                    case 'value':
-                        include '';
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <?php
+        include './includes/sidebar.php'
+        ?>
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <?php
+            include './includes/header.php';
+            if (isset($_GET['act'])) {
+                switch ($_GET['act']) {
+                    case 'home':
+                        include './pages/home.php';
                         break;
+                    case 'user':
+                        switch ($_GET['get']) {
+                            case 'list':
+                                include './pages/user/listUser.php';
+                                break;
+                            case 'add':
+                                include './pages/user/add.php';
+                                break;
+                            case 'update':
+                                include './pages/user/update.php';
+                                break;
 
+                            default:
+                                // include './pages/user/listUser.php';
+                                break;
+                        }
+                        break;
+                    case 'categori':
+                        switch ($_GET['get']) {
+                            case 'list':
+                                include './pages/categori/listCategori.php';
+                                break;
+                            case 'add':
+                                include './pages/categori/add.php';
+                                break;
+                            case 'update':
+                                include './pages/categori/update.php';
+                                break;
+
+                            default:
+
+                                break;
+                        }
+                        break;
+                    case 'product':
+                        switch ($_GET['get']) {
+                            case 'list':
+                                include './pages/product/listProduct.php';
+                                break;
+                            case 'add':
+                                include './pages/product/add.php';
+                                break;
+                            case 'update':
+                                include './pages/product/update.php';
+                                break;
+
+                            default:
+
+                                break;
+                        }
+                        break;
                     default:
-                        include './pages/user/listUser.php';
+                        // include './pages/home.php';
                         break;
                 }
-            default:
+            } else {
                 include './pages/home.php';
-                break;
-        }
-    } else {
-        include './pages/home.php';
-    } ?>
-
+            } ?>
+        </div>
+    </div>
     <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/sidebarmenu.js"></script>

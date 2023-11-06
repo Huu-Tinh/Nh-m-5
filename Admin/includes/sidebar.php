@@ -3,7 +3,7 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./index.html" class="text-nowrap logo-img">
+            <a href="index.php?act=home" class="text-nowrap logo-img">
                 <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -30,27 +30,27 @@
                     <span class="hide-menu">UI COMPONENTS</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index.php?act=user?get=list" aria-expanded="false">
+                    <a class="sidebar-link" href="index.php?act=user&get=list" aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Buttons</span>
+                        <span class="hide-menu">Users</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                    <a class="sidebar-link" href="index.php?act=categori&get=list" aria-expanded="false">
                         <span>
                             <i class="ti ti-alert-circle"></i>
                         </span>
-                        <span class="hide-menu">Alerts</span>
+                        <span class="hide-menu">Categories</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+                    <a class="sidebar-link" href="index.php?act=product&get=list" aria-expanded="false">
                         <span>
                             <i class="ti ti-cards"></i>
                         </span>
-                        <span class="hide-menu">Card</span>
+                        <span class="hide-menu">Products</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
