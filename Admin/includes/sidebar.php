@@ -13,22 +13,17 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Home</span>
-                </li>
+               
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                    <a class="sidebar-link" href="index.php?act=home" aria-expanded="false">
                         <span>
-                            <i class="ti ti-layout-dashboard"></i>
+                           
+                            <i class="ti ti-home-2"></i>
                         </span>
-                        <span class="hide-menu">Dashboard</span>
+                        <span class="hide-menu">home</span>
                     </a>
                 </li>
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">UI COMPONENTS</span>
-                </li>
+              
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="index.php?act=user&get=list" aria-expanded="false">
                         <span>
@@ -40,7 +35,8 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="index.php?act=categori&get=list" aria-expanded="false">
                         <span>
-                            <i class="ti ti-alert-circle"></i>
+                            <!-- <i class="ti ti-alert-circle"></i> -->
+                            <i class="ti ti-clipboard-list"></i>
                         </span>
                         <span class="hide-menu">Categories</span>
                     </a>
@@ -61,20 +57,13 @@
                         <span class="hide-menu">Forms</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-typography"></i>
-                        </span>
-                        <span class="hide-menu">Typography</span>
-                    </a>
-                </li>
+               
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">AUTH</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                    <a class="sidebar-link" href="index.php?act=login" aria-expanded="false">
                         <span>
                             <i class="ti ti-login"></i>
                         </span>
@@ -89,28 +78,9 @@
                         <span class="hide-menu">Register</span>
                     </a>
                 </li>
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">EXTRA</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-mood-happy"></i>
-                        </span>
-                        <span class="hide-menu">Icons</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-aperture"></i>
-                        </span>
-                        <span class="hide-menu">Sample Page</span>
-                    </a>
-                </li>
+               
             </ul>
-            <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+            <!-- <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
                 <div class="d-flex">
                     <div class="unlimited-access-title me-3">
                         <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
@@ -120,7 +90,7 @@
                         <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </nav>
         <!-- End Sidebar navigation -->
     </div>
