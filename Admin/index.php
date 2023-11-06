@@ -16,6 +16,18 @@
             case 'home':
                 include './pages/home.php';
                 break;
+            case 'user':
+                switch ($_GET['get']) {
+                    case 'list':
+                        include './pages/user/listUser.php';
+                    case 'value':
+                        include '';
+                        break;
+
+                    default:
+                        include './pages/user/listUser.php';
+                        break;
+                }
             default:
                 include './pages/home.php';
                 break;
