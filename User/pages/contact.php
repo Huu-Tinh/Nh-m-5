@@ -30,7 +30,7 @@
 <!-- Start Map -->
 <div id="mapid" style="width: 100%; height: 300px;"></div>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-<script>
+<!-- <script>
     var mymap = L.map('mapid').setView([-23.013104, -43.394365, 13], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -48,7 +48,7 @@
 
     mymap.scrollWheelZoom.disable();
     mymap.touchZoom.disable();
-</script>
+</script> -->
 <!-- Ena Map -->
 
 <!-- Start Contact -->
