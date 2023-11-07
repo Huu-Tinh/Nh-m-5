@@ -19,6 +19,8 @@
         <div class="body-wrapper">
             <?php
             include './includes/header.php';
+            include './includes/pdo.php';
+            include './pages/user/user.php';
             if (isset($_GET['act'])) {
                 switch ($_GET['act']) {
                     case 'home':
@@ -26,7 +28,7 @@
                         break;
 
                     case 'froms':
-                        include './pages/froms.php';
+                        include './pages/forms.php';
                         break;
 
                     case 'user':
