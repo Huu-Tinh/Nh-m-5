@@ -76,7 +76,7 @@
                             </td>
                             <td>
                                 <a href="#" class="btn btn-danger m-1">Xoá</a>
-                                <a href="index.php?act=user&get=update" class="btn btn-warning m-1">Sửa</a>
+                                <a href="index.php?act=user&get=update&id=' . $data['id_user'] . '" class="btn btn-warning m-1">Sửa</a>
                             </td>
                         </tr>
                         ';
