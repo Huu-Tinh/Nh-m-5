@@ -24,6 +24,11 @@
                     case 'home':
                         include './pages/home.php';
                         break;
+
+                    case 'froms':
+                        include './pages/froms.php';
+                        break;
+
                     case 'user':
                         switch ($_GET['get']) {
                             case 'list':
@@ -68,6 +73,24 @@
                                 break;
                             case 'update':
                                 include './pages/product/update.php';
+                                break;
+
+                            default:
+
+                                break;
+                        }
+                        break;
+
+                    case 'order':
+                        switch ($_GET['get']) {
+                            case 'list':
+                                include './pages/order/listOrder.php';
+                                break;
+                            case 'add':
+                                include './pages/order/add.php';
+                                break;
+                            case 'update':
+                                include './pages/order/update.php';
                                 break;
 
                             default:

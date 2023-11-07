@@ -13,17 +13,17 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
             <ul id="sidebarnav">
-               
+
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="index.php?act=home" aria-expanded="false">
                         <span>
-                           
+
                             <i class="ti ti-home-2"></i>
                         </span>
                         <span class="hide-menu">home</span>
                     </a>
                 </li>
-              
+
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="index.php?act=user&get=list" aria-expanded="false">
                         <span>
@@ -50,20 +50,28 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+                    <a class="sidebar-link" href="index.php?act=order&get=list" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-list"></i>
+                        </span>
+                        <span class="hide-menu">Order</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="index.php?act=froms" aria-expanded="false">
                         <span>
                             <i class="ti ti-file-description"></i>
                         </span>
                         <span class="hide-menu">Forms</span>
                     </a>
                 </li>
-               
-                <li class="nav-small-cap">
+
+                <li class="nav-small-cap" style="margin-top: 235px;">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">AUTH</span>
+                    <!-- <span class="hide-menu">AUTH</span> -->
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index.php?act=login" aria-expanded="false">
+                    <a class="sidebar-link" href="includes/login.php" aria-expanded="false">
                         <span>
                             <i class="ti ti-login"></i>
                         </span>
@@ -71,14 +79,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                    <a class="sidebar-link" href="includes/register.php" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-plus"></i>
                         </span>
                         <span class="hide-menu">Register</span>
                     </a>
                 </li>
-               
+
             </ul>
             <!-- <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
                 <div class="d-flex">
