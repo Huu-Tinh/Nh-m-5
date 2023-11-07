@@ -8,17 +8,18 @@
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Id</h6>
                         </th>
+
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Assigned</h6>
+                            <h6 class="fw-semibold mb-0">Tên</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Name</h6>
+                            <h6 class="fw-semibold mb-0">Số lượng</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Priority</h6>
+                            <h6 class="fw-semibold mb-0">note</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Budget</h6>
+                            <h6 class="fw-semibold mb-0">Thời gian cập nhật</h6>
                         </th>
                         <th>
                             <a href="index.php?act=categori&get=add" class="btn btn-success m-1">Thêm</a>
@@ -35,15 +36,17 @@
                             <span class="fw-normal">Web Designer</span>
                         </td>
                         <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
+                        </td>
+                        <td class="border-bottom-0">
                             <p class="mb-0 fw-normal">Elite Admin</p>
                         </td>
+
+
                         <td class="border-bottom-0">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
                             </div>
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
                         </td>
                         <td>
                             <a href="#" class="btn btn-danger m-1">Xoá</a>

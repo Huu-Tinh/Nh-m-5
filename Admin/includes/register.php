@@ -23,24 +23,24 @@
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
                 </a>
-                <p class="text-center">Your Social Campaigns</p>
+                <!-- <p class="text-center">====&*&====</p> -->
                 <form>
                   <div class="mb-3">
-                    <label for="exampleInputtext1" class="form-label">Name</label>
+                    <label for="exampleInputtext1" class="form-label">Tài khoản</label>
                     <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp">
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                   </div>
                   <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
                     <input type="password" class="form-control" id="exampleInputPassword1">
                   </div>
-                  <a href="./index.html" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</a>
+                  <a href="./index.html" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Đăng ký</a>
                   <div class="d-flex align-items-center justify-content-center">
-                    <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
-                    <a class="text-primary fw-bold ms-2" href="./authentication-login.html">Sign In</a>
+                    <p class="fs-4 mb-0 fw-bold">Bạn đã có tài khoản?</p>
+                    <a class="text-primary fw-bold ms-2" href="login.php">Đăng nhập</a>
                   </div>
                 </form>
               </div>
