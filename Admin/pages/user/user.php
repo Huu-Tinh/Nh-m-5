@@ -22,11 +22,17 @@ class user {
        else 
            return false; 
    }
-
+   public function checkId($id) 
+   { 
+       $db = new connect();               
+       $select="SELECT * from users where id_user='$id'"; 
+       $result = $db->pdo_query_one($select);
+       return $result; 
+   }
    public function userid($username,$password) 
     { 
         $db = new connect();               
-        $select="select UserID from users where UserName='$username' and Password='$password'"; 
+        $select="SELECT UserID from users where UserName='$username' and Password='$password'"; 
         $result = $db->pdo_query_one($select);
         return $result;
     }
@@ -38,4 +44,11 @@ class user {
       $result = $db->pdo_execute($query);
       return $result;
    }
+   public function update($id,$username, $password, $email, $phone, $address, $avatar, $gender, $role_id)
+    {
+        $db = new connect();
+        $sql = "UPDATE users SET role_id = '$role_id', username = '$username', `password` = '$password', email = '$email', phone = '$phone', `address` ='$address', gender = '$gender', avatar ='$avatar'  WHERE id_user = " . $id;
+        $result = $db->pdo_execute($sql);
+        return $result;
+    }
 }
