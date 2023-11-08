@@ -45,7 +45,7 @@
                     
                         <td>
                             <a href="#" class = "btn btn-danger m-1">Xoá</a>
-                            <a href="index.php?act=categori&get=update" class="btn btn-warning m-1">Sửa</a>
+                            <a href="index.php?act=categori&get=update&id=' . $data['id_categori'] . '" class="btn btn-warning m-1">Sửa</a>
                         </td>
                     </tr>
                    ';
