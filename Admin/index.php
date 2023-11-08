@@ -115,7 +115,7 @@ ob_start();
                         }
                         break;
                     default:
-                        // include './pages/home.php';
+                        include './pages/home.php';
                         include './includes/login.php';
                         break;
                 }

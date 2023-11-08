@@ -1,9 +1,9 @@
 <?php
 $categori = new categori();
-$name = $_POST['name'] ?? '';
+$name_ct = $_POST['name'] ?? '';
 $note = $_POST['note'] ?? '';
 if (isset($_POST['addcategori'])) {
-    $categori->add($name,$note);
+    $categori->add($name_ct,$note);
     header('Location: index.php?act=categori&get=list');
 }
 ?>
@@ -12,7 +12,7 @@ if (isset($_POST['addcategori'])) {
         <h5 class="card-title fw-semibold mb-4">Thêm mới loại sản phẩm</h5>
         <div class="card">
             <div class="card-body">
-                <form  methol="POST">
+                <form  method="POST">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Tên</label>
                         <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
