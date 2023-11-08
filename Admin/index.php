@@ -31,9 +31,9 @@ ob_start();
 
             // $action = 'home';
 
-            // if (!isset($_SESSION['admin'])) {
-            //     $action = "login";
-            // }
+            if (!isset($_SESSION['admin'])) {
+                $action = "login";
+            }
             if (isset($_GET['act'])) {
                 // $action = $_GET['act'];
 
@@ -41,7 +41,9 @@ ob_start();
                     case 'home':
                         include './pages/home.php';
                         break;
-
+                    case 'login':
+                        include './includes/login.php';
+                        break;
                     case 'froms':
                         include './pages/forms.php';
                         break;
@@ -57,7 +59,7 @@ ob_start();
                             case 'update':
                                 include './pages/user/update.php';
                                 break;
-                              
+
                             default:
                                 // include './pages/user/listUser.php';
                                 break;
@@ -120,12 +122,14 @@ ob_start();
                         break;
                     default:
                         // include './pages/home.php';
+                        include './includes/login.php';
                         break;
                 }
             }
-            //     else {
-            //     include './pages/home.php';
-            // }
+                else {
+                // include './pages/home.php';
+                include './includes/login.php';
+            }
             ?>
         </div>
     </div>
