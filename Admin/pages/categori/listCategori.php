@@ -27,33 +27,40 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <?
+                    $categori = new categori();
+                    $select = $categori->getcategori();
+                    foreach ($select as $data) {
+                        echo '   
                     <tr>
                         <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">1</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                            <span class="fw-normal">Web Designer</span>
+                            <h6 class="fw-semibold mb-1">' . $data['name'] . '</h6>
+                            <span class="fw-normal">' . $data['tenloaiSP'] . '</span>
                         </td>
                         <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
+                            <h6 class="fw-semibold mb-0 fs-4">' . $data['Số lượng'] . '</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <p class="mb-0 fw-normal">Elite Admin</p>
+                            <p class="mb-0 fw-normal">' . $data['note'] . '</p>
                         </td>
 
 
                         <td class="border-bottom-0">
                             <div class="d-flex align-items-center gap-2">
-                                <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
+                                <span class="badge bg-primary rounded-3 fw-semibold">' . $data['create_at'] . '</span>
                             </div>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-danger m-1">Xoá</a>
+                            <a href="#" class = "btn btn-danger m-1">Xoá</a>
                             <a href="index.php?act=categori&get=update" class="btn btn-warning m-1">Sửa</a>
                         </td>
                     </tr>
-
+                   ';
+                    } ?>
                 </tbody>
             </table>
         </div>

@@ -19,13 +19,24 @@ ob_start();
         <?php
         include './includes/sidebar.php'
         ?>
+
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <?php
             include './includes/header.php';
             include './includes/pdo.php';
             include './pages/user/user.php';
+            include './pages/categori/categori.php';
+            include './includes/login.php';
+
+            // $action = 'home';
+
+            if (!isset($_SESSION['admin'])) {
+                $action = "login";
+            }
             if (isset($_GET['act'])) {
+                // $action = $_GET['act'];
+
                 switch ($_GET['act']) {
                     case 'home':
                         include './pages/home.php';
@@ -46,7 +57,7 @@ ob_start();
                             case 'update':
                                 include './pages/user/update.php';
                                 break;
-
+                              
                             default:
                                 // include './pages/user/listUser.php';
                                 break;
@@ -54,6 +65,9 @@ ob_start();
                         break;
                     case 'categori':
                         switch ($_GET['get']) {
+                            case 'categori':
+                                include './pages/categori/categori.php';
+                                break;
                             case 'list':
                                 include './pages/categori/listCategori.php';
                                 break;
@@ -108,9 +122,11 @@ ob_start();
                         // include './pages/home.php';
                         break;
                 }
-            } else {
-                include './pages/home.php';
-            } ?>
+            }
+            //     else {
+            //     include './pages/home.php';
+            // }
+            ?>
         </div>
     </div>
     <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
