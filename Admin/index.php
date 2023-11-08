@@ -27,13 +27,13 @@ ob_start();
             include './includes/pdo.php';
             include './pages/user/user.php';
             include './pages/categori/categori.php';
-            include './includes/login.php';
+            // include './includes/login.php';
 
             // $action = 'home';
 
-            if (!isset($_SESSION['admin'])) {
-                $action = "login";
-            }
+            // if (!isset($_SESSION['admin'])) {
+            //     $action = "login";
+            // }
             if (isset($_GET['act'])) {
                 // $action = $_GET['act'];
 

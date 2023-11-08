@@ -1,26 +1,25 @@
 <?php	
 class categori {
-   var $tenloaiSP = null;
-   var $soluong = null;
-
+   var $name_ct  = null;
+  
    function getcategori()
    {
       $db = new connect();
-      $select = "select * from categori";
+      $select = "select * from categories";
       return $db->pdo_query($select);
    }
   
-    function add($tenloaiSP, $soluong)
+    function add($name_ct ,)
    {
       $db = new connect();
-      $query = "INSERT INTO categori(tenloaiSP,`soluong`) VALUES ('$tenloaiSP','$soluong')";
+      $query = "INSERT INTO categories(name_ct ,`soluong`) VALUES ('$name_ct ')";
       $result = $db->pdo_execute($query);
       return $result;
    }
-   public function update($id,$tenloaiSP, $soluong)
+   public function update($name_ct )
     {
         $db = new connect();
-        $sql = "UPDATE categori SET  tenloaiSP = '$tenloaiSP', `soluong` = '$soluong'  WHERE  = " ;
+        $sql = "UPDATE categories SET  name_ct  = '$name_ct '  WHERE  = " ;
         $result = $db->pdo_execute($sql);
         return $result;
     }
