@@ -27,13 +27,20 @@ ob_start();
             include './includes/pdo.php';
             include './pages/user/user.php';
             include './pages/categori/categori.php';
-        
+            include './pages/product/product.php';
+            
 
-        
+            $action = 'home';
             if (isset($_GET['act'])) {
+                $action = $_GET['act'];
+            }
+            if (!isset($_SESSION['admin'])) {
+                $action = 'login';
+            }
+          
              
 
-                switch ($_GET['act']) {
+                switch ($action) {
                     case 'home':
                         include './pages/home.php';
                         break;
@@ -119,11 +126,8 @@ ob_start();
                         include './includes/login.php';
                         break;
                 }
-            }
-                else {
-                // include './pages/home.php';
-                // include './includes/login.php';
-            }
+            
+             
             ?>
         </div>
     </div>

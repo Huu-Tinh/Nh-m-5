@@ -18,8 +18,12 @@
                             <h6 class="fw-semibold mb-0">Price</h6>
                         </th>
                         <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Loại</h6>
+                        </th>
+                        <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Quantity</h6>
                         </th>
+                        
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Mô tả</h6>
                         </th>
@@ -43,14 +47,18 @@
                         <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
                         </td>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">loại</h6>
+                        </th>
                         <td class="border-bottom-0">
                             <p class="mb-0 fw-normal"></p>
                         </td>
+                      
                         <td class="border-bottom-0">
-                            <div class="d-flex align-items-center gap-2">
+                            <!-- <div class="d-flex align-items-center gap-2">
                                 <span class="badge bg-primary rounded-3 fw-semibold">
                                 </span>
-                            </div>
+                            </div> -->
                         </td>
                        
                         <td>
