@@ -15,6 +15,10 @@ ob_start();
 
 <body>
     <?
+    include './includes/pdo.php';
+    include './pages/user/user.php';
+    include './pages/categori/categori.php';
+    include './pages/product/product.php';
     if (isset($_SESSION['admin'])) {
     ?>
         <!--  Body Wrapper -->
@@ -30,11 +34,6 @@ ob_start();
 
             <?php
             include './includes/header.php';
-            include './includes/pdo.php';
-            include './pages/user/user.php';
-            include './pages/categori/categori.php';
-            include './pages/product/product.php';
-
 
             $action = 'home';
             if (isset($_GET['act'])) {
