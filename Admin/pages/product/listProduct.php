@@ -9,21 +9,23 @@
                             <h6 class="fw-semibold mb-0">Id</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Img</h6>
-                        </th>
-                        <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Name</h6>
                         </th>
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Price</h6>
                         </th>
                         <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Img</h6>
+                        </th>
+
+
+                        <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Loại</h6>
                         </th>
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Quantity</h6>
                         </th>
-                        
+
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Mô tả</h6>
                         </th>
@@ -33,25 +35,30 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $product = new product();
+                    $select = $product->getproduct();
+                    foreach ($select as $data) {
+                        echo '
                     <tr>
                         <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">1</h6>
+                            <h6 class="fw-semibold mb-0">' . $data['id_product'] . '</h6>
+                        </td>
+                       <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 fs-4">' . $data['name_pr'] . '</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <img style="max-width: 35%;" src="./admin/products/img/<?= $data['img'] ?>" alt="">
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
+                            <h6 class="fw-semibold mb-1">' . $data['price'] . '</h6>
                             <!-- <span class="fw-normal">Web Designer</span> -->
                         </td>
                         <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
+                        <img style="max-width: 35%;" src="./admin/products/img/' . $data['img'] . '" alt="">
                         </td>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">loại</h6>
+                            <h6 class="fw-semibold mb-0">' . $data['categori_id'] . '</h6>
                         </th>
                         <td class="border-bottom-0">
-                            <p class="mb-0 fw-normal"></p>
+                            <p class="mb-0 fw-normal">' . $data['note'] . '</p>
                         </td>
                       
                         <td class="border-bottom-0">
@@ -65,7 +72,9 @@
                             <a href="#" class="btn btn-danger m-1">Xoá</a>
                             <a href="index.php?act=product&get=update" class="btn btn-warning m-1">Sửa</a>
                         </td>
-                    </tr>
+                    </tr>';
+                    }
+                    ?>
 
                 </tbody>
             </table>

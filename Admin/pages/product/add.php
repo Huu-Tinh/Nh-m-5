@@ -8,9 +8,10 @@ $img_2 = $_POST['img_2'] ?? '';
 $img_3 = $_POST['img_3'] ?? '';
 $note = $_POST['note'] ?? '';
 $quantity = $_POST['quantity'] ?? '';
+$categori_id = $_POST['categori_id'] ?? '';
 
 if (isset($_POST['addproduct'])) {
-    $product->add($name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity);
+    $product->add($name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity,$categori_id);
     header('Location: index.php?act=product&get=list');
 }
 ?>
@@ -60,7 +61,7 @@ if (isset($_POST['addproduct'])) {
 
                             foreach ($select as $data) {
                                 echo '
-                                    <option value="' . $data['id_categori'] . '">
+                                    <option value="' . $data['categori_id'] . '">
                                         ' . $data['name_ct'] . '
                                     </option>';
                             }
