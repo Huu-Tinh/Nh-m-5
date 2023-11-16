@@ -71,12 +71,14 @@
                     <span class="hide-menu">AUTH</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index.php?act=login" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-login"></i>
-                        </span>
-                        <span class="hide-menu">Logout</span>
-                    </a>
+                    <form method="post">
+                        <button name="logout" class="btn btn-outline-info mx-3 mt-2 d-block" type="submit">
+                            <span>
+                                <i class="ti ti-login"></i>
+                            </span>
+                            <span class="">Logout</span>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </nav>
@@ -85,3 +87,8 @@
     <!-- End Sidebar scroll-->
 </aside>
 <!--  Sidebar End -->
+<?php
+$out = new user();
+if (isset($_POST['logout'])) {
+    $out->logout();
+}
