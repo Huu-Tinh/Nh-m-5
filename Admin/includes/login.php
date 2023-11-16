@@ -60,7 +60,7 @@
     if ($user->checkUser($username, $passsword)) {
       $login = $user->userid($username, $passsword);
       $_SESSION['admin'] = $username;
-      header('Location: index.php?pages=home');
+      header('Location: index.php?act=home');
     }
     ?>
   </div>

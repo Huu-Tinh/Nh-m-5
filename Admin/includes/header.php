@@ -1,3 +1,9 @@
+<?php
+$out = new user();
+if (isset($_POST['logout'])) {
+    $out->logout();
+}
+?>
 <!--  Header Start -->
 <header class="app-header">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -35,7 +41,14 @@
                                 <i class="ti ti-list-check fs-6"></i>
                                 <p class="mb-0 fs-3">My Task</p>
                             </a>
-                            <a href="includes/login.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                            <form method="post">
+                                <button name="logout" class="btn btn-outline-info mx-3 mt-2 d-block" type="submit">
+                                    <span>
+                                        <i class="ti ti-login"></i>
+                                    </span>
+                                    <span class="">Logout</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </li>
