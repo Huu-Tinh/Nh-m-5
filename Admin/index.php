@@ -28,7 +28,7 @@ ob_start();
             include './pages/user/user.php';
             include './pages/categori/categori.php';
             include './pages/product/product.php';
-            
+
 
             $action = 'home';
             if (isset($_GET['act'])) {
@@ -37,97 +37,95 @@ ob_start();
             if (!isset($_SESSION['admin'])) {
                 $action = 'login';
             }
-          
-             
 
-                switch ($action) {
-                    case 'home':
-                        include './pages/home.php';
-                        break;
-                    case 'login':
-                        include './includes/login.php';
-                        break;
-                    case 'froms':
-                        include './pages/forms.php';
-                        break;
+            switch ($action) {
+                case 'home':
+                    include './pages/home.php';
+                    break;
+                case 'login':
+                    include './includes/login.php';
+                    break;
+                case 'froms':
+                    include './pages/forms.php';
+                    break;
 
-                    case 'user':
-                        switch ($_GET['get']) {
-                            case 'list':
-                                include './pages/user/listUser.php';
-                                break;
-                            case 'add':
-                                include './pages/user/add.php';
-                                break;
-                            case 'update':
-                                include './pages/user/update.php';
-                                break;
+                case 'user':
+                    switch ($_GET['get']) {
+                        case 'list':
+                            include './pages/user/listUser.php';
+                            break;
+                        case 'add':
+                            include './pages/user/add.php';
+                            break;
+                        case 'update':
+                            include './pages/user/update.php';
+                            break;
 
-                            default:
-                                // include './pages/user/listUser.php';
-                                break;
-                        }
-                        break;
-                    case 'categori':
-                        switch ($_GET['get']) {
-                           
-                            case 'list':
-                                include './pages/categori/listCategori.php';
-                                break;
-                            case 'add':
-                                include './pages/categori/add.php';
-                                break;
-                            case 'update':
-                                include './pages/categori/update.php';
-                                break;
+                        default:
+                            // include './pages/user/listUser.php';
+                            break;
+                    }
+                    break;
+                case 'categori':
+                    switch ($_GET['get']) {
 
-                            default:
+                        case 'list':
+                            include './pages/categori/listCategori.php';
+                            break;
+                        case 'add':
+                            include './pages/categori/add.php';
+                            break;
+                        case 'update':
+                            include './pages/categori/update.php';
+                            break;
 
-                                break;
-                        }
-                        break;
-                    case 'product':
-                        switch ($_GET['get']) {
-                            case 'list':
-                                include './pages/product/listProduct.php';
-                                break;
-                            case 'add':
-                                include './pages/product/add.php';
-                                break;
-                            case 'update':
-                                include './pages/product/update.php';
-                                break;
+                        default:
 
-                            default:
+                            break;
+                    }
+                    break;
+                case 'product':
+                    switch ($_GET['get']) {
+                        case 'list':
+                            include './pages/product/listProduct.php';
+                            break;
+                        case 'add':
+                            include './pages/product/add.php';
+                            break;
+                        case 'update':
+                            include './pages/product/update.php';
+                            break;
 
-                                break;
-                        }
-                        break;
+                        default:
 
-                    case 'order':
-                        switch ($_GET['get']) {
-                            case 'list':
-                                include './pages/order/listOrder.php';
-                                break;
-                            case 'add':
-                                include './pages/order/add.php';
-                                break;
-                            case 'update':
-                                include './pages/order/update.php';
-                                break;
+                            break;
+                    }
+                    break;
 
-                            default:
+                case 'order':
+                    switch ($_GET['get']) {
+                        case 'list':
+                            include './pages/order/listOrder.php';
+                            break;
+                        case 'add':
+                            include './pages/order/add.php';
+                            break;
+                        case 'update':
+                            include './pages/order/update.php';
+                            break;
 
-                                break;
-                        }
-                        break;
-                    default:
-                        include './pages/home.php';
-                        include './includes/login.php';
-                        break;
-                }
-            
-             
+                        default:
+
+                            break;
+                    }
+                    break;
+                default:
+                    include './pages/home.php';
+                    include './includes/login.php';
+                    break;
+            }
+
+
             ?>
         </div>
     </div>
