@@ -24,14 +24,14 @@ https://templatemo.com/tm-559-zay-shop
 
 -->
 </head>
-
 <body>
 
     <?php
     include("./includes/nav.php");
     include("./includes/header.php");
-
-
+    include("../Admin/includes/pdo.php");
+    include("../Admin/pages/product/product.php");
+    include("../Admin/pages/user/user.php");
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
             case 'home':
