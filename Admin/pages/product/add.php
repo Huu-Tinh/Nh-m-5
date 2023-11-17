@@ -8,9 +8,10 @@ $img_2 = $_POST['img_2'] ?? '';
 $img_3 = $_POST['img_3'] ?? '';
 $note = $_POST['note'] ?? '';
 $quantity = $_POST['quantity'] ?? '';
+$categori_id = $_POST['categori_id'] ?? '';
 
 if (isset($_POST['addproduct'])) {
-    $product->add($name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity);
+    $product->add($name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity, $categori_id);
     header('Location: index.php?act=product&get=list');
 }
 ?>
@@ -52,7 +53,7 @@ if (isset($_POST['addproduct'])) {
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="" class="form-label">Loại</label>
-                        <select class="form-select" name="category_id" aria-label=".form-select-sm example">
+                        <select class="form-select" name="categori_id" aria-label=".form-select-sm example">
                             <?php
                             $categori = new categori();
                             $db = new connect();
