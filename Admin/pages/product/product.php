@@ -10,7 +10,6 @@ class product
    var $note = null;
    var $quantity = null;
    var $id_product = null;
-
    var $categori_id = null;
 
 
@@ -21,20 +20,33 @@ class product
       $select = "select * from products";
       return $db->pdo_query($select);
    }
-
-   function add($name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity,$categori_id)
+   public function checkId($id_product)
+   {
+      $db = new connect();
+      $select = "SELECT * from products where id_product ='$id_product'";
+      $result = $db->pdo_query_one($select);
+      return $result;
+   }
+   function add($name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity, $categori_id)
    {
       $db = new connect();
       $query = "INSERT INTO products(`name_pr`,`price`,img,img_1,`img_2`,img_3, note,quantity,categori_id) VALUES('$name','$price','$img','$img_1','$img_2','$img_3', '$note','$quantity','$categori_id')";
       $result = $db->pdo_execute($query);
       return $result;
    }
-   public function update($id_product, $name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity)
+   public function update($id_product, $name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity, $categori_id)
    {
       $db = new connect();
-      $sql = "UPDATE products SET  name_pr = '$name', `price` = '$price', img = '$img', img_1 = '$img_1',img_2 = '$img_2', `img_3` ='$img_3', note = '$note', quantity ='$quantity'  WHERE id_product = " . $id_product;
+      $sql = "UPDATE products SET  name_pr = '$name', `price` = '$price', img = '$img', img_1 = '$img_1',img_2 = '$img_2', `img_3` ='$img_3', note = '$note', quantity ='$quantity',categori_id ='$categori_id'   WHERE id_product = " . $id_product;
+      $result = $db->pdo_execute($sql);
+      return $result;
+   }
+
+   public function delete($id_product)
+   {
+      $db = new connect();
+      $sql = "DELETE FROM `products` WHERE id_product = " . $id_product;
       $result = $db->pdo_execute($sql);
       return $result;
    }
 }
-
