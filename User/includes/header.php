@@ -43,10 +43,31 @@
                      <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                      <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                  </a>
-                 <a class="nav-icon position-relative text-decoration-none" href="#">
-                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                     <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-                 </a>
+                 <?php
+                    if (!isset($_SESSION['username'])) { ?>
+                     <a href="./login/login.php">
+                         <img class="rounded-circle me-lg-2" src="../Admin/assets/images/profile/user-1.jpg" alt="" style=" width: 40px; height: 40px;">
+                         <!-- <span class="d-lg-inline-flex d-none"></span> -->
+                     </a>
+                 <? } else { ?>
+                     <div class="navbar-nav align-items-center ms-auto">
+                         <div class="nav-item dropdown">
+                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                 <img class="rounded-circle me-lg-2" src="../Admin/assets/images/profile/<?= $user['avatar'] ?>" alt="" style=" width: 40px; height: 40px;">
+                                 <span class="d-lg-inline-flex d-none"><?= $user['username'] ?></span>
+                             </a>
+                             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                                 <form method="post">
+                                     <a href="index.php?pages=profiles" class="dropdown-item">My Profile</a>
+                                     <a href="index.php?pages=setaccout" class="dropdown-item">Settings</a>
+                                     <button type="" name="logout" class="dropdown-item">Log Out</button>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+                 <? }
+                    ?>
+
              </div>
          </div>
 

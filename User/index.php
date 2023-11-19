@@ -1,3 +1,7 @@
+<?php
+session_start();
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +20,9 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <!-- <link rel="stylesheet" href="../login/style.css" /> -->
+    <!-- <link rel="stylesheet" href="../login/main.js" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <!--
     
 TemplateMo 559 Zay Shop
@@ -24,16 +31,25 @@ https://templatemo.com/tm-559-zay-shop
 
 -->
 </head>
+
 <body>
 
     <?php
-    include("./includes/nav.php");
-    include("./includes/header.php");
     include("../Admin/includes/pdo.php");
     include("../Admin/pages/product/product.php");
     include("../Admin/pages/user/user.php");
+    if (isset($_SESSION['username'])) {
+        $selectUser = new user();
+        $user = $selectUser ->checkId($_SESSION['username']);
+    }
+    include("./includes/nav.php");
+    include("./includes/header.php");
+    
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
+            case 'login':
+                include '../login/login.php';
+                break;
             case 'home':
                 include './pages/home.php';
                 break;
@@ -66,6 +82,7 @@ https://templatemo.com/tm-559-zay-shop
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/templatemo.js"></script>
     <script src="assets/js/custom.js"></script>
+    <!-- <script src="../login/main.js"></script> -->
     <!-- End Script -->
 </body>
 
