@@ -19,6 +19,7 @@ ob_start();
     include './pages/user/user.php';
     include './pages/categori/categori.php';
     include './pages/product/product.php';
+    include './pages/comment/comment.php';
     if (isset($_SESSION['admin'])) {
     ?>
         <!--  Body Wrapper -->
@@ -89,6 +90,22 @@ ob_start();
                             break;
                     }
                     break;
+
+                case 'comment':
+                    switch ($_GET['get']) {
+
+                        case 'list':
+                            include './pages/comment/listComment.php';
+                            break;
+                        
+                        
+
+                        default:
+
+                            break;
+                    }
+                    break;
+
                 case 'product':
                     switch ($_GET['get']) {
                         case 'list':
@@ -100,7 +117,9 @@ ob_start();
                         case 'update':
                             include './pages/product/update.php';
                             break;
-
+                        case 'delete':
+                            include './pages/product/delete.php';
+                            break;
                         default:
 
                             break;
