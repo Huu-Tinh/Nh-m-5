@@ -9,14 +9,15 @@
                             <h6 class="fw-semibold mb-0">Id</h6>
                         </th>
                         <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Img</h6>
+                        </th>
+                        <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Name</h6>
                         </th>
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Price</h6>
                         </th>
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Img</h6>
-                        </th>
+
 
 
                         <th class="border-bottom-0">
@@ -37,12 +38,19 @@
                 <tbody>
                     <?php
                     $product = new product();
-                    $select = $product->getproduct();
-                    foreach ($select as $data) {
+                    $db = new connect();
+                    $select = "SELECT * from products as p,categories as c where p.categori_id = c.id_categori";
+                    $result = $db->pdo_query($select);
+                    // $select = $product->getproduct(); 
+                    foreach ($result as $data) {
                         echo '
                     <tr>
                         <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">' . $data['id_product'] . '</h6>
+                        </td>
+                        </td>
+                        <td class="border-bottom-0">
+                        <img style="max-width: 35%;" src="./admin/products/img/' . $data['img'] . '" alt="">
                         </td>
                        <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-0 fs-4">' . $data['name_pr'] . '</h6>
@@ -50,34 +58,65 @@
                         <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-1">' . $data['price'] . '</h6>
                             <!-- <span class="fw-normal">Web Designer</span> -->
-                        </td>
-                        <td class="border-bottom-0">
-                        <img style="max-width: 35%;" src="./admin/products/img/' . $data['img'] . '" alt="">
-                        </td>
+                       
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">' . $data['categori_id'] . '</h6>
+                            <h6 class="fw-semibold mb-0">' . $data['name_ct'] . '</h6>
                         </th>
+                        <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal">' . $data['quantity'] . '</p>
+                    </td>
                         <td class="border-bottom-0">
                             <p class="mb-0 fw-normal">' . $data['note'] . '</p>
                         </td>
-                      
-                        <td class="border-bottom-0">
-                            <!-- <div class="d-flex align-items-center gap-2">
-                                <span class="badge bg-primary rounded-3 fw-semibold">
-                                </span>
-                            </div> -->
-                        </td>
                        
                         <td>
-                            <a href="#" class="btn btn-danger m-1">Xoá</a>
-                            <a href="index.php?act=product&get=update" class="btn btn-warning m-1">Sửa</a>
+                          
+
+                        <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" > Xóa </button>
+                          
+                            <a href="index.php?act=product&get=update&id=' . $data['id_product'] . '" class="btn btn-warning m-1">Sửa</a>
                         </td>
                     </tr>';
                     }
                     ?>
 
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <?php
+                        $product = new product();
+
+                        $id = $_GET['id_product'];
+                        $select = $product->checkid($id);
+
+
+
+                        if (isset($_POST['delete'])) {
+                            $product->delete($id);
+                            header('Location: index.php?act=product&get=list');
+                        }
+                        ?>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">LƯU Ý!</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    bạn có chắc chắn xóa !
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-primary" name="delete">Đồng ý</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </tbody>
             </table>
         </div>
+        <!-- // <a href="#" class="btn btn-danger m-1">Xoá</a> -->
     </div>
 </div>
+<?php
