@@ -34,7 +34,7 @@
                             <h6 class="fw-semibold mb-0">1</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <img style="max-width: 35%;" src="./admin/products/img/<?= $data['img'] ?>" alt="">
+                            <img style="max-width: 35%;" src="./admin/products/img/" alt="">
                         </td>
                         <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
