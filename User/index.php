@@ -39,6 +39,10 @@ https://templatemo.com/tm-559-zay-shop
     include("../Admin/pages/product/product.php");
     include("../Admin/pages/user/user.php");
     // include("../Admin/pages/comment/listComment.php");
+
+    $product = new product();
+    $getProduct = $product->getproduct();
+
     if (isset($_SESSION['username'])) {
         $selectUser = new user();
         $user = $selectUser->checkId($_SESSION['username']);
@@ -134,7 +138,24 @@ https://templatemo.com/tm-559-zay-shop
         include './pages/home.php';
     }
     include("./includes/footer.php");
+    foreach ($getProduct as $data) { ?>
+        <script>
+            function decreaseNumber<?= $data['id_product'] ?>() {
+                var numberInput = document.getElementById("myNumber<?= $data['id_product'] ?>");
+                var currentValue = parseInt(numberInput.value);
+                numberInput.value = currentValue - 1;
+                if (numberInput.value <= 0) {
+                    numberInput.value = 1;
+                };
+            }
 
+            function increaseNumber<?= $data['id_product'] ?>() {
+                var numberInput = document.getElementById("myNumber<?= $data['id_product'] ?>");
+                var currentValue = parseInt(numberInput.value);
+                numberInput.value = currentValue + 1;
+            }
+        </script>
+    <? }
     ?>
 
     <!-- Start Script -->
@@ -143,7 +164,6 @@ https://templatemo.com/tm-559-zay-shop
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/templatemo.js"></script>
     <script src="assets/js/custom.js"></script>
-    <script src="assets/js/btn.js" type="text/javascript"></script>
     <!-- End Script -->
 </body>
 
