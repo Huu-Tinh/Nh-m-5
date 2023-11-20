@@ -38,6 +38,7 @@ https://templatemo.com/tm-559-zay-shop
     include("../Admin/includes/pdo.php");
     include("../Admin/pages/product/product.php");
     include("../Admin/pages/user/user.php");
+    // include("../Admin/pages/comment/listComment.php");
     if (isset($_SESSION['username'])) {
         $selectUser = new user();
         $user = $selectUser->checkId($_SESSION['username']);

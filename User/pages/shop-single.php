@@ -211,6 +211,14 @@ $select = $product->checkId($id);
 </section>
 <!-- Close Content -->
 
+<!-- Bình luận -->
+<?php
+
+include("./comment.php");
+
+?>
+<!-- Đóng Bình luận -->
+
 <!-- Start Article -->
 <section class="py-5">
     <div class="container">

@@ -58,6 +58,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="index.php?act=comment&get=list" aria-expanded="false">
+                        <span>
+                        <i class="ti ti-message"></i>
+                        </span>
+                        <span class="hide-menu">Bình luận</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="index.php?act=froms" aria-expanded="false">
                         <span>
                             <i class="ti ti-file-description"></i>
