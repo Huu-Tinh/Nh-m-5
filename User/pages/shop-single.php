@@ -203,9 +203,9 @@ $select = $product->checkId($id);
                                         <li class="list-inline-item text-right">
                                             Quantity
                                         </li>
-                                        <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="decreaseNumber()">-</button></li>
-                                        <li class="list-inline-item"><input class="text-center text-white border-0 outline-0 rounded bg-secondary" style="width:50px;" type="number" name="quantity" id="myNumber" value="1"></li>
-                                        <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="increaseNumber()">+</button></li>
+                                        <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="decreaseNumber<?= $select['id_product'] ?>()">-</button></li>
+                                        <li class="list-inline-item"><input class="text-center text-white border-0 outline-0 rounded bg-secondary" style="width:50px;" type="number" name="quantity" id="myNumber<?= $select['id_product'] ?>" value="1"></li>
+                                        <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="increaseNumber<?= $select['id_product'] ?>()">+</button></li>
                                     </ul>
                                 </div>
                             </div>

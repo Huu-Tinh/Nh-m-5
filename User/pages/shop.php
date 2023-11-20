@@ -101,7 +101,7 @@ $product = new product();
                                         <ul class="list-unstyled">
                                             <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
                                             <li><a class="btn btn-success text-white mt-2" href="index.php?act=shop-single&id_pr=' . $value['id_product'] . '"><i class="far fa-eye"></i></a></li>
-                                            <li><button type="button" class="btn btn-success text-white mt-2" href="index.php?act=cart" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-cart-plus"></i></button></li>
+                                            <li><button type="button" class="btn btn-success text-white mt-2" href="index.php?act=cart" data-bs-toggle="modal" data-bs-target="#exampleModal' . $value['id_product'] . '"><i class="fas fa-cart-plus"></i></button></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -132,12 +132,12 @@ $product = new product();
                     </div>';
                     echo '
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal' . $value['id_product'] . '" tabindex="-1" aria-labelledby="exampleModalLabel' . $value['id_product'] . '" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <form action="index.php?act=carts&get=toCart" method="post">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel' . $value['id_product'] . '">Thêm vào giỏ hàng</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -155,24 +155,24 @@ $product = new product();
                                                             <li class="list-inline-item">Size :
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <input type="radio" value="38" class="btn-check" name="size" id="btn-1" autocomplete="off">
-                                                                <label class="btn btn-outline-success" for="btn-1">38</label>
+                                                                <input type="radio" value="38" class="btn-check" name="size" id="btn-1' . $value['id_product'] . '" autocomplete="off">
+                                                                <label class="btn btn-outline-success" for="btn-1' . $value['id_product'] . '">38</label>
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <input type="radio" value="39" class="btn-check" name="size" id="btn-2" autocomplete="off" checked>
-                                                                <label class="btn btn-outline-success" for="btn-2">39</label>
+                                                                <input type="radio" value="39" class="btn-check" name="size" id="btn-2' . $value['id_product'] . '" autocomplete="off" checked>
+                                                                <label class="btn btn-outline-success" for="btn-2' . $value['id_product'] . '">39</label>
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <input type="radio" value="40" class="btn-check" name="size" id="btn-3" autocomplete="off">
-                                                                <label class="btn btn-outline-success" for="btn-3">40</label>
+                                                                <input type="radio" value="40" class="btn-check" name="size" id="btn-3' . $value['id_product'] . '" autocomplete="off">
+                                                                <label class="btn btn-outline-success" for="btn-3' . $value['id_product'] . '">40</label>
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <input type="radio" value="41" class="btn-check" name="size" id="btn-4" autocomplete="off">
-                                                                <label class="btn btn-outline-success" for="btn-4">41</label>
+                                                                <input type="radio" value="41" class="btn-check" name="size" id="btn-4' . $value['id_product'] . '" autocomplete="off">
+                                                                <label class="btn btn-outline-success" for="btn-4' . $value['id_product'] . '">41</label>
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <input type="radio" value="42" class="btn-check" name="size" id="btn-5" autocomplete="off">
-                                                                <label class="btn btn-outline-success" for="btn-5">42</label>
+                                                                <input type="radio" value="42" class="btn-check" name="size" id="btn-5' . $value['id_product'] . '" autocomplete="off">
+                                                                <label class="btn btn-outline-success" for="btn-5' . $value['id_product'] . '">42</label>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -182,9 +182,9 @@ $product = new product();
                                                             Quantity
                                                             
                                                             </li>
-                                                            <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="decreaseNumber()">-</button></li>
-                                                            <li class="list-inline-item"><input class="text-center text-white border-0 outline-0 rounded bg-secondary" style="width:50px;" type="number" name="quantity" id="myNumber" value="1"></li>
-                                                            <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="increaseNumber()">+</button></li>
+                                                            <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="decreaseNumber' . $value['id_product'] . '()">-</button></li>
+                                                            <li class="list-inline-item"><input class="text-center text-white border-0 outline-0 rounded bg-secondary" style="width:50px;" type="number" name="quantity" id="myNumber' . $value['id_product'] . '" value="1"></li>
+                                                            <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="increaseNumber' . $value['id_product'] . '()">+</button></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -193,7 +193,7 @@ $product = new product();
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" name="addcart" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                                        <button type="submit" name="addcart" class="btn btn-success">Thêm vào giỏ hàng</button>
                                     </div>
                                     <input type="hidden" name="id_product" value="' . $value['id_product'] . '">
                                     <input type="hidden" name="name" value="' . $value['name_pr'] . '">
