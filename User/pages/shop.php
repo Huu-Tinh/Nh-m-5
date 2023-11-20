@@ -179,12 +179,12 @@ $product = new product();
                                                     <div class="col-auto">
                                                         <ul class="list-inline pb-3">
                                                             <li class="list-inline-item text-right">
-                                                                Quantity
-                                                                <input type="hidden" name="quanity" id="product-quanity" value="1">
+                                                            Quantity
+                                                            
                                                             </li>
-                                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
-                                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                                                            <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="decreaseNumber()">-</button></li>
+                                                            <li class="list-inline-item"><input class="text-center text-white border-0 outline-0 rounded bg-secondary" style="width:50px;" type="number" name="quantity" id="myNumber" value="1"></li>
+                                                            <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="increaseNumber()">+</button></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -195,7 +195,6 @@ $product = new product();
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" name="addcart" class="btn btn-primary">Thêm vào giỏ hàng</button>
                                     </div>
-                                    <input type="checkbox" class="hidden" name="size" id="btn-S">
                                     <input type="hidden" name="id_product" value="' . $value['id_product'] . '">
                                     <input type="hidden" name="name" value="' . $value['name_pr'] . '">
                                     <input type="hidden" name="price" value="' . $value['price'] . '">

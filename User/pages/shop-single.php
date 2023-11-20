@@ -168,7 +168,7 @@ $select = $product->checkId($id);
                             <li>Excepteur sint</li>
                         </ul> -->
 
-                        <form action="index.php?act=carts&get=cart&id=<?=$select['id_product']?>" method="post">
+                        <form action="index.php?act=carts&get=toCart" method="post">
                             <input type="hidden" name="product-title" value="Activewear">
                             <div class="row">
                                 <div class="col-auto">
@@ -176,32 +176,51 @@ $select = $product->checkId($id);
                                         <li class="list-inline-item">Size :
                                             <input type="hidden" name="product-size" id="product-size" value="S">
                                         </li>
-                                        <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li>
-                                        <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li>
-                                        <li class="list-inline-item"><span class="btn btn-success btn-size">L</span></li>
-                                        <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span></li>
+                                        <li class="list-inline-item">
+                                            <input type="radio" value="38" class="btn-check" name="size" id="btn-1" autocomplete="off">
+                                            <label class="btn btn-outline-success" for="btn-1">38</label>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <input type="radio" value="39" class="btn-check" name="size" id="btn-2" autocomplete="off" checked>
+                                            <label class="btn btn-outline-success" for="btn-2">39</label>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <input type="radio" value="40" class="btn-check" name="size" id="btn-3" autocomplete="off">
+                                            <label class="btn btn-outline-success" for="btn-3">40</label>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <input type="radio" value="41" class="btn-check" name="size" id="btn-4" autocomplete="off">
+                                            <label class="btn btn-outline-success" for="btn-4">41</label>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <input type="radio" value="42" class="btn-check" name="size" id="btn-5" autocomplete="off">
+                                            <label class="btn btn-outline-success" for="btn-5">42</label>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-auto">
                                     <ul class="list-inline pb-3">
                                         <li class="list-inline-item text-right">
                                             Quantity
-                                            <input type="hidden" name="quanity" id="product-quanity" value="1">
                                         </li>
-                                        <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
-                                        <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                        <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                                        <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="decreaseNumber()">-</button></li>
+                                        <li class="list-inline-item"><input class="text-center text-white border-0 outline-0 rounded bg-secondary" style="width:50px;" type="number" name="quantity" id="myNumber" value="1"></li>
+                                        <li class="list-inline-item"><button type="button" class="btn btn-success" onclick="increaseNumber()">+</button></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="row pb-3">
                                 <div class="col d-grid">
-                                    <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
+                                    <button type="submit" class="btn btn-success btn-lg" name="addcart" value="buy">Thêm vào giỏ hàng</button>
                                 </div>
                                 <div class="col d-grid">
-                                    <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
+                                    <!-- <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button> -->
                                 </div>
                             </div>
+                            <input type="hidden" name="id_product" value="<?= $select['id_product'] ?>">
+                            <input type="hidden" name="name" value="<?= $select['name_pr'] ?>">
+                            <input type="hidden" name="price" value="<?= $select['price'] ?>">
+                            <input type="hidden" name="img" value="<?= $select['img'] ?>">
                         </form>
                     </div>
                 </div>
