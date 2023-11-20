@@ -97,7 +97,7 @@ https://templatemo.com/tm-559-zay-shop
                             $size = $_POST['size'];
                             $quantity = $_POST['quantity'];
                             // Kiểm tra số lượng
-                            if (isset($_POST['quantyti']) && $_POST['quantity'] > 0) {
+                            if (isset($_POST['quantity']) && $_POST['quantity'] > 0) {
                                 $quantity = $_POST['quantity'];
                             } else {
                                 $quantity = 1;
@@ -142,7 +142,7 @@ https://templatemo.com/tm-559-zay-shop
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/templatemo.js"></script>
     <script src="assets/js/custom.js"></script>
-    <!-- <script src="../login/main.js"></script> -->
+    <script src="assets/js/btn.js" type="text/javascript"></script>
     <!-- End Script -->
 </body>
 
