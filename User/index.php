@@ -40,11 +40,14 @@ https://templatemo.com/tm-559-zay-shop
     include("../Admin/pages/user/user.php");
     if (isset($_SESSION['username'])) {
         $selectUser = new user();
-        $user = $selectUser ->checkId($_SESSION['username']);
+        $user = $selectUser->checkId($_SESSION['username']);
+    }
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
     }
     include("./includes/nav.php");
     include("./includes/header.php");
-    
+
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
             case 'login':
@@ -64,6 +67,63 @@ https://templatemo.com/tm-559-zay-shop
                 break;
             case 'shop-single':
                 include './pages/shop-single.php';
+                break;
+            case 'carts':
+                switch ($_GET['get']) {
+                    case 'cart':
+                        // Danh sách giỏ hàng
+                        include './pages/cart/listCart.php';
+                        break;
+                    case 'toCart':
+                        // Mua tiếp 
+                        if (isset($_POST['continue'])) {
+                            header('location: index.php?act=shop');
+                        }
+                        // Cập nhật giỏ hàng 
+                        if (isset($_POST['updateCart'])) {
+                            header('location: index.php?act=shop');
+                        }
+                        // Xóa giỏ hàng 
+                        if (isset($_POST['deleteCart'])) {
+                            unset($_SESSION['cart']);
+                            header('location: index.php?act=home');
+                        }
+                        // Thêm giỏ hàng
+                        if (isset($_POST['addcart'])) {
+                            $id = $_POST['id_product'];
+                            $name = $_POST['name'];
+                            $price = $_POST['price'];
+                            $img = $_POST['img'];
+                            $size = $_POST['size'];
+                            $quantity = $_POST['quantity'];
+                            // Kiểm tra số lượng
+                            if (isset($_POST['quantyti']) && $_POST['quantity'] > 0) {
+                                $quantity = $_POST['quantity'];
+                            } else {
+                                $quantity = 1;
+                            }
+                            // Kiểm tra sp 
+                            $i = 0;
+                            $check = 0;
+                            foreach ($_SESSION['cart'] as $item) {
+                                if ($item[1] == $name && $item[5] == $size) {
+                                    $_SESSION['cart'][$i][4] += $quantity;
+                                    $check = 1;
+                                    break;
+                                }
+                                $i++;
+                            }
+                            if ($check == 0) {
+                                $item = array($id, $name, $img, $price, $quantity, $size);
+                                $_SESSION['cart'][] = $item;
+                            }
+                            header('location: index.php?act=carts&get=cart');
+                        }
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
                 break;
             default:
                 include './pages/home.php';

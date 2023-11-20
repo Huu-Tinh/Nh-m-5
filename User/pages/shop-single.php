@@ -168,7 +168,7 @@ $select = $product->checkId($id);
                             <li>Excepteur sint</li>
                         </ul> -->
 
-                        <form action="" method="GET">
+                        <form action="index.php?act=carts&get=cart&id=<?=$select['id_product']?>" method="post">
                             <input type="hidden" name="product-title" value="Activewear">
                             <div class="row">
                                 <div class="col-auto">
@@ -186,7 +186,7 @@ $select = $product->checkId($id);
                                     <ul class="list-inline pb-3">
                                         <li class="list-inline-item text-right">
                                             Quantity
-                                            <input type="hidden" name="product-quanity" id="product-quanity" value="1">
+                                            <input type="hidden" name="quanity" id="product-quanity" value="1">
                                         </li>
                                         <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
                                         <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
@@ -203,7 +203,6 @@ $select = $product->checkId($id);
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
