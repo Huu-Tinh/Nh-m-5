@@ -75,10 +75,30 @@
                                 <p class="fw-normal mb-0 fs-4">' . ($data['gender'] == 1 ? 'Nam' : 'Nữ') . '</p>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-danger m-1">Xoá</a>
+                                <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal' . $data['id_user'] . '" > Xóa </button>
                                 <a href="index.php?act=user&get=update&id=' . $data['id_user'] . '" class="btn btn-warning m-1">Sửa</a>
                             </td>
                         </tr>
+                        <div class="modal fade" id="exampleModal' . $data['id_user'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">LƯU Ý!</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    bạn có chắc chắn xóa !
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="index.php?act=user&get=delete&id=' . $data['id_user'] . '" method="post">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                        <button type="submit" class="btn btn-primary" name="delete">Đồng ý</button>
+                                    </form>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
                         ';
                     }
                     ?>
