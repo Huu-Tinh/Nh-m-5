@@ -45,7 +45,7 @@ class product
    public function delete($id_product)
    {
       $db = new connect();
-      $sql = "DELETE FROM `products` WHERE id_product = " . $id_product;
+      $sql = "DELETE FROM products WHERE id_product = " . $id_product;
       $result = $db->pdo_execute($sql);
       return $result;
    }

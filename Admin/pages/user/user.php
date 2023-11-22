@@ -57,4 +57,11 @@ class user
         $result = $db->pdo_execute($sql);
         return $result;
     }
+    public function delete($id)
+   {
+      $db = new connect();
+      $sql = "DELETE FROM users WHERE id_user = " . $id;
+      $result = $db->pdo_execute($sql);
+      return $result;
+   }
 }
