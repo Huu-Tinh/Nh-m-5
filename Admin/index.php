@@ -65,7 +65,17 @@ ob_start();
                         case 'update':
                             include './pages/user/update.php';
                             break;
-
+                        case 'delete':
+                            $user = new user();
+                            $id = $_GET['id'];
+                            // if ($_SESSION['admin'] == ) {
+                            //     # code...
+                            // }
+                            if (isset($_POST['delete'])) {
+                                $user->delete($id);
+                                header('Location: index.php?act=user&get=list');
+                            }
+                            break;
                         default:
                             // include './pages/user/listUser.php';
                             break;
@@ -83,7 +93,14 @@ ob_start();
                         case 'update':
                             include './pages/categori/update.php';
                             break;
-
+                        case 'delete':
+                            $categori = new categori();
+                            $id = $_GET['id'];
+                            if (isset($_POST['delete'])) {
+                                $categori->delete($id);
+                                header('Location: index.php?act=categori&get=list');
+                            }
+                            break;
                         default:
 
                             break;
@@ -100,7 +117,14 @@ ob_start();
                         case 'update':
                             include './pages/product/update.php';
                             break;
-
+                        case 'delete':
+                            $product = new product();
+                            $id = $_GET['id'];
+                            if (isset($_POST['delete'])) {
+                                $product->delete($id);
+                                header('Location: index.php?act=product&get=list');
+                            }
+                            break;
                         default:
 
                             break;

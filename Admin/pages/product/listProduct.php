@@ -72,28 +72,12 @@
                         <td>
                           
 
-                        <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" > Xóa </button>
+                        <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal' . $data['id_product'] . '" > Xóa </button>
                           
                             <a href="index.php?act=product&get=update&id=' . $data['id_product'] . '" class="btn btn-warning m-1">Sửa</a>
                         </td>
-                    </tr>';
-                    }
-                    ?>
-
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <?php
-                        $product = new product();
-
-                        $id = $_GET['id_product'];
-                        $select = $product->checkid($id);
-
-
-
-                        if (isset($_POST['delete'])) {
-                            $product->delete($id);
-                            header('Location: index.php?act=product&get=list');
-                        }
-                        ?>
+                    </tr>
+                    <div class="modal fade" id="exampleModal' . $data['id_product'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -105,14 +89,17 @@
                                     bạn có chắc chắn xóa !
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                    <button type="button" class="btn btn-primary" name="delete">Đồng ý</button>
+                                    <form action="index.php?act=product&get=delete&id=' . $data['id_product'] . '" method="post">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                        <button type="submit" class="btn btn-primary" name="delete">Đồng ý</button>
+                                    </form>
                                 </div>
-                            </div>
-
+                            </div>  
                         </div>
                     </div>
-
+                    ';
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

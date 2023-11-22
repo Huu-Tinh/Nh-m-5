@@ -30,4 +30,11 @@ class categori
       $result = $db->pdo_execute($sql);
       return $result;
    }
+   public function delete($id)
+   {
+      $db = new connect();
+      $sql = "DELETE FROM categories WHERE id_categori = " . $id;
+      $result = $db->pdo_execute($sql);
+      return $result;
+   }
 }
