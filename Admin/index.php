@@ -24,7 +24,7 @@ ob_start();
         <!--  Body Wrapper -->
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
             <?php
-            include './includes/sidebar.php'
+            include './includes/sidebar.php';
             ?>
             <!--  Main wrapper -->
             <div class="body-wrapper">
