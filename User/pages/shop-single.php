@@ -231,11 +231,11 @@ $select = $product->checkId($id);
 <!-- Close Content -->
 
 <!-- Bình luận -->
-<?php
+    <?php
 
-include("./comment.php");
+    include './pages/comment.php';
 
-?>
+    ?>
 <!-- Đóng Bình luận -->
 
 <!-- Start Article -->

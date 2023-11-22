@@ -38,7 +38,7 @@ https://templatemo.com/tm-559-zay-shop
     include("../Admin/includes/pdo.php");
     include("../Admin/pages/product/product.php");
     include("../Admin/pages/user/user.php");
-    // include("../Admin/pages/comment/listComment.php");
+    include("../Admin/pages/comment/comment.php");
 
     $product = new product();
     $getProduct = $product->getproduct();

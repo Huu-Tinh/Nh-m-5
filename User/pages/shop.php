@@ -106,7 +106,7 @@ $product = new product();
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <a href="shop-single.html" class="h3 text-decoration-none">' . $value['name_pr'] . '</a>
+                                    <a href="index.php?act=shop-single&id_pr=' . $value['id_product'] . '" class="h3 text-decoration-none">' . $value['name_pr'] . '</a>
                                     <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                         <li>M/L/X/XL</li>
                                         <li class="pt-2">
