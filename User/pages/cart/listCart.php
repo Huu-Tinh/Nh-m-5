@@ -106,7 +106,7 @@
                             Bạn Có Muốn Xóa Giỏ Hàng?
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" name="deleteCart" class="btn btn-primary">Đồng ý</button>
+                            <button type="submit" name="deleteCart" class="btn btn-success">Đồng ý</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                         </div>
                     </div>
