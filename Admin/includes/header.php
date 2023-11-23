@@ -1,7 +1,6 @@
 <?php
-$out = new user();
 if (isset($_POST['logout'])) {
-    $out->logout();
+    $user->logout();
 }
 ?>
 <!--  Header Start -->

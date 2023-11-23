@@ -59,7 +59,7 @@
     $passsword = $_POST['password'] ?? '';
     if ($user->checkUser($username, $passsword)) {
       $login = $user->userid($username, $passsword);
-      $_SESSION['admin'] = $username;
+      $_SESSION['admin'] = $login['id_user'];
       header('Location: index.php?act=home');
     }
     ?>

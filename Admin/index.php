@@ -21,6 +21,8 @@ ob_start();
     include './pages/product/product.php';
     include './pages/comment/comment.php';
     if (isset($_SESSION['admin'])) {
+        $user = new user();
+        $selectUs = $user ->checkId($_SESSION['admin']);
     ?>
         <!--  Body Wrapper -->
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
@@ -35,7 +37,7 @@ ob_start();
 
             <?php
             include './includes/header.php';
-
+            
             $action = 'home';
             if (isset($_GET['act'])) {
                 $action = $_GET['act'];
@@ -69,13 +71,14 @@ ob_start();
                         case 'delete':
                             $user = new user();
                             $id = $_GET['id'];
-                            // if ($_SESSION['admin'] == ) {
-                            //     # code...
-                            // }
-                            if (isset($_POST['delete'])) {
-                                $user->delete($id);
+                            if ($_SESSION['admin'] != $id) {
+                                if (isset($_POST['delete'])) {
+                                    $user->delete($id);
+                                    header('Location: index.php?act=user&get=list');
+                                };
+                            }else{
                                 header('Location: index.php?act=user&get=list');
-                            }
+                            };
                             break;
                         default:
                             // include './pages/user/listUser.php';
