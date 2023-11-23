@@ -22,7 +22,7 @@ ob_start();
     include './pages/comment/comment.php';
     if (isset($_SESSION['admin'])) {
         $user = new user();
-        $selectUs = $user ->checkId($_SESSION['admin']);
+        $selectUs = $user->checkId($_SESSION['admin']);
     ?>
         <!--  Body Wrapper -->
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
@@ -32,12 +32,10 @@ ob_start();
             <!--  Main wrapper -->
             <div class="body-wrapper">
             <?
-        }
-            ?>
-
-            <?php
             include './includes/header.php';
-            
+        } ?>
+            <?php
+
             $action = 'home';
             if (isset($_GET['act'])) {
                 $action = $_GET['act'];
@@ -76,7 +74,7 @@ ob_start();
                                     $user->delete($id);
                                     header('Location: index.php?act=user&get=list');
                                 };
-                            }else{
+                            } else {
                                 header('Location: index.php?act=user&get=list');
                             };
                             break;
@@ -117,8 +115,8 @@ ob_start();
                         case 'list':
                             include './pages/comment/listComment.php';
                             break;
-                        
-                        
+
+
 
                         default:
 
