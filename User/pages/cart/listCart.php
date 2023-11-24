@@ -83,8 +83,8 @@
                             foreach ($_SESSION['cart'] as $item) {
                                 $sum += $item[3];
                             }
-                            echo $sum;
-                            // number_format($item[3], 0, ".", ".")
+                            echo  number_format($sum, 0, ".", ".");
+                           
                             ?>
                         </td>
                         <td class="border-bottom-0"></td>

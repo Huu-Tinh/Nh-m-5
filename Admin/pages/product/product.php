@@ -30,14 +30,14 @@ class product
    function add($name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id)
    {
       $db = new connect();
-      $query = "INSERT INTO products(`name_pr`,`price`,img,img_1,`img_2`,img_3, describe,quantity,categori_id) VALUES('$name','$price','$img','$img_1','$img_2','$img_3', '$describe','$quantity','$categori_id')";
+      $query = "INSERT INTO products(`name_pr`,`price`,img,img_1,`img_2`,img_3, `describe`,`quantity`,`categori_id`) VALUES('$name','$price','$img','$img_1','$img_2','$img_3', '$describe','$quantity','$categori_id')";
       $result = $db->pdo_execute($query);
       return $result;
    }
    public function update($id_product, $name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id)
    {
       $db = new connect();
-      $sql = "UPDATE products SET  name_pr = '$name', `price` = '$price', img = '$img', img_1 = '$img_1',img_2 = '$img_2', `img_3` ='$img_3', describe = '$describe', quantity ='$quantity',categori_id ='$categori_id'   WHERE id_product = " . $id_product;
+      $sql = "UPDATE products SET  name_pr = '$name', `price` = '$price', img = '$img', img_1 = '$img_1',img_2 = '$img_2', `img_3` ='$img_3',` describe` = '$describe', quantity ='$quantity',categori_id ='$categori_id'   WHERE id_product = " . $id_product;
       $result = $db->pdo_execute($sql);
       return $result;
    }
