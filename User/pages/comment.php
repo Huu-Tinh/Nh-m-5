@@ -25,7 +25,7 @@
                     </div>
                     <div class="mt-3 mb-4 pb-2">
                         <div class="row">
-                            <!-- <img class="col-lg-3" style="width: 100px; height: 80px; border-radius: 100%;" src="../Admin/assets/images/profile/user-1.jpg" alt=""> -->
+                            <!-- <img class="col-lg-3" style="width: 100px; height: 80px; border-radius: 100%;" src="../Admin/assets/images /' . $data['avatar'] . '" alt=""> -->
                             <div class="col-lg-9 text-primary">
                                 <p class="fw-bold text-primary">' . $data['username'] . '</p>
                                 <p class=" ">

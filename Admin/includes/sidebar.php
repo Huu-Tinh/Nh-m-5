@@ -74,7 +74,7 @@
                     </a>
                 </li>
 
-                <li class="nav-small-cap" style="margin-top: 255px;">
+                <li class="nav-small-cap" style="margin-top: 180px;">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">AUTH</span>
                 </li>

@@ -33,6 +33,15 @@ class comment
       return $result;
    }
 
+
+   function binh_luan_select_by_id($product_id){
+      $db = new connect();
+      $query = "SELECT * FROM comments WHERE product_id= '$product_id'";
+      $result = $db->pdo_query_one($query); 
+      return $result;
+    
+  }
+
    // function binh_luan_delete($id_cmt)
    // {
    //    $db = new connect();

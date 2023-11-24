@@ -49,16 +49,16 @@
                                 <img class="card" style="width: 130px; height:120px;" src="../Admin/assets/images/products/' . $data[2] . '">
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . $data[5] . '</p>
+                                <p class="fw-normal mb-0 ">' . number_format($data[5], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . $data[3] . '</p>
+                                <p class="fw-normal mb-0 ">' . number_format($data[3], 0, ".", ".") . '   </p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . $data[4] . '</p>
+                                <p class="fw-normal mb-0 ">' .number_format($data[4], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . $data[3] * $data[4] . '</p>
+                                <p class="fw-normal mb-0 ">' .number_format( $data[3] * $data[4], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
                                 <a href="#" class="btn btn-danger m-1">Xoá</a>
@@ -83,6 +83,7 @@
                             foreach ($_SESSION['cart'] as $item) {
                                 echo $sum += $item[3];
                             }
+                            number_format($item[3], 0, ".", ".")
                             ?>
                         </td>
                         <td class="border-bottom-0"></td>

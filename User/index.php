@@ -39,6 +39,7 @@ https://templatemo.com/tm-559-zay-shop
     include("../Admin/pages/product/product.php");
     include("../Admin/pages/user/user.php");
     include("../Admin/pages/comment/comment.php");
+    include("../Admin/pages/categori/categori.php");
 
     $product = new product();
     $getProduct = $product->getproduct();

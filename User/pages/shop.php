@@ -126,7 +126,7 @@ $product = new product();
                                             <i class="text-muted fa fa-star"></i>
                                         </li>
                                     </ul>
-                                    <p class="text-center mb-0">' . $value['price'] . '</p>
+                                    <p class="text-center mb-0">' . number_format($value['price'], 0, ".", "."). '</p>   
                                 </div>
                         </div>
                     </div>';
@@ -199,6 +199,7 @@ $product = new product();
                                     <input type="hidden" name="name" value="' . $value['name_pr'] . '">
                                     <input type="hidden" name="price" value="' . $value['price'] . '">
                                     <input type="hidden" name="img" value="' . $value['img'] . '">
+                                  
                                 </form>
                              </div>
                         </div>
@@ -223,7 +224,7 @@ $product = new product();
     </div>
 </div>
 <!-- End Content -->
-
+<!-- // <input type="hidden" name="img" value="' . $value['categori_id '] . '"> -->
 <!-- Start Brands -->
 <section class="bg-light py-5">
     <div class="container my-4">

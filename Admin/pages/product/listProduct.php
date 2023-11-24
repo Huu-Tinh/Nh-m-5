@@ -50,7 +50,7 @@
                         </td>
                         </td>
                         <td class="border-bottom-0">
-                        <img style="width: 140px; height:140px" src="./assets/images/products/' . $data['img'] . '"alt="">
+                            <img style="width: 140px; height:140px" src="./assets/images/products/' . $data['img'] . '"alt="">
                         </td>
                        <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-0 fs-4">' . $data['name_pr'] . '</h6>
@@ -66,7 +66,7 @@
                         <p class="mb-0 fw-normal">' . $data['quantity'] . '</p>
                     </td>
                         <td class="border-bottom-0">
-                            <p class="mb-0 fw-normal">' . $data['note'] . '</p>
+                            <p class="mb-0 fw-normal">' . $data['describe'] . '</p>
                         </td>
                        
                         <td>
