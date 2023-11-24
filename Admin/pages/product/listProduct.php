@@ -50,7 +50,7 @@
                         </td>
                         </td>
                         <td class="border-bottom-0">
-                        <img style="max-width: 35%;" src="./admin/products/img/' . $data['img'] . '" alt="">
+                        <img style="max-width: 35%;" src="./assets/images/products/' . $data['img'] . '" alt="">
                         </td>
                        <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-0 fs-4">' . $data['name_pr'] . '</h6>

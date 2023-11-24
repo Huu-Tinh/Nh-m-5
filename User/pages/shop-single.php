@@ -49,17 +49,17 @@ $select = $product->checkId($id);
                                 <div class="row">
                                     <div class="col-4">
                                         <a href="#">
-                                            <img class="card-img img-fluid" src="assets/img/product_single_01.jpg" alt="Product Image 1">
+                                            <img class="card-img img-fluid" src="../Admin/assets/images/products/<?= $select['img_1'] ?>" alt="Product Image 1">
                                         </a>
                                     </div>
                                     <div class="col-4">
                                         <a href="#">
-                                            <img class="card-img img-fluid" src="assets/img/product_single_02.jpg" alt="Product Image 2">
+                                            <img class="card-img img-fluid" src="../Admin/assets/images/products/<?= $select['img_2'] ?>" alt="Product Image 2">
                                         </a>
                                     </div>
                                     <div class="col-4">
                                         <a href="#">
-                                            <img class="card-img img-fluid" src="assets/img/product_single_03.jpg" alt="Product Image 3">
+                                            <img class="card-img img-fluid" src="../Admin/assets/images/products/<?= $select['img_3'] ?>" alt="Product Image 3">
                                         </a>
                                     </div>
                                 </div>
@@ -67,6 +67,7 @@ $select = $product->checkId($id);
                             <!--/.First slide-->
 
                             <!--Second slide-->
+<!-- 
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
@@ -85,10 +86,13 @@ $select = $product->checkId($id);
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+
                             <!--/.Second slide-->
 
                             <!--Third slide-->
+
+<!--                             
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
@@ -107,7 +111,9 @@ $select = $product->checkId($id);
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+
+
                             <!--/.Third slide-->
                         </div>
                         <!--End Slides-->
@@ -128,7 +134,7 @@ $select = $product->checkId($id);
                 <div class="card">
                     <div class="card-body">
                         <h1 class="h2"><?= $select['name_pr'] ?></h1>
-                        <p class="h3 py-2"><?= $select['price'] ?></p>
+                        <p class="h3 py-2"> <?= number_format($select['price'], 0, ".", ".")  ?> </p>
                         <p class="py-2">
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-warning"></i>
@@ -137,14 +143,23 @@ $select = $product->checkId($id);
                             <i class="fa fa-star text-secondary"></i>
                             <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
                         </p>
+                        <?
+                        $categori = new categori();
+                        $select = $categori->getcategori();
+                        foreach ($select as $data) {
+                            echo '
                         <ul class="list-inline">
+                          
                             <li class="list-inline-item">
                                 <h6>Brand:</h6>
                             </li>
                             <li class="list-inline-item">
-                                <p class="text-muted"><strong>Easy Wear</strong></p>
+                                <p class="text-muted"><strong>' . $data['name_ct'] . '</strong></p>
                             </li>
                         </ul>
+                        ';
+                        }
+                        ?>
 
                         <h6>Description:</h6>
                         <p><?= $select['note'] ?></p>
