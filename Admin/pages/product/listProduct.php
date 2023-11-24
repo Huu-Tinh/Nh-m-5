@@ -66,7 +66,7 @@
                         <p class="mb-0 fw-normal">' . $data['quantity'] . '</p>
                     </td>
                         <td class="border-bottom-0">
-                            <p class="mb-0 fw-normal">' . $data['note'] . '</p>
+                            <p class="mb-0 fw-normal">' . $data['describe'] . '</p>
                         </td>
                        
                         <td>
