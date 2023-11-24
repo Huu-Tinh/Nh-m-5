@@ -6,14 +6,14 @@ $img = $_POST['img'] ?? '';
 $img_1 = $_POST['img_1'] ?? '';
 $img_2 = $_POST['img_2'] ?? '';
 $img_3 = $_POST['img_3'] ?? '';
-$note = $_POST['note'] ?? '';
+$describe = $_POST['note'] ?? '';
 $quantity = $_POST['quantity'] ?? '';
 $categori_id = $_POST['categori_id'] ?? '';
 
 if (isset($_POST['addproduct'])) {
 
 
-    $product->add($name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity, $categori_id);
+    $product->add($name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id);
 
     header('Location: index.php?act=product&get=list');
 }
