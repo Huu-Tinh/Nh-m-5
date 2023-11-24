@@ -81,9 +81,10 @@
                             <?php
                             $sum = 0;
                             foreach ($_SESSION['cart'] as $item) {
-                                echo $sum += $item[3];
+                                $sum += $item[3];
                             }
-                            number_format($item[3], 0, ".", ".")
+                            echo $sum;
+                            // number_format($item[3], 0, ".", ".")
                             ?>
                         </td>
                         <td class="border-bottom-0"></td>
