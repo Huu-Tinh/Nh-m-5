@@ -4,25 +4,36 @@
     <div class="d-flex justify-content-center p-2">
         <div class="col-md-12 col-lg-10 col-xl-8">
             <div class="card">
-                <?php
-                $comment = new comment();
-                $db = new connect();
-                $select = "SELECT *
-        FROM comments
-        JOIN users ON users.id_user = comments.user_id
-        JOIN products ON comments.product_id = products.id_product ";
-                $result = $db->pdo_query($select);
-                // $select = $product->getproduct(); 
-                foreach ($result as $data) {
-                    echo '
+
                 <div class="card-body">
-             
+
                     <div class="mb-4 pb-6 d-flex flex-start align-items-center">
-                 
+                        <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 60px; height: 60px;">
+                            <img class="rounded-circle shadow-1-strong me-3" src="../Admin/assets/images/profile/<? if (isset($_SESSION[" username"])) {
+                                                                                                                        $user['avatar'];
+                                                                                                                    } else {
+                                                                                                                        echo "user-1.jpg";
+                                                                                                                    } ?>" alt="avatar" width="60" height="60" />
+                        </div>
                         <div>
-                            <h6 class="fw-bold text-primary mb-1"></h6>
+
+                            <h6 class="fw-bold text-primary mb-1"><?
+                                                                    if (isset($_SESSION["username"]))
+                                                                        echo $user['username'];
+                                                                    else {
+                                                                        echo 'Người dùng';
+                                                                    } ?></h6>
                         </div>
                     </div>
+                    
+                    <?php
+                    $comment = new comment();
+                    $db = new connect();
+                  
+                   $cm = $comment->getComment($id);
+                    // $select = $product->getproduct(); 
+                    foreach ($cm as $data) {
+                        echo '
                     <div class="mt-3 mb-4 pb-2">
                         <div class="row">
                             <!-- <img class="col-lg-3" style="width: 100px; height: 80px; border-radius: 100%;" src="../Admin/assets/images /' . $data['avatar'] . '" alt=""> -->
@@ -42,28 +53,28 @@
                 </div>
 
                      ';
-                }
-                ?>
-                 <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
-                    <form method="post">
-                        <div class="d-flex flex-start w-100">
-                            <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">
+                    }
+                    ?>
+                    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                        <form method="post">
+                            <div class="d-flex flex-start w-100">
+                                <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">
 
+                                </div>
+                                <div class="form-outline w-100">
+                                    <label class="form-label" for="textAreaExample">Bình luận</label>
+                                    <textarea class="form-control" name="cmts" id="textAreaExample" rows="4" style="background: #fff;"></textarea>
+                                </div>
                             </div>
-                            <div class="form-outline w-100">
-                                <label class="form-label" for="textAreaExample">Bình luận</label>
-                                <textarea class="form-control" name="cmts" id="textAreaExample" rows="4" style="background: #fff;"></textarea>
+                            <div class="float-end mt-2 pt-1">
+                                <button type="submit" name="add" class="btn btn-primary btn-sm">Gửi</button>
+                                <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
                             </div>
-                        </div>
-                        <div class="float-end mt-2 pt-1">
-                            <button type="submit" name="add" class="btn btn-primary btn-sm">Gửi</button>
-                            <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
-<!-- close comment -->
+    </div>
+    <!-- close comment -->

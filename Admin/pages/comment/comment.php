@@ -6,10 +6,11 @@ class comment
    var $user_id = null;
    var $product_id  = null;
 
-   function getComment()
+   function getComment($id_pr)
    {
       $db = new connect();
-      $select = "select * from comments";
+      $select = " SELECT * from comments 
+      inner join users on id_user = user_id where product_id = " .$id_pr;
       return $db->pdo_query($select);
    }
 
@@ -28,16 +29,16 @@ class comment
    {
       $db = new connect();
       $query = "UPDATE comments SET id_cmt=`$id_cmt` cmt=`$cmt`, user_id=`$user_id`, product_id=`$product_id`
-       WHERE product_id= ".$product_id;
+       WHERE product_id= '.$product_id' and user_id ".$user_id;
       $result = $db->pdo_execute($query); 
       return $result;
    }
 
 
-   function binh_luan_select_by_id($product_id){
+   function delete($product_id ,$user_id){
       $db = new connect();
-      $query = "SELECT * FROM comments WHERE product_id= '$product_id'";
-      $result = $db->pdo_query_one($query); 
+      $query = "DELETE * FROM comments WHERE product_id= '$product_id' and user_id ".$user_id;
+      $result = $db->pdo_execute($query);
       return $result;
     
   }
