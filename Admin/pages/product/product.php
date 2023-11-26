@@ -17,7 +17,7 @@ class product
    function getproduct()
    {
       $db = new connect();
-      $select = "select * from products";
+      $select = "SELECT * from products  ";
       return $db->pdo_query($select);
    }
    public function checkId($id_product)

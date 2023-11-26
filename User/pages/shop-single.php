@@ -67,7 +67,7 @@ $select = $product->checkId($id);
                             <!--/.First slide-->
 
                             <!--Second slide-->
-<!-- 
+                            <!-- 
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
@@ -92,7 +92,7 @@ $select = $product->checkId($id);
 
                             <!--Third slide-->
 
-<!--                             
+                            <!--                             
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
@@ -143,26 +143,34 @@ $select = $product->checkId($id);
                             <i class="fa fa-star text-secondary"></i>
                             <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
                         </p>
+                        
                         <?
-                        $categori = new categori();
-                        $select = $categori->getcategori();
-                        foreach ($select as $data) {
-                            echo '
-                        <ul class="list-inline">
-                          
-                            <li class="list-inline-item">
-                                <h6>Brand:</h6>
-                            </li>
-                            <li class="list-inline-item">
-                                <p class="text-muted"><strong>' . $data['name_ct'] . '</strong></p>
-                            </li>
-                        </ul>
-                        ';
+                        $product = new product();
+                        $db = new connect();
+
+                        // Thực hiện câu truy vấn
+                        $select = "SELECT p.describe, c.name_ct 
+                        FROM products AS p 
+                        JOIN categories AS c ON p.categori_id = c.id_categori 
+                        WHERE p.id_product = '$id'";
+                        $result = $db->pdo_query($select);
+
+                        if ($result) {
+                            foreach ($result as $data) {
+                                echo '<ul class="list-inline">';
+                                echo '<li class="list-inline-item"><h6>Brand:</h6></li>';
+                                echo '<li class="list-inline-item"><p class="text-muted"><strong>' . $data['name_ct'] . '</strong></p></li>';
+                                echo '</ul>';
+                                echo '<h6>Description:</h6>';
+                                echo '<p>' . $data['describe']. '</p>';
+                                
+                            }
+                        } else {
+                            echo "Không tìm thấy thông tin danh mục sản phẩm.";
                         }
                         ?>
 
-                        <h6>Description:</h6>
-                        <p><?= $select['note'] ?></p>
+                       
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <h6>Avaliable Color :</h6>
@@ -1309,7 +1317,7 @@ include './pages/comment.php';
                 <li role="presentation" class="slick-active"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide06" aria-label="3 of 3" tabindex="-1">3</button></li>
                 <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide09" aria-label="4 of 3" tabindex="-1">4</button></li>
             </ul>
-        </div>  
+        </div>
 
 
     </div>
