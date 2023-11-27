@@ -21,7 +21,7 @@ class comment
    public function add( $cmt, $user_id, $product_id)
    {
       $db = new connect();
-      $query = "INSERT INTO comments( cmt, user_id, product_id) VALUES ( `$cmt`, `$user_id`, `$product_id`)";
+      $query = "INSERT INTO comments( cmt, user_id, product_id) VALUES ( '$cmt', '$user_id', '$product_id')";
       $result = $db->pdo_execute($query); 
       return $result;
    }
@@ -29,7 +29,7 @@ class comment
    function update($id_cmt, $cmt, $user_id, $product_id)
    {
       $db = new connect();
-      $query = "UPDATE comments SET id_cmt=`$id_cmt` cmt=`$cmt`, user_id=`$user_id`, product_id=`$product_id`
+      $query = "UPDATE comments SET id_cmt='$id_cmt' cmt='$cmt', user_id='$user_id', product_id='$product_id'
        WHERE product_id= '.$product_id' and user_id ".$user_id;
       $result = $db->pdo_execute($query); 
       return $result;

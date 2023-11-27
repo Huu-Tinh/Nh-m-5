@@ -53,7 +53,7 @@
                     }
                    
                     $comment = new comment();
-                    if (isset($_SESSION[" username"])){
+                    if (isset($_SESSION["username"])){
                         $id_us = $user['id_user'];
                         }
                     if (isset($_POST['add'])) {
