@@ -80,6 +80,21 @@ https://templatemo.com/tm-559-zay-shop
                         // Danh sách giỏ hàng
                         include './pages/cart/listCart.php';
                         break;
+                    case 'delete':
+                        if (isset($_GET['i'])) {
+                            array_splice($_SESSION['cart'], $_GET['i'], 1);
+                        } else {
+                            if (isset($_SESSION['cart'])) unset($_SESSION['cart']);
+                        }
+
+                        if (isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0)) {
+
+                            header('location: index.php?act=carts&get=cart');
+                        } else {
+                            header('location: index.php');
+                        }
+
+                        break;
                     case 'toCart':
                         // Mua tiếp 
                         if (isset($_POST['continue'])) {
@@ -88,11 +103,6 @@ https://templatemo.com/tm-559-zay-shop
                         // Cập nhật giỏ hàng 
                         if (isset($_POST['updateCart'])) {
                             header('location: index.php?act=shop');
-                        }
-                        // Xóa giỏ hàng 
-                        if (isset($_POST['deleteCart'])) {
-                            unset($_SESSION['cart']);
-                            header('location: index.php?act=home');
                         }
                         // Thêm giỏ hàng
                         if (isset($_POST['addcart'])) {

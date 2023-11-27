@@ -35,7 +35,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    $i = 1;
+                    $i = 0;
                     foreach ($_SESSION['cart'] as $data) {
                         echo '
                         <tr class="">
@@ -55,13 +55,13 @@
                                 <p class="fw-normal mb-0 ">' . number_format($data[3], 0, ".", ".") . '   </p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' .number_format($data[4], 0, ".", ".") . '</p>
+                                <p class="fw-normal mb-0 ">' . number_format($data[4], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' .number_format( $data[3] * $data[4], 0, ".", ".") . '</p>
+                                <p class="fw-normal mb-0 ">' . number_format($data[3] * $data[4], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <a href="#" class="btn btn-danger m-1">Xoá</a>
+                                <a href="index.php?act=carts&get=delete&i=' . $i . '" class="btn btn-danger m-1">Xoá</a>
                             </td>
                         </tr>
                         ';
@@ -69,13 +69,9 @@
                     }
                     ?>
                     <tr>
-                        <td class="border-bottom-0"></td>
-                        <td class="border-bottom-0"></td>
-                        <td class="border-bottom-0"></td>
-                        <td class="border-bottom-0"></td>
-                        <td class="border-bottom-0"></td>
+                        <td colspan="5" class="border-bottom-0"></td>
                         <td class="border-bottom-0">
-                            <h5 class="fw-semibold mb-1">Tổng tiền</h5>
+                            <h5 class="fw-normal mb-1">Tổng tiền</h5>
                         </td>
                         <td class="border-bottom-0">
                             <?php
@@ -83,18 +79,20 @@
                             foreach ($_SESSION['cart'] as $item) {
                                 $sum += $item[3];
                             }
-                            echo  number_format($sum, 0, ".", ".");
-                           
+                            echo  '<p class="fw-bold text-danger mb-0 ">' . number_format($sum, 0, ".", ".") . ' <sup>vnđ</sup></p>';
+
                             ?>
                         </td>
-                        <td class="border-bottom-0"></td>
                     </tr>
                 </tbody>
             </table>
-            <div class="d-flex bd-highlight mb-3">
-                <div class="p-2 bd-highlight"><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Xoá giỏ hàng</button></div>
-                <div class="p-2 bd-highlight"><button class="btn btn-primary" type="button">Cập nhật giỏ hàng</button></div>
-                <div class="ms-auto p-2 bd-highlight"><button class="btn btn-success" type="button">Thanh toán</button></div>
+            <div class="row g-0 mt-5">
+                <div class="col-sm-6 col-md-8"></div>
+                <div class="col-6 col-md-4">
+                    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Xoá giỏ hàng</button>
+                    <button class="btn btn-primary mx-2" type="button">Cập nhật giỏ hàng</button>
+                    <button class="btn btn-success" type="button">Thanh toán</button>
+                </div>
             </div>
             <!-- Modal DELETE-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,7 +106,7 @@
                             Bạn Có Muốn Xóa Giỏ Hàng?
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" name="deleteCart" class="btn btn-success">Đồng ý</button>
+                            <a href="index.php?act=carts&get=delete" class="btn btn-success">Đồng ý</a>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                         </div>
                     </div>
