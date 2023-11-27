@@ -5,6 +5,7 @@ class comment
    var $cmt = null;
    var $user_id = null;
    var $product_id  = null;
+   // var $total_comments = null;
 
    function getComment($id_pr)
    {

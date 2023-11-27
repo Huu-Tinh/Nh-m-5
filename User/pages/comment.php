@@ -25,12 +25,12 @@
                                                                     } ?></h6>
                         </div>
                     </div>
-                    
+
                     <?php
                     $comment = new comment();
                     $db = new connect();
-                  
-                   $cm = $comment->getComment($id);
+
+                    $cm = $comment->getComment($id);
                     // $select = $product->getproduct(); 
                     foreach ($cm as $data) {
                         echo '
@@ -49,13 +49,49 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                     ';
+                        </div>';
+                    }
+                   
+                    $comment = new comment();
+                    if (isset($_SESSION[" username"])){
+                        $id_us = $user['id_user'];
+                        }
+                    if (isset($_POST['add'])) {
+                        $cmt = $_POST['cmts'];
+                        $comment->add($cmt, $id_us, $id);
+                    }
+                    if (isset($_SESSION["username"])) {
+                        
+                        echo '<div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                        <form method="post">
+                          <div class="d-flex flex-start w-100">
+                            <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">
+                
+                            </div>
+                            <div class="form-outline w-100">
+                              <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">
+                
+                              </div>
+                              <div class="form-outline w-100">
+                              <label class="form-label" for="textAreaExample">Bình luận</label>
+                              <textarea class="form-control" name="cmts" id="textAreaExample" rows="4" style="background: #fff;"></textarea>
+                            </div>
+                          </div>
+                          <div class="float-end mt-2 pt-1">
+                            <button type="submit" name="add" class="btn btn-primary btn-sm">Gửi</button>  
+                          </div>
+                        </form>
+                      </div>';
+                    } else {
+                        echo '<div></div>';
                     }
                     ?>
-                    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                </div>
+
+
+
+             
+                <!-- <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                         <form method="post">
                             <div class="d-flex flex-start w-100">
                                 <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">
@@ -71,10 +107,10 @@
                                 <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
                             </div>
                         </form>
-                    </div>
-                </div>
+                    </div> -->
             </div>
         </div>
-
     </div>
-    <!-- close comment -->
+
+</div>
+<!-- close comment -->
