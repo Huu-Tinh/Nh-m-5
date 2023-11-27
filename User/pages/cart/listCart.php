@@ -91,7 +91,7 @@
                 <div class="col-6 col-md-4">
                     <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Xoá giỏ hàng</button>
                     <button class="btn btn-primary mx-2" type="button">Cập nhật giỏ hàng</button>
-                    <button class="btn btn-success" type="button">Thanh toán</button>
+                    <a href="index.php?act=carts&get=delete" class="btn btn-success">Thanh toán</a>
                 </div>
             </div>
             <!-- Modal DELETE-->
@@ -112,8 +112,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </form>

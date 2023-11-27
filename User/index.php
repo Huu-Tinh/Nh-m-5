@@ -80,6 +80,9 @@ https://templatemo.com/tm-559-zay-shop
                         // Danh sách giỏ hàng
                         include './pages/cart/listCart.php';
                         break;
+                    case 'pay':
+                        
+                        break;
                     case 'delete':
                         if (isset($_GET['i'])) {
                             array_splice($_SESSION['cart'], $_GET['i'], 1);
