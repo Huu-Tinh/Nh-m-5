@@ -40,6 +40,7 @@ https://templatemo.com/tm-559-zay-shop
     include("../Admin/pages/user/user.php");
     include("../Admin/pages/comment/comment.php");
     include("../Admin/pages/categori/categori.php");
+    include("../Admin/pages/order/order.php");
 
     $product = new product();
     $getProduct = $product->getproduct();
@@ -81,7 +82,23 @@ https://templatemo.com/tm-559-zay-shop
                         include './pages/cart/listCart.php';
                         break;
                     case 'pay':
-                        
+                        $order = new order();
+                        if (isset($_POST['addpay'])) {
+                            $total = $_POST['total'];
+                            $username = $_POST['username'];
+                            $phone = $_POST['phone'];
+                            $address = $_POST['address'];
+                            $pttt = $_POST['pttt'];
+                            $codepay = "ZCT" . rand(0, 999999);
+                            $id_order = $order->addorder($codepay, $total, $pttt, $username, $phone, $address);
+                            echo 'id' . $id_order;
+                            if (isset($_SESSION['cart'])) {
+                                foreach ($_SESSION['cart'] as $item) {
+                                    $order->addtocat($id_order, $item[0], $item[1], $item[2], $item[3], $item[4]);
+                                }
+                                unset($_SESSION['cart']);
+                            }
+                        }
                         break;
                     case 'delete':
                         if (isset($_GET['i'])) {
