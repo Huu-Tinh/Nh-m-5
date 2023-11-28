@@ -148,7 +148,7 @@ $product = new product();
                                             <div class="col-6">
                                                 <h1 class="h2">' . $value['name_pr'] . '</h1>
                                                 <label>Giá:</label>
-                                                <label class="text-danger fw-bold mb-3">' . $value['price'] . ' vnd</label>
+                                                <label class="text-danger fw-bold mb-3">' . number_format($value['price'], 0, ".", "."). ' vnd</label>
                                                 <div class="row">
                                                     <div class="col-auto">
                                                         <ul class="list-inline pb-3">
