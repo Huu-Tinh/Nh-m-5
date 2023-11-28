@@ -20,6 +20,7 @@ ob_start();
     include './pages/categori/categori.php';
     include './pages/product/product.php';
     include './pages/comment/comment.php';
+    include './pages/order/order.php';
     if (isset($_SESSION['admin'])) {
         $user = new user();
         $selectUs = $user->checkId($_SESSION['admin']);
@@ -156,8 +157,8 @@ ob_start();
                         case 'list':
                             include './pages/order/listOrder.php';
                             break;
-                        case 'add':
-                            include './pages/order/add.php';
+                        case 'detailorder':
+                            include './pages/order/detailorder.php';
                             break;
                         case 'update':
                             include './pages/order/update.php';

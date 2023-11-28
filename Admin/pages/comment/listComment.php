@@ -34,16 +34,16 @@
                     <?php
                     $comment = new comment();
                     $db = new connect();
-                    $select ="SELECT p.id_product, p.name_pr, COUNT(c.id_cmt) AS comment_count
+                    $select = "SELECT p.id_product, p.name_pr, COUNT(c.id_cmt) AS comment_count
                     FROM products AS p
                     JOIN (
                         SELECT DISTINCT product_id,id_cmt
                         FROM comments
                     ) AS c ON p.id_product = c.product_id
                     GROUP BY p.id_product, p.name_pr";
-                    
-                    
-                  
+
+
+
                     $result = $db->pdo_query($select);
                     // $select = $product->getproduct(); 
                     foreach ($result as $data) {
@@ -61,7 +61,7 @@
                     
                       
                         <td>
-                            <a href="#" class="btn btn-danger m-1">Xoá</a>
+                            
                             <a href="index.php?act=comment&get=detail_comment&id_cmts=' . $data['id_product'] . '" class="btn btn-success m-1">Chi tiết</a>
                         </td>
                         
