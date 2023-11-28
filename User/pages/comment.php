@@ -43,9 +43,9 @@
                                 ' . $data['cmt'] . '
                                 </p>
                                 <p class="text-black-50">' . $data['create_at'] . '</p>
-                                <div class="float-end">
+                                <div class="float-end">                                                                                                                                                         
                                     <a href="index.php?" class="btn  btn-sm">Sửa</a>
-                                    <a href="index.php?" class="btn  btn-sm">Xóa</a>
+                                    <a href="index.php?act=delete-comment&id_cmt='.$data['id_cmt'].'&id_pr='.$id.'" class="btn  btn-sm">Xóa</a>
                                 </div>
                             </div>
                         </div>

@@ -11,18 +11,40 @@ class comment
    {
       $db = new connect();
       $select = " SELECT * from comments 
-      inner join users on id_user = user_id where product_id = " .$id_pr;
+      inner join users on id_user = user_id where product_id = " . $id_pr;
       return $db->pdo_query($select);
    }
 
 
+   public function checkId($product_id)
+   {
+      $db = new connect();
+      $select = "SELECT * from comments where product_id ='$product_id'";
+      $result = $db->pdo_query_one($select);
+      return $result;
+   }
+
+   function getCount($product_id)
+   {
+      $db = new connect();
+      // $select = "SELECT COUNT(*) AS total_comments FROM comments , products WHERE `product_id` = 'product_id'";
+
+
+      $select = "SELECT COUNT(cmt) AS total_comments
+      FROM products AS p 
+      JOIN comments AS c ON p.id_product = c.product_id
+      WHERE p.id_product = '$product_id'";
+
+      $result = $db->pdo_query($select);
+      return $result;
+   }
    // require_once 'pdo.php';
 
-   public function add( $cmt, $user_id, $product_id)
+   public function add($cmt, $user_id, $product_id)
    {
       $db = new connect();
       $query = "INSERT INTO comments( cmt, user_id, product_id) VALUES ( '$cmt', '$user_id', '$product_id')";
-      $result = $db->pdo_execute($query); 
+      $result = $db->pdo_execute($query);
       return $result;
    }
 
@@ -30,19 +52,19 @@ class comment
    {
       $db = new connect();
       $query = "UPDATE comments SET id_cmt='$id_cmt' cmt='$cmt', user_id='$user_id', product_id='$product_id'
-       WHERE product_id= '.$product_id' and user_id ".$user_id;
-      $result = $db->pdo_execute($query); 
+       WHERE product_id= '.$product_id' and user_id " . $user_id;
+      $result = $db->pdo_execute($query);
       return $result;
    }
 
 
-   function delete($product_id ,$user_id){
+   function delete($id_cmt, $user_id)
+   {
       $db = new connect();
-      $query = "DELETE * FROM comments WHERE product_id= '$product_id' and user_id ".$user_id;
+      $query = "DELETE  FROM comments WHERE id_cmt= '$id_cmt'  and  user_id=  " . $user_id;
       $result = $db->pdo_execute($query);
       return $result;
-    
-  }
+   }
 
    // function binh_luan_delete($id_cmt)
    // {
@@ -57,7 +79,7 @@ class comment
    //    }
    // }
 
- 
+
 
    // function binh_luan_select_by_id($ma_bl)
    // {
@@ -81,7 +103,7 @@ class comment
 
 
    function exist_param($fieldname)
-{
-    return array_key_exists($fieldname, $_REQUEST);
-}
+   {
+      return array_key_exists($fieldname, $_REQUEST);
+   }
 }

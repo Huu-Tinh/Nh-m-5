@@ -115,7 +115,9 @@ ob_start();
                         case 'list':
                             include './pages/comment/listComment.php';
                             break;
-
+                        case 'detail_comment':
+                            include './pages/comment/detail_comment.php';
+                            break;
 
 
                         default:

@@ -5,25 +5,25 @@
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr class="">
-                        <th class="border-bottom-0">
+                        <!-- <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Id</h6>
                         </th>
 
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Tên</h6>
-                        </th>
-
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Nội dung</h6>
-                        </th>
-
+                        </th> -->
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Sản phẩm</h6>
                         </th>
-
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Thời gian</h6>
+                            <h6 class="fw-semibold mb-0">Lượt bình luận</h6>
                         </th>
+
+
+
+                        <!-- <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Thời gian</h6>
+                        </th> -->
 
                         <!-- <th>
                             <a href="index.php?act=product&get=add" class="btn btn-success m-1">Thêm</a>
@@ -31,47 +31,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                    <?php
                     $comment = new comment();
                     $db = new connect();
-                    $select = "SELECT *
-                    FROM comments
-                    JOIN users ON users.id_user = comments.user_id
-                    JOIN products ON comments.product_id = products.id_product
-                    " ;
+                    $select ="SELECT p.id_product, p.name_pr, COUNT(c.id_cmt) AS comment_count
+                    FROM products AS p
+                    JOIN (
+                        SELECT DISTINCT product_id,id_cmt
+                        FROM comments
+                    ) AS c ON p.id_product = c.product_id
+                    GROUP BY p.id_product, p.name_pr";
+                    
+                    
+                  
                     $result = $db->pdo_query($select);
                     // $select = $product->getproduct(); 
                     foreach ($result as $data) {
                         echo '
                     <tr>
                       
-                        <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">'. $data['id_cmt'].'</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">'. $data['username'].'</h6>
-                        
-                        </td>
-                     
-                        <td class="border-bottom-0">
-                            <p class="mb-0 fw-normal">'. $data['cmt'].'</p>
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0 fs-4">'. $data['name_pr'].'</h6>
+                           <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 fs-4">' . $data['name_pr'] . '</h6>
 
                         </td>
+                       
                         <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0 fs-4">'. $data['create_at'].'</h6>
+                            <p class="mb-0 fw-normal">' . $data['comment_count'] . '</p>
                         </td>
+                    
+                      
                         <td>
                             <a href="#" class="btn btn-danger m-1">Xoá</a>
+                            <a href="index.php?act=comment&get=detail_comment&id_cmts=' . $data['id_product'] . '" class="btn btn-success m-1">Chi tiết</a>
                         </td>
+                        
                     </tr>
                     ';
                     }
                     ?>
-                            <!-- <a href="index.php?act=product&get=update" class="btn btn-warning m-1">Sửa</a> -->
+                    <!-- <a href="index.php?act=product&get=update" class="btn btn-warning m-1">Sửa</a> -->
 
+                    <!-- <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 fs-4">' . $data['id_cmt'] . '</h6>
+                        </td>
+                         <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-1">' . $data['username'] . '</h6>
+                        
+                        </td>
+                        <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 fs-4">' . $data['create_at'] . '</h6>
+                        </td> -->
                 </tbody>
             </table>
         </div>

@@ -74,6 +74,9 @@ https://templatemo.com/tm-559-zay-shop
             case 'shop-single':
                 include './pages/shop-single.php';
                 break;
+            case 'delete-comment':
+                include '../Admin/pages/comment/delete-comment.php';
+                break;
             case 'carts':
                 switch ($_GET['get']) {
                     case 'cart':
