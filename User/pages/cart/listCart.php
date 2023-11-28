@@ -77,7 +77,7 @@
                             <?php
                             $sum = 0;
                             foreach ($_SESSION['cart'] as $item) {
-                                $sum += $item[3];
+                                $sum += $item[3] * $item[4];
                             }
                             echo  '<p class="fw-bold text-danger mb-0 ">' . number_format($sum, 0, ".", ".") . ' <sup>vnđ</sup></p>';
 
@@ -90,8 +90,8 @@
                 <div class="col-sm-6 col-md-8"></div>
                 <div class="col-6 col-md-4">
                     <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Xoá giỏ hàng</button>
-                    <button class="btn btn-primary mx-2" type="button">Cập nhật giỏ hàng</button>
-                    <button class="btn btn-success" type="button">Thanh toán</button>
+                    <!-- <button class="btn btn-primary mx-2" type="button">Cập nhật giỏ hàng</button> -->
+                    <a href="index.php?act=carts&get=delete" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Pay">Thanh toán</a>
                 </div>
             </div>
             <!-- Modal DELETE-->
@@ -112,8 +112,60 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="Pay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <form action="index.php?act=carts&get=pay" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thông Tin Đặt Hàng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+
+                            <p>Địa chỉ nhận hàng</p>
+                            <ul class="list-inline pb-3">
+                                <li class="list-inline-item">
+                                    <label for="" class="mt-3">Họ Tên</label>
+                                    <input type="text" value="" class="form-control" name="username">
+                                </li>
+                                <li class="list-inline-item">
+                                    <label for="" class="mt-3">Số điện thoại</label>
+                                    <input type="int" value="" class="form-control" name="phone">
+                                </li>
+                                <li class="list-inline-item">
+                                    <label for="" class="mt-3">Địa chỉ</label>
+                                    <input type="text" value="" class="form-control" name="address">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <p>Phương thức thanh toán</p>
+                            <div>
+                                <input class="form-check-input" type="radio" name="pttt" value="Thanh toán khi nhận hàng" id="check1">
+                                <label class="form-check-label" for="check1">
+                                    Thanh toán khi nhận hàng
+                                </label>
+                            </div>
+                            <input class="form-check-input" type="radio" name="pttt" value="Thanh toán bằng ví" id="check2">
+                            <label class="form-check-label" for="check2">
+                                Thanh toán bằng ví
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="addpay" class="btn btn-success">Đặt hàng</button>
+                </div>
+                <input type="hidden" name="total" value="<? echo $sum ?>">
+            </form>
+        </div>
+    </div>
+</div>
