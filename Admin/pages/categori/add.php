@@ -3,8 +3,10 @@ $categori = new categori();
 $name_ct = $_POST['name'] ?? '';
 $note = $_POST['note'] ?? '';
 if (isset($_POST['addcategori'])) {
-    $categori->add($name_ct,$note);
-    header('Location: index.php?act=categori&get=list');
+    if (!empty($_POST['name'])){
+        $categori->add($name_ct,$note);
+        header('Location: index.php?act=categori&get=list');
+    }
 }
 ?>
 <div class="container-fluid">
