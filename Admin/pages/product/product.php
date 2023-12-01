@@ -20,6 +20,15 @@ class product
       $select = "SELECT * from products  ";
       return $db->pdo_query($select);
    }
+
+   function listproduct()
+   {
+      $db = new connect();
+      $select = "SELECT * from products as p,categories as c where p.categori_id = c.id_categori";
+      $result = $db->pdo_query($select);
+      return $result;
+   }
+
    public function checkId($id_product)
    {
       $db = new connect();

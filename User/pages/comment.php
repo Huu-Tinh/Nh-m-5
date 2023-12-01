@@ -65,9 +65,7 @@
                         echo '<div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                         <form method="post">
                           <div class="d-flex flex-start w-100">
-                            <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">
-                
-                            </div>
+                           
                             <div class="form-outline w-100">
                               <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">
                 
@@ -91,7 +89,14 @@
 
 
              
-                <!-- <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                <!-- 
+                    
+                 <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">
+                
+                            </div>
+                
+                
+                <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                         <form method="post">
                             <div class="d-flex flex-start w-100">
                                 <div class="rounded-circle shadow-1-strong me-3 alert-dark" style="width: 40px; height: 40px;">

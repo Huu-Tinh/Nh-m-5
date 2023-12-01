@@ -15,7 +15,7 @@ $note = $_POST['note'] ?? '';
 $quantity = $_POST['quantity'] ?? '';
 $categori_id = $_POST['categori_id'] ?? '';
 
-if (isset($_POST['updateproduct'])) {
+if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) && !empty($_POST['quantity']) && !empty($_POST['categori_id'])) {
     $product->update($id,$name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity,$categori_id);
     header('Location: index.php?act=product&get=list');
 }
