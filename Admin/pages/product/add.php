@@ -12,10 +12,10 @@ $categori_id = $_POST['categori_id'] ?? '';
 
 if (isset($_POST['addproduct'])) {
 
-
-    $product->add($name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id);
-
-    header('Location: index.php?act=product&get=list');
+    if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) && !empty($_POST['quantity']) && !empty($_POST['categori_id'])){
+        $product->add($name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id);
+        header('Location: index.php?act=product&get=list');
+    }
 }
 ?>
 

@@ -9,55 +9,64 @@
                             <h6 class="fw-semibold mb-0">Id</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Img</h6>
+                            <h6 class="fw-semibold mb-0">Mã hóa đơn</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Name</h6>
+                            <h6 class="fw-semibold mb-0">Số lượng sản phẩm</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Price</h6>
+                            <h6 class="fw-semibold mb-0">Tên người nhận</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Quantity</h6>
+                            <h6 class="fw-semibold mb-0">Địa chỉ</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Mô tả</h6>
+                            <h6 class="fw-semibold mb-0">Số điện thoại</h6>
                         </th>
-                        <th>
-                            <a href="index.php?act=product&get=add" class="btn btn-success m-1">Thêm</a>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Tổng giá</h6>
                         </th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">1</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                            <img style="max-width: 35%;" src="./admin/products/img/" alt="">
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                            <!-- <span class="fw-normal">Web Designer</span> -->
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                            <p class="mb-0 fw-normal"></p>
-                        </td>
-                        <td class="border-bottom-0">
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="badge bg-primary rounded-3 fw-semibold">
-                                </span>
-                            </div>
-                        </td>
-                       
-                        <td>
-                            <a href="#" class="btn btn-danger m-1">Xoá</a>
-                            <a href="index.php?act=product&get=update" class="btn btn-warning m-1">Sửa</a>
-                        </td>
-                    </tr>
+
+                    <?php
+                    $order = new order();
+                    $select = $order->getorder();
+                    foreach ($select as $data) {
+                        echo '
+                            <tr>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">' . $data['id'] . '</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">' . $data['code'] . '</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">' . $data['count'] . '</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 fs-4">' . $data['username'] . '</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 fs-4">' . $data['address'] . '</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 fs-4">' . $data['phone'] . '</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 fs-4">' . number_format($data['total'], 0, ".", ".") . '</h6>
+                                </td>
+                                <td>
+                                    <a href="index.php?act=order&get=detailorder&id=' . $data['id'] . '" class="btn btn-success m-1">Chi tiết</a>
+                                </td>
+                            </tr>
+                            ';
+                    }
+                    ?>
+
+
 
                 </tbody>
             </table>

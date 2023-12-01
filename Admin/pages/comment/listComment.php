@@ -33,8 +33,11 @@
                 <tbody>
                     <?php
                     $comment = new comment();
-                    $select = $comment->listcomment(); 
+                    $select = $comment->listcomment();
                     foreach ($select as $data) {
+
+
+
                         echo '
                     <tr>
                       
@@ -49,7 +52,7 @@
                     
                       
                         <td>
-                        
+
                             <a href="index.php?act=comment&get=detail_comment&id_cmts=' . $data['id_product'] . '" class="btn btn-success m-1">Chi tiết</a>
                         </td>
                         

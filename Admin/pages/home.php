@@ -35,7 +35,7 @@
                     <span class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
                       <i class="ti ti-arrow-up-left text-success"></i>
                     </span>
-                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                    <p class="text-dark me-1 fs-3 mb-0">+10%</p>
                     <p class="fs-3 mb-0">last year</p>
                   </div>
                   <div class="d-flex align-items-center">
