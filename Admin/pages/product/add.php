@@ -18,30 +18,35 @@ if (isset($_POST['addproduct'])) {
     if (empty($_POST['price'])) {
         $errors['price']['required'] = "Nhập đầy đủ thông tin!";
     }
-    if (empty($_POST['img']))
+    if (empty($_POST['img'])){
         $errors['img']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['img_1'])) {
+            $errors['img_1']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['img_2'])) {
+            $errors['img_2']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['img_3'])) {
+            $errors['img_3']['required'] = "Nhập đầy đủthông tin! ";
+        }
+        if (empty($_POST['note'])) {
+            $errors['note']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['quantity'])) {
+            $errors['quantity']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['categori_id'])) {
+            $errors['categori_id']['required'] = "Chọn phân quyền!";
+        }
+        
+        if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) && !empty($_POST['quantity']) && !empty($_POST['categori_id'])) {
+            $product->add($name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id);
+            header('Location: index.php?act=product&get=list');
+        }
 }
 
-if (empty($_POST['img_2'])) {
-    $errors['img_2']['required'] = "Nhập đầy đủ thông tin!";
-}
-if (empty($_POST['img_3'])) {
-    $errors['img_3']['required'] = "Nhập đầy đủthông tin! ";
-}
-if (empty($_POST['note'])) {
-    $errors['note']['required'] = "Nhập đầy đủ thông tin!";
-}
-if (empty($_POST['quantity'])) {
-    $errors['quantity']['required'] = "Nhập đầy đủ thông tin!";
-}
-if (empty($_POST['categori_id'])) {
-    $errors['categori_id']['required'] = "Chọn phân quyền!";
-}
 
-if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) && !empty($_POST['quantity']) && !empty($_POST['categori_id'])) {
-    $product->add($name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id);
-    header('Location: index.php?act=product&get=list');
-}
 
 ?>
 
@@ -69,7 +74,7 @@ if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) &
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh-1</label>
                         <input type="file" class="form-control" name="img_1" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <? echo !empty($errors['img_2']['required']) ? '<p class="text-danger mt-2">' . $errors['img_2']['required'] . '</p>' : '' ?>
+                        <? echo !empty($errors['img_1']['required']) ? '<p class="text-danger mt-2">' . $errors['img_1']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh-2</label>
