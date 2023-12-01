@@ -5,9 +5,9 @@
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr class="">
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Id</h6>
-                        </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Id</h6>
+                            </th>
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Img</h6>
                         </th>

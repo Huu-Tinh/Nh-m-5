@@ -7,6 +7,8 @@ class comment
    var $product_id  = null;
    // var $total_comments = null;
 
+
+
    function getComment($id_pr)
    {
       $db = new connect();
@@ -14,8 +16,31 @@ class comment
       inner join users on id_user = user_id where product_id = " . $id_pr;
       return $db->pdo_query($select);
    }
+   function listcomment()
+   {
+      $db = new connect();
+      $select = "SELECT p.id_product, p.name_pr, COUNT(c.id_cmt) AS comment_count
+      FROM products AS p
+      JOIN (
+          SELECT DISTINCT product_id,id_cmt
+          FROM comments
+      ) AS c ON p.id_product = c.product_id
+      GROUP BY p.id_product, p.name_pr";
+      $result = $db->pdo_query($select);
+      return  $result;
+   }
 
-
+   function detail_coment($id)
+   {
+      $db = new connect();
+      $select = "SELECT c.`cmt`, u.username, p.name_pr, c.`create_at`,c.`id_cmt`,c.`user_id`
+   FROM comments AS c
+   JOIN users AS u ON c.`user_id` = u.id_user
+   JOIN products AS p ON  c.product_id = p.id_product
+   where id_product = " . $id;
+      $result = $db->pdo_query($select);
+      return $result;
+   }
    public function checkId($product_id)
    {
       $db = new connect();
@@ -24,20 +49,7 @@ class comment
       return $result;
    }
 
-   function getCount($product_id)
-   {
-      $db = new connect();
-      // $select = "SELECT COUNT(*) AS total_comments FROM comments , products WHERE `product_id` = 'product_id'";
 
-
-      $select = "SELECT COUNT(cmt) AS total_comments
-      FROM products AS p 
-      JOIN comments AS c ON p.id_product = c.product_id
-      WHERE p.id_product = '$product_id'";
-
-      $result = $db->pdo_query($select);
-      return $result;
-   }
    // require_once 'pdo.php';
 
    public function add($cmt, $user_id, $product_id)
@@ -46,6 +58,14 @@ class comment
       $query = "INSERT INTO comments( cmt, user_id, product_id) VALUES ( '$cmt', '$user_id', '$product_id')";
       $result = $db->pdo_execute($query);
       return $result;
+   }
+
+   function getCommentsByItemId($id_pr)
+   {
+      $db = new connect();
+      $select = " SELECT * from comments 
+      inner join users on id_user = user_id where product_id = " . $id_pr;
+      return $db->pdo_query($select);
    }
 
    function update($id_cmt, $cmt, $user_id, $product_id)
@@ -58,52 +78,13 @@ class comment
    }
 
 
-   function delete($id_cmt, $user_id)
+   function delete($id_cmt)
    {
       $db = new connect();
-      $query = "DELETE  FROM comments WHERE id_cmt= '$id_cmt'  and  user_id=  " . $user_id;
+      $query = "DELETE FROM comments WHERE  id_cmt=  " . $id_cmt;
       $result = $db->pdo_execute($query);
       return $result;
    }
 
-   // function binh_luan_delete($id_cmt)
-   // {
-   //    $db = new connect();
-   //    $sql = "DELETE FROM comments WHERE id_cmt=?";
-   //    if (is_array($id_cmt)) {
-   //       foreach ($id_cmt as $ma) {
-   //          pdo_execute($sql, $ma);
-   //       }
-   //    } else {
-   //       pdo_execute($sql, $ma_bl);
-   //    }
-   // }
 
-
-
-   // function binh_luan_select_by_id($ma_bl)
-   // {
-   //    $sql = "SELECT * FROM comments WHERE ma_bl=?";
-   //    return pdo_query_one($sql, $ma_bl);
-   //    $result = $db->pdo_execute($query); 
-   //    return $result;
-   // }
-
-   // function binh_luan_exist($ma_bl)
-   // {
-   //    $sql = "SELECT count(*) FROM comments WHERE ma_bl=?";
-   //    return pdo_query_value($sql, $ma_bl) > 0;
-   // }
-
-   // function binh_luan_select_by_hang_hoa($ma_hh)
-   // {
-   //    $sql = "SELECT b.*, h.ten_hh FROM comments b JOIN hang_hoa h ON h.ma_hh-b.ma_hh WHERE b.ma_hh=? ORDER BY ngay_bl DESC";
-   //    return pdo_query($sql, $ma_hh);
-   // }
-
-
-   function exist_param($fieldname)
-   {
-      return array_key_exists($fieldname, $_REQUEST);
-   }
 }
