@@ -88,7 +88,7 @@ if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) &
                         <textarea type="text" class="form-control" value="<?= $select['note'] ?>" name="note" id=""></textarea>
                     </div>
 
-                    <button type="submit" name="updateproduct" class="btn btn-primary col-1">Thêm</button>
+                    <button type="submit" name="updateproduct" class="btn btn-primary col-1">Sửa</button>
                 </form>
             </div>
         </div>
