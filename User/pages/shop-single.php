@@ -357,77 +357,8 @@ include './pages/comment.php';
 
                 </div>
 
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                      
-                    </div>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                        <div class="slick-list draggable">
-                            <div class="slick-track row">
-                                <?php
-                                foreach ($categori as $row) {
-                                    echo '
-                    <div class="p-2 pb-3 slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 324px;">
-                        <div class="product-wap card rounded-0">
-                                
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../Admin/assets/images/products/' . $row['img'] . '">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html" tabindex="-1"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="index.php?act=shop-single&id_pr=' . $row['id_product'] . '" tabindex="-1"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html" tabindex="-1"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="index.php?act=shop-single&id_pr=' . $row['id_product'] . '" class="h3 text-decoration-none" tabindex="-1">' . $row['name_pr'] . '</a>
-                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                    <li>M/L/X/XL</li>
-                                    <li class="pt-2">
-                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                    </li>
-                                </ul>
-                                <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                </ul>
-                                <p class="text-center mb-0">' . number_format($row['price'], 0, ".", ".") . ' <b>vnđ</b></p>
-                            </div>
-                            
-                            
-                            </div>
-                    </div>';
-                                }
-
-                                ?>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
             </div>
 </section>
 <!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- Initialize Swiper -->
-<script>
-    var swiper = new Swiper(".mySwiper", {
-        watchSlidesProgress: true,
-        slidesPerView: 4,
-    });
-</script>
 <!-- End Article -->
