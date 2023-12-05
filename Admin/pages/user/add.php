@@ -51,32 +51,32 @@ if (isset($_POST['addUser'])) {
                 <form method="post">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" value="<?= $email ?>" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="email" class="form-control" value="<?= $email ?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['email']['required']) ? '<p class="text-danger mt-2">' . $errors['email']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Tài khoản</label>
-                        <input type="text" name="name" class="form-control" value="<?= $username ?>" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="name" class="form-control" value="<?= $username ?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['name']['required']) ? '<p class="text-danger mt-2">' . $errors['name']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
-                        <input type="password" name="password" value="<?= $password ?>" class="form-control" id="exampleInputPassword1">
+                        <input type="password" name="password" value="<?= $password ?>" class="form-control">
                         <? echo !empty($errors['password']['required']) ? '<p class="text-danger mt-2">' . $errors['password']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
-                        <input type="number" name="phone" class="form-control" value="<?= $phone ?>" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="number" name="phone" class="form-control" value="<?= $phone ?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['phone']['required']) ? '<p class="text-danger mt-2">' . $errors['phone']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Địa chỉ</label>
-                        <input type="text" name="address" class="form-control" value="<?= $address ?>" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="address" class="form-control" value="<?= $address ?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['address']['required']) ? '<p class="text-danger mt-2">' . $errors['address']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Ảnh đại diện</label>
-                        <input type="file" name="avatar" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="file" name="avatar" class="form-control" aria-describedby="emailHelp">
                         <? echo !empty($errors['avatar']['required']) ? '<p class="text-danger mt-2">' . $errors['avatar']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">

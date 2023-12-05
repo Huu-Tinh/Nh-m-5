@@ -107,6 +107,3 @@
         </div>
     </div>
 </div>
-<script>
-    swal("Good job!", "You clicked the button!", "success");
-</script>
