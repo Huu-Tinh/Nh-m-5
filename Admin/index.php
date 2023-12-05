@@ -198,8 +198,7 @@ ob_start();
         <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
         <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
         <script src="../assets/js/dashboard.js"></script>
-        <script src="../assets/js/sweetalert.min.js"></script>
-        <!-- <script src="../assets/js/validate.js"></script> -->
+        <script src="../assets/js/sweetalert.js"></script>
 
 </body>
 
