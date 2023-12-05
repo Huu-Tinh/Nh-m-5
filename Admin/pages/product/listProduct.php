@@ -38,11 +38,8 @@
                 <tbody>
                     <?php
                     $product = new product();
-                    $db = new connect();
-                    $select = "SELECT * from products as p,categories as c where p.categori_id = c.id_categori";
-                    $result = $db->pdo_query($select);
-                    // $select = $product->getproduct(); 
-                    foreach ($result as $data) {
+                    $select = $product->listproduct();
+                    foreach ($select as $data) {
                         echo '
                     <tr>
                         <td class="border-bottom-0">
@@ -56,7 +53,7 @@
                             <h6 class="fw-semibold mb-0 fs-4">' . $data['name_pr'] . '</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">' . $data['price'] . '</h6>
+                            <h6 class="fw-semibold mb-1"> ' . number_format($data['price'], 0, ".", ".") . '</h6>
                             <!-- <span class="fw-normal">Web Designer</span> -->
                        
                         <th class="border-bottom-0">

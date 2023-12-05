@@ -11,13 +11,44 @@ $img = $_POST['img'] ?? '';
 $img_1 = $_POST['img_1'] ?? '';
 $img_2 = $_POST['img_2'] ?? '';
 $img_3 = $_POST['img_3'] ?? '';
-$note = $_POST['note'] ?? '';
+$note = $_POST['describe'] ?? '';
 $quantity = $_POST['quantity'] ?? '';
 $categori_id = $_POST['categori_id'] ?? '';
 
 if (isset($_POST['updateproduct'])) {
-    $product->update($id,$name, $price, $img, $img_1, $img_2, $img_3, $note, $quantity,$categori_id);
-    header('Location: index.php?act=product&get=list');
+
+    if (empty($_POST['name'])) {
+        $errors['name']['required'] = "Nhập đầy đủ thông tin!";
+    }
+    if (empty($_POST['price'])) {
+        $errors['price']['required'] = "Nhập đầy đủ thông tin!";
+    }
+    if (empty($_POST['img'])){
+        $errors['img']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['img_1'])) {
+            $errors['img_1']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['img_2'])) {
+            $errors['img_2']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['img_3'])) {
+            $errors['img_3']['required'] = "Nhập đầy đủthông tin! ";
+        }
+        if (empty($_POST['note'])) {
+            $errors['note']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['quantity'])) {
+            $errors['quantity']['required'] = "Nhập đầy đủ thông tin!";
+        }
+        if (empty($_POST['categori_id'])) {
+            $errors['categori_id']['required'] = "Chọn phân quyền!";
+        }
+        
+        if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) && !empty($_POST['quantity']) && !empty($_POST['categori_id'])) {
+            $product->update($id, $name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id);
+            header('Location: index.php?act=product&get=list');
+        }
 }
 ?>
 
@@ -31,6 +62,7 @@ if (isset($_POST['updateproduct'])) {
                 <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">Tên</label>
                         <input type="text"  name="name" value="<?= $select['name_pr'] ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <? echo !empty($errors['name']['required']) ? '<p class="text-danger mt-2">' . $errors['name']['required'] . '</p>' : '' ?>
                         <!-- <div id="emailHelp" name="name" class="form-text">We'll never share your email with anyone else.</div> -->
                     </div>
 
@@ -42,27 +74,33 @@ if (isset($_POST['updateproduct'])) {
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">Giá</label>
                         <input type="number" class="form-control"  value="<?= $select['price'] ?>"  name="price" id="exampleInputEmail1" aria-describedby="emailHelp">
+                         <? echo !empty($errors['price']['required']) ? '<p class="text-danger mt-2">' . $errors['price']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh</label>
                         <input type="file" class="form-control"  value="<?= $select['img'] ?>"  name="img" id="exampleInputEmail1" aria-describedby="emailHelp">
+                         <? echo !empty($errors['img']['required']) ? '<p class="text-danger mt-2">' . $errors['img']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh-1</label>
-                        <input type="file" class="form-control"  value="<?= $select['img_1	'] ?>"  name="img_1" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="file" class="form-control"  value="<?= $select['img_1'] ?>"  name="img_1" id="exampleInputEmail1" aria-describedby="emailHelp">
+                         <? echo !empty($errors['img_1']['required']) ? '<p class="text-danger mt-2">' . $errors['img_1']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh-2</label>
                         <input type="file" class="form-control"  value="<?= $select['img_2'] ?>"  name="img_2" id="exampleInputEmail1" aria-describedby="emailHelp">
+                         <? echo !empty($errors['img_2']['required']) ? '<p class="text-danger mt-2">' . $errors['img_2']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh-3</label>
                         <input type="file" class="form-control"  value="<?= $select['img_3'] ?>"  name="img_3" id="exampleInputEmail1" aria-describedby="emailHelp">
+                         <? echo !empty($errors['img_3']['required']) ? '<p class="text-danger mt-2">' . $errors['img_3']['required'] . '</p>' : '' ?>
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Số lượng</label>
                         <input type="number" class="form-control"  value="<?= $select['quantity'] ?>"  name="quantity" id="exampleInputPassword1">
+                         <? echo !empty($errors['quantity']['required']) ? '<p class="text-danger mt-2">' . $errors['quantity']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="" class="form-label">Loại</label>
@@ -85,10 +123,10 @@ if (isset($_POST['updateproduct'])) {
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mô tả</label>
-                        <textarea type="text" class="form-control" value="<?= $select['note'] ?>" name="note" id=""></textarea>
+                        <textarea type="text" class="form-control" value="<?= $select['describe'] ?>" name="note" id=""></textarea>
                     </div>
 
-                    <button type="submit" name="updateproduct" class="btn btn-primary col-1">Thêm</button>
+                    <button type="submit" name="updateproduct" class="btn btn-primary col-1">Sửa</button>
                 </form>
             </div>
         </div>

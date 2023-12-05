@@ -123,16 +123,16 @@ ob_start();
                         case 'dalete_comment':
                             include './pages/comment/delete-comment.php';
                             break;
-                        case 'delete':
-                            $comment = new comment();
-                            $id_cmt = $_GET['id_cmt'];
-                            $user_id = $_GET['user_id'];
-                            if (isset($_POST['delete'])) {
-                                $comment->delete($user_id, $id_cmt);
-                                header('Location: index.php?act=comment&get=list');
-                            }
-                            break;
-
+                            case 'delete':
+                                $comment = new comment();
+                                $id_cmt = $_GET['id_cmt'];
+                               $id = $_GET['id_cmts'];
+                                if (isset($_POST['delete'])) {
+                                    $comment->delete($id_cmt);
+                                    header('Location: index.php?act=comment&get=detail_comment&id_cmts='.$id);
+                                    exit;
+                                }
+                                break;
                         default:
 
                             break;

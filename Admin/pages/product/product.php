@@ -20,6 +20,15 @@ class product
       $select = "SELECT * from products  ";
       return $db->pdo_query($select);
    }
+
+   function listproduct()
+   {
+      $db = new connect();
+      $select = "SELECT * from products as p,categories as c where p.categori_id = c.id_categori";
+      $result = $db->pdo_query($select);
+      return $result;
+   }
+
    public function checkId($id_product)
    {
       $db = new connect();
@@ -37,7 +46,7 @@ class product
    public function update($id_product, $name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id)
    {
       $db = new connect();
-      $sql = "UPDATE products SET  name_pr = '$name', `price` = '$price', img = '$img', img_1 = '$img_1',img_2 = '$img_2', `img_3` ='$img_3',` describe` = '$describe', quantity ='$quantity',categori_id ='$categori_id'   WHERE id_product = " . $id_product;
+      $sql = "UPDATE products SET  name_pr = '$name', `price` = '$price', img = '$img', img_1 = '$img_1',img_2 = '$img_2', `img_3` ='$img_3',`describe` = '$describe', quantity ='$quantity',categori_id ='$categori_id'   WHERE id_product = " . $id_product;
       $result = $db->pdo_execute($sql);
       return $result;
    }
