@@ -21,7 +21,7 @@ class user
     public function checkUser($username, $password)
     {
         $db = new connect();
-        $select = "select * from users where userName='$username' and password='$password'";
+        $select = "select * from users where username='$username' and password='$password'";
         $result = $db->pdo_query_one($select);
         if ($result != null)
             return true;
