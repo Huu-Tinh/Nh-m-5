@@ -40,7 +40,7 @@
                         echo '
                         <tr class="">
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0">' . $i . '</p>
+                                <p class="fw-normal mb-0">' . ($i+1) . '</p>
                             </td>
                             <td class="border-bottom-0">
                                 <p>' . $data[1] . '</p>
@@ -61,7 +61,7 @@
                                 <p class="fw-normal mb-0 ">' . number_format($data[3] * $data[4], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <a href="index.php?act=carts&get=delete&i=' . $i . '" class="btn btn-danger m-1">Xoá</a>
+                                <a href="index.php?act=carts&get=delete&i=' . ($i+1) . '" class="btn btn-danger m-1">Xoá</a>
                             </td>
                         </tr>
                         ';

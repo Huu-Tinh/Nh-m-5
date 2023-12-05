@@ -76,7 +76,8 @@ ob_start();
                                     header('Location: index.php?act=user&get=list');
                                 };
                             } else {
-                                header('Location: index.php?act=user&get=list');
+                                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                                exit("Đã xảy ra lỗi!");
                             };
                             break;
                         default:
@@ -119,7 +120,18 @@ ob_start();
                         case 'detail_comment':
                             include './pages/comment/detail_comment.php';
                             break;
-
+                        case 'dalete_comment':
+                            include './pages/comment/delete-comment.php';
+                            break;
+                        case 'delete':
+                            $comment = new comment();
+                            $id_cmt = $_GET['id_cmt'];
+                            $user_id = $_GET['user_id'];
+                            if (isset($_POST['delete'])) {
+                                $comment->delete($user_id, $id_cmt);
+                                header('Location: index.php?act=comment&get=list');
+                            }
+                            break;
 
                         default:
 
@@ -177,6 +189,7 @@ ob_start();
 
             ?>
             </div>
+
         </div>
         <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -185,6 +198,9 @@ ob_start();
         <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
         <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
         <script src="../assets/js/dashboard.js"></script>
+        <script src="../assets/js/sweetalert.min.js"></script>
+        <!-- <script src="../assets/js/validate.js"></script> -->
+
 </body>
 
 </html>
