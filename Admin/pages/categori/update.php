@@ -27,7 +27,7 @@ if (isset($_POST['updatecategori'])) {
                         <label for="exampleInputPassword1" class="form-label">Mô tả</label>
                         <input type="text" name="note" value="<?= $select['note'] ?>" class="form-control" id="exampleInputPassword1">
                     </div>
-                    <button type="submit" name="updatecategori" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="updatecategori" class="btn btn-primary">Sửa</button>
                 </form>
             </div>
         </div>

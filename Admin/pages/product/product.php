@@ -58,4 +58,11 @@ class product
       $result = $db->pdo_execute($sql);
       return $result;
    }
+    function category($categori_id)
+    {
+      $db = new connect();
+      $select = "SELECT * from products  where categori_id = ".$categori_id;
+      $result = $db->pdo_query($select);
+      return $result;
+    }
 }

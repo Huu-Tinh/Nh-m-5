@@ -109,6 +109,7 @@ $product = new product();
                                     <a href="index.php?act=shop-single&id_pr=' . $value['id_product'] . '" class="h3 text-decoration-none">' . $value['name_pr'] . '</a>
                                     <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                         <li>M/L/X/XL</li>
+                                        
                                         <li class="pt-2">
                                             <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                                             <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
@@ -116,7 +117,9 @@ $product = new product();
                                             <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
                                             <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                                         </li>
+                                        
                                     </ul>
+                                    <li style="list-style: none;">Tồn kho: ' . $value['quantity'] . '</li>
                                     <ul class="list-unstyled d-flex justify-content-center mb-1">
                                         <li>
                                             <i class="text-warning fa fa-star"></i>
@@ -125,8 +128,9 @@ $product = new product();
                                             <i class="text-muted fa fa-star"></i>
                                             <i class="text-muted fa fa-star"></i>
                                         </li>
+                                        
                                     </ul>
-                                    <p class="text-center mb-0">' . number_format($value['price'], 0, ".", "."). '</p>   
+                                    <p class="text-center mb-0">' . number_format($value['price'], 0, ".", ".").  '  <b>vnđ</b></p>   
                                 </div>
                         </div>
                     </div>';
