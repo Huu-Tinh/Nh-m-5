@@ -18,32 +18,42 @@ if (isset($_POST['addproduct'])) {
     if (empty($_POST['price'])) {
         $errors['price']['required'] = "Nhập đầy đủ thông tin!";
     }
-    if (empty($_POST['img'])){
+    if (empty($_POST['img'])) {
         $errors['img']['required'] = "Nhập đầy đủ thông tin!";
-        }
-        if (empty($_POST['img_1'])) {
-            $errors['img_1']['required'] = "Nhập đầy đủ thông tin!";
-        }
-        if (empty($_POST['img_2'])) {
-            $errors['img_2']['required'] = "Nhập đầy đủ thông tin!";
-        }
-        if (empty($_POST['img_3'])) {
-            $errors['img_3']['required'] = "Nhập đầy đủthông tin! ";
-        }
-        if (empty($_POST['note'])) {
-            $errors['note']['required'] = "Nhập đầy đủ thông tin!";
-        }
-        if (empty($_POST['quantity'])) {
-            $errors['quantity']['required'] = "Nhập đầy đủ thông tin!";
-        }
-        if (empty($_POST['categori_id'])) {
-            $errors['categori_id']['required'] = "Chọn phân quyền!";
-        }
-        
-        if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) && !empty($_POST['quantity']) && !empty($_POST['categori_id'])) {
+    }
+    if (empty($_POST['img_1'])) {
+        $errors['img_1']['required'] = "Nhập đầy đủ thông tin!";
+    }
+    if (empty($_POST['img_2'])) {
+        $errors['img_2']['required'] = "Nhập đầy đủ thông tin!";
+    }
+    if (empty($_POST['img_3'])) {
+        $errors['img_3']['required'] = "Nhập đầy đủthông tin! ";
+    }
+    if (empty($_POST['note'])) {
+        $errors['note']['required'] = "Nhập đầy đủ thông tin!";
+    }
+    if (empty($_POST['quantity'])) {
+        $errors['quantity']['required'] = "Nhập đầy đủ thông tin!";
+    }
+    if (empty($_POST['categori_id'])) {
+        $errors['categori_id']['required'] = "Chọn phân quyền!";
+    }
+
+    if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['img']) && !empty($_POST['quantity']) && !empty($_POST['categori_id'])) {
+        try {
             $product->add($name, $price, $img, $img_1, $img_2, $img_3, $describe, $quantity, $categori_id);
+            $_SESSION['status'] = "Thêm mới thành công";
+            $_SESSION['status_code'] = "success";
+            header('Location: index.php?act=product&get=list');
+        } catch (Exception $e) {
+            $_SESSION['status'] = "Đã có sản phẩm này";
+            $_SESSION['status_code'] = "error";
+
+            // Redirect to a custom error page
             header('Location: index.php?act=product&get=list');
         }
+    }
 }
 
 
@@ -113,7 +123,7 @@ if (isset($_POST['addproduct'])) {
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mô tả</label>
                         <textarea type="text" class="form-control" name="note" id=""></textarea>
-                      
+
                     </div>
 
                     <button type="submit" name="addproduct" class="btn btn-primary col-1">Thêm</button>

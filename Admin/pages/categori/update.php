@@ -5,10 +5,13 @@ $select = $categori->checkid($id);
 
 $name = $_POST['name'] ?? '';
 $note = $_POST['note'] ?? '';
-
 if (isset($_POST['updatecategori'])) {
-    $categori->update( $id,$name, $note,);
-    header('Location: index.php?act=categori&get=list');
+    if (!empty($name)) {
+        $categori->update($id, $name, $note,);
+        $_SESSION['status'] = "Sửa thành công";
+        $_SESSION['status_code'] = "success";
+        header('Location: index.php?act=categori&get=list');
+    }
 }
 ?>
 
@@ -20,8 +23,7 @@ if (isset($_POST['updatecategori'])) {
                 <form method="POST">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Tên</label>
-                        <input type="text"  name="name" value="<?= $select['name_ct'] ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <!-- <div id="emailHelp" name="name" class="form-text">We'll never share your email with anyone else.</div> -->
+                        <input type="text" name="name" value="<?= $select['name_ct'] ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mô tả</label>

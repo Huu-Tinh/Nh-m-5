@@ -1,5 +1,3 @@
-
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
@@ -9,8 +7,7 @@
 }
 
 body {
-  background: url(img/giay-converse-classic-8.png)
-    top center / cover no-repeat;
+  background: url(img/giay-converse-classic-8.png) top center / cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,11 +71,11 @@ a:hover {
   justify-content: center;
 }
 
-.content input {
+/* .content input {
   accent-color: #333;
   width: 12px;
   height: 12px;
-}
+} */
 
 .content label {
   font-size: 14px;
@@ -156,7 +153,7 @@ form {
   text-align: center;
 }
 
-input {
+/* input {
   background-color: #fff;
   outline: none;
   border: none;
@@ -164,7 +161,7 @@ input {
   padding: 12px 0px;
   margin: 8px 0;
   width: 100%;
-}
+} */
 
 .container {
   border-radius: 25px;
@@ -202,9 +199,9 @@ input {
   transition: all 0.3s ease;
 }
 
-.form-control2 input:focus ~ span {
+/* .form-control2 input:focus ~ span {
   width: 100%;
-}
+} */
 .form-control small {
   color: red;
   position: absolute;
@@ -223,9 +220,9 @@ input {
   transition: all 0.3s ease;
 }
 
-.form-control input:focus ~ span {
+/* .form-control input:focus ~ span {
   width: 100%;
-}
+} */
 
 .form-control2 small {
   color: red;
@@ -245,9 +242,9 @@ input {
   transition: all 0.3s ease;
 }
 
-.form-control2 input:focus ~ span {
+/* .form-control2 input:focus ~ span {
   width: 100%;
-}
+} */
 
 .login-container {
   left: 0;

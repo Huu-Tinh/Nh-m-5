@@ -96,7 +96,7 @@ $product = new product();
                         <div class="card mb-4 product-wap rounded-0">
                            
                                 <div class="card rounded-0">
-                                    <img class="card-img rounded-0 img-fluid" src="../Admin/assets/images/products/' . $value['img'] . '" style="heigh: 300px">
+                                    <img class="card-img rounded-0 img-fluid" src="../Admin/assets/images/products/' . $value['img'] . '" style="height: 300px;">
                                     <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                         <ul class="list-unstyled">
                                             <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -126,7 +126,7 @@ $product = new product();
                                             <i class="text-muted fa fa-star"></i>
                                         </li>
                                     </ul>
-                                    <p class="text-center mb-0">' . number_format($value['price'], 0, ".", "."). '</p>   
+                                    <p class="text-center mb-0">' . number_format($value['price'], 0, ".", ".") . '</p>   
                                 </div>
                         </div>
                     </div>';
@@ -148,7 +148,7 @@ $product = new product();
                                             <div class="col-6">
                                                 <h1 class="h2">' . $value['name_pr'] . '</h1>
                                                 <label>Giá:</label>
-                                                <label class="text-danger fw-bold mb-3">' . number_format($value['price'], 0, ".", "."). ' vnd</label>
+                                                <label class="text-danger fw-bold mb-3">' . number_format($value['price'], 0, ".", ".") . ' vnd</label>
                                                 <div class="row">
                                                     <div class="col-auto">
                                                         <ul class="list-inline pb-3">

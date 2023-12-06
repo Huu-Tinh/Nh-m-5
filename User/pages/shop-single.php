@@ -297,6 +297,7 @@ include './pages/comment.php';
 
             <div class="slick-list draggable">
                 <div class="slick-track row">
+                    
                     <div class="p-2 pb-3 slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 324px;">
                         <div class="product-wap card rounded-0">
                             <?php

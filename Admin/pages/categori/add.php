@@ -5,6 +5,8 @@ $note = $_POST['note'] ?? '';
 if (isset($_POST['addcategori'])) {
     if (!empty($_POST['name'])) {
         $categori->add($name_ct, $note);
+        $_SESSION['status'] = "Thêm thành công";
+        $_SESSION['status_code'] = "success";
         header('Location: index.php?act=categori&get=list');
     }
     if (empty($_POST['name'])) {

@@ -9,11 +9,39 @@ $email = $_POST['email'] ?? '';
 $address = $_POST['address'] ?? '';
 $phone = $_POST['phone'] ?? '';
 $gender = $_POST['gender'] ?? '';
-$avatar = $_POST['avatar'] ?? $select['avatar'];
+$avatar = $_POST['avatar'] ? $_POST['avatar'] : $select['avatar'];
 $role_id = $_POST['role_id'] ?? '';
 if (isset($_POST['updateUser'])) {
-    $user->update($id, $username, $password, $email, $phone, $address, $avatar, $gender, $role_id);
-    header('Location: index.php?act=user&get=list');
+    if (empty($_POST['name'])) {
+        $errors['name']['required'] = "Nhập đầy đủ họ tên!";
+    }
+    if (empty($_POST['password'])) {
+        $errors['password']['required'] = "Nhập đầy đủ password!";
+    }
+    if (empty($_POST['email'])) {
+        $errors['email']['required'] = "Nhập đầy đủ email!";
+    }
+    if (empty($_POST['phone'])) {
+        $errors['phone']['required'] = "Nhập đầy đủ số điện thoại!";
+    }
+    if (empty($_POST['gender'])) {
+        $errors['gender']['required'] = "Nhập đầy đủ giới tính!";
+    }
+    if (empty($_POST['address'])) {
+        $errors['address']['required'] = "Nhập đầy đủ địa chỉ!";
+    }
+    if (empty($_POST['avatar'])) {
+        $errors['avatar']['required'] = "Nhập đầy đủ avatar!";
+    }
+    if (empty($_POST['role_id'])) {
+        $errors['role_id']['required'] = "Chọn phân quyền!";
+    }
+    if (!empty($_POST['name']) && !empty($_POST['password']) && !empty($_POST['email']) && !empty($_POST['phone'] && !empty($_POST['gender']))) {
+        $user->update($id, $username, $password, $email, $phone, $address, $avatar, $gender, $role_id);
+        $_SESSION['status'] = "Sửa thành công";
+        $_SESSION['status_code'] = "success";
+        header('Location: index.php?act=user&get=list');
+    }
 }
 ?>
 <div class="container-fluid">
@@ -24,27 +52,32 @@ if (isset($_POST['updateUser'])) {
                 <form method="post">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="email" name="email" value="<?= $select['email'] ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="email" value="<?= $select['email'] ?>" class="form-control">
+                        <? echo !empty($errors['email']['required']) ? '<p class="text-danger mt-2">' . $errors['email']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Tài khoản</label>
-                        <input type="text" name="name" value="<?= $select['username'] ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="name" value="<?= $select['username'] ?>" class="form-control">
+                        <? echo !empty($errors['name']['required']) ? '<p class="text-danger mt-2">' . $errors['name']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
                         <input type="password" name="password" value="<?= $select['password'] ?>" class="form-control" id="exampleInputPassword1">
+                        <? echo !empty($errors['password']['required']) ? '<p class="text-danger mt-2">' . $errors['password']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
-                        <input type="number" name="phone" value="<?= $select['phone'] ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="number" name="phone" value="<?= $select['phone'] ?>" class="form-control">
+                        <? echo !empty($errors['phone']['required']) ? '<p class="text-danger mt-2">' . $errors['phone']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Địa chỉ</label>
-                        <input type="text" name="address" value="<?= $select['address'] ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="address" value="<?= $select['address'] ?>" class="form-control">
+                        <? echo !empty($errors['address']['required']) ? '<p class="text-danger mt-2">' . $errors['address']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Ảnh đại diện</label>
-                        <input type="file" name="avatar" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="file" name="avatar" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Giới tính</label>
@@ -60,6 +93,7 @@ if (isset($_POST['updateUser'])) {
                                 Nữ
                             </label>
                         </div>
+                        <? echo !empty($errors['gender']['required']) ? '<p class="text-danger mt-2">' . $errors['gender']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Phân quyền</label>
