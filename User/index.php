@@ -21,6 +21,7 @@ ob_start();
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <script src="../Admin/assets/js/sweetalert.js"></script>
     <!-- <link rel="stylesheet" href="../login/style.css" /> -->
     <!-- <link rel="stylesheet" href="../login/main.js" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
@@ -58,10 +59,19 @@ https://templatemo.com/tm-559-zay-shop
 
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
-            case 'login':
-                include '../login/login.php';
-                break;
             case 'home':
+                if (isset($_SESSION['status'])) {
+                    echo '
+                    <script>
+                        swal({
+                            title: "' . $_SESSION['status'] . '",
+                            icon: "' . $_SESSION['status_code'] . '",
+                            button: "Đồng ý!",
+                        });
+                    </script>
+                    ';
+                    unset($_SESSION['status']);
+                }
                 include './pages/home.php';
                 break;
             case 'about':
@@ -83,7 +93,13 @@ https://templatemo.com/tm-559-zay-shop
                 switch ($_GET['get']) {
                     case 'cart':
                         // Danh sách giỏ hàng
-                        include './pages/cart/listCart.php';
+                        if (isset($_SESSION['username'])) {
+                            include './pages/cart/listCart.php';
+                        } else {
+                            $_SESSION['status'] = "Đặt hàng thành công!";
+                            $_SESSION['status_code'] = "success";
+                            header('location: index.php?act=home');
+                        }
                         break;
                     case 'pay':
                         $order = new order();
@@ -97,10 +113,14 @@ https://templatemo.com/tm-559-zay-shop
                             $id_order = $order->addorder($codepay, $total, $pttt, $username, $phone, $address);
                             echo 'id' . $id_order;
                             if (isset($_SESSION['cart'])) {
+                                $id_order = $id_order;
                                 foreach ($_SESSION['cart'] as $item) {
                                     $order->addtocat($id_order, $item[0], $item[1], $item[2], $item[3], $item[4]);
                                 }
                                 unset($_SESSION['cart']);
+                                $_SESSION['status'] = "Vui lòng đăng nhập!";
+                                $_SESSION['status_code'] = "error";
+                                header('location: index.php?act=home');
                             }
                         }
                         break;
@@ -120,44 +140,50 @@ https://templatemo.com/tm-559-zay-shop
 
                         break;
                     case 'toCart':
-                        // Mua tiếp 
-                        if (isset($_POST['continue'])) {
-                            header('location: index.php?act=shop');
-                        }
-                        // Cập nhật giỏ hàng 
-                        if (isset($_POST['updateCart'])) {
-                            header('location: index.php?act=shop');
-                        }
-                        // Thêm giỏ hàng
-                        if (isset($_POST['addcart'])) {
-                            $id = $_POST['id_product'];
-                            $name = $_POST['name'];
-                            $price = $_POST['price'];
-                            $img = $_POST['img'];
-                            $size = $_POST['size'];
-                            $quantity = $_POST['quantity'];
-                            // Kiểm tra số lượng
-                            if (isset($_POST['quantity']) && $_POST['quantity'] > 0) {
+                        if (isset($_SESSION['username'])) {
+                            // Mua tiếp 
+                            if (isset($_POST['continue'])) {
+                                header('location: index.php?act=shop');
+                            }
+                            // Cập nhật giỏ hàng 
+                            if (isset($_POST['updateCart'])) {
+                                header('location: index.php?act=shop');
+                            }
+                            // Thêm giỏ hàng
+                            if (isset($_POST['addcart'])) {
+                                $id = $_POST['id_product'];
+                                $name = $_POST['name'];
+                                $price = $_POST['price'];
+                                $img = $_POST['img'];
+                                $size = $_POST['size'];
                                 $quantity = $_POST['quantity'];
-                            } else {
-                                $quantity = 1;
-                            }
-                            // Kiểm tra sp 
-                            $i = 0;
-                            $check = 0;
-                            foreach ($_SESSION['cart'] as $item) {
-                                if ($item[1] == $name && $item[5] == $size) {
-                                    $_SESSION['cart'][$i][4] += $quantity;
-                                    $check = 1;
-                                    break;
+                                // Kiểm tra số lượng
+                                if (isset($_POST['quantity']) && $_POST['quantity'] > 0) {
+                                    $quantity = $_POST['quantity'];
+                                } else {
+                                    $quantity = 1;
                                 }
-                                $i++;
+                                // Kiểm tra sp 
+                                $i = 0;
+                                $check = 0;
+                                foreach ($_SESSION['cart'] as $item) {
+                                    if ($item[1] == $name && $item[5] == $size) {
+                                        $_SESSION['cart'][$i][4] += $quantity;
+                                        $check = 1;
+                                        break;
+                                    }
+                                    $i++;
+                                }
+                                if ($check == 0) {
+                                    $item = array($id, $name, $img, $price, $quantity, $size);
+                                    $_SESSION['cart'][] = $item;
+                                }
+                                header('location: index.php?act=carts&get=cart');
                             }
-                            if ($check == 0) {
-                                $item = array($id, $name, $img, $price, $quantity, $size);
-                                $_SESSION['cart'][] = $item;
-                            }
-                            header('location: index.php?act=carts&get=cart');
+                        } else {
+                            $_SESSION['status'] = "Vui lòng đăng nhập!";
+                            $_SESSION['status_code'] = "error";
+                            header('location: index.php?act=home');
                         }
                         break;
                     default:

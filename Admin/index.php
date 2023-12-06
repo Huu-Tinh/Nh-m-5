@@ -11,6 +11,7 @@ ob_start();
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
+    <script src="../assets/js/sweetalert.js"></script>
 </head>
 
 <body>
@@ -59,6 +60,20 @@ ob_start();
                 case 'user':
                     switch ($_GET['get']) {
                         case 'list':
+                            if (isset($_SESSION['status'])) {
+                                echo '
+                                <script>
+                                    swal({
+                                        title: "' . $_SESSION['status'] . '",
+                                        icon: "' . $_SESSION['status_code'] . '",
+                                        button: "Đồng ý!",
+                                    });
+                                </script>
+                                ';
+                                unset($_SESSION['status']);
+                            }
+                            include './assets/js/chart.php';
+                            echo '<div id="breakups"></div>';
                             include './pages/user/listUser.php';
                             break;
                         case 'add':
@@ -72,12 +87,29 @@ ob_start();
                             $id = $_GET['id'];
                             if ($_SESSION['admin'] != $id) {
                                 if (isset($_POST['delete'])) {
-                                    $user->delete($id);
-                                    header('Location: index.php?act=user&get=list');
+                                    try {
+                                        $delete = $user->delete($id);
+                                        $_SESSION['status'] = "Xóa thành công";
+                                        $_SESSION['status_code'] = "success";
+                                        header('Location: index.php?act=user&get=list');
+                                    } catch (Exception $e) {
+                                        // Log the error to a file or database
+                                        error_log($e->getMessage());
+
+                                        // Set an appropriate error message for the user
+                                        $_SESSION['status'] = "Không được xóa!";
+                                        $_SESSION['status_code'] = "error";
+
+                                        // Redirect to a custom error page
+                                        header('Location: index.php?act=user&get=list');
+                                        exit();
+                                    }
                                 };
                             } else {
+                                $_SESSION['status'] = "Không xóa tài khoản đăng nhập!";
+                                $_SESSION['status_code'] = "error";
                                 header('Location: ' . $_SERVER['HTTP_REFERER']);
-                                exit("Đã xảy ra lỗi!");
+                                exit;
                             };
                             break;
                         default:
@@ -89,6 +121,18 @@ ob_start();
                     switch ($_GET['get']) {
 
                         case 'list':
+                            if (isset($_SESSION['status'])) {
+                                echo '
+                                <script>
+                                    swal({
+                                        title: "' . $_SESSION['status'] . '",
+                                        icon: "' . $_SESSION['status_code'] . '",
+                                        button: "Đồng ý!",
+                                    });
+                                </script>
+                                ';
+                                unset($_SESSION['status']);
+                            }
                             include './pages/categori/listCategori.php';
                             break;
                         case 'add':
@@ -100,9 +144,21 @@ ob_start();
                         case 'delete':
                             $categori = new categori();
                             $id = $_GET['id'];
-                            if (isset($_POST['delete'])) {
-                                $categori->delete($id);
+                            try {
+                                if (isset($_POST['delete'])) {
+                                    $categori->delete($id);
+                                    $_SESSION['status'] = "Xóa thành công";
+                                    $_SESSION['status_code'] = "success";
+                                    header('Location: index.php?act=categori&get=list');
+                                }
+                            } catch (Exception $e) {
+                                // Set an appropriate error message for the user
+                                $_SESSION['status'] = "Không được xóa!";
+                                $_SESSION['status_code'] = "error";
+
+                                // Redirect to a custom error page
                                 header('Location: index.php?act=categori&get=list');
+                                exit();
                             }
                             break;
                         default:
@@ -118,21 +174,44 @@ ob_start();
                             include './pages/comment/listComment.php';
                             break;
                         case 'detail_comment':
+                            if (isset($_SESSION['status'])) {
+                                echo '
+                                <script>
+                                    swal({
+                                        title: "' . $_SESSION['status'] . '",
+                                        icon: "' . $_SESSION['status_code'] . '",
+                                        button: "Đồng ý!",
+                                    });
+                                </script>
+                                ';
+                                unset($_SESSION['status']);
+                            }
                             include './pages/comment/detail_comment.php';
                             break;
                         case 'dalete_comment':
                             include './pages/comment/delete-comment.php';
                             break;
-                            case 'delete':
-                                $comment = new comment();
-                                $id_cmt = $_GET['id_cmt'];
-                               $id = $_GET['id_cmts'];
+                        case 'delete':
+                            $comment = new comment();
+                            $id_cmt = $_GET['id_cmt'];
+                            $id = $_GET['id_cmts'];
+                            try {
                                 if (isset($_POST['delete'])) {
                                     $comment->delete($id_cmt);
-                                    header('Location: index.php?act=comment&get=detail_comment&id_cmts='.$id);
-                                    exit;
+                                    $_SESSION['status'] = "Xóa thành công";
+                                    $_SESSION['status_code'] = "success";
+                                    header('Location: index.php?act=comment&get=detail_comment&id_cmts=' . $id);
                                 }
-                                break;
+                            } catch (Exception $e) {
+                                // Set an appropriate error message for the user
+                                $_SESSION['status'] = "Không được xóa!";
+                                $_SESSION['status_code'] = "error";
+
+                                // Redirect to a custom error page
+                                header('Location: index.php?act=comment&get=detail_comment&id_cmts=' . $id);
+                                exit();
+                            }
+                            break;
                         default:
 
                             break;
@@ -142,6 +221,18 @@ ob_start();
                 case 'product':
                     switch ($_GET['get']) {
                         case 'list':
+                            if (isset($_SESSION['status'])) {
+                                echo '
+                                <script>
+                                    swal({
+                                        title: "' . $_SESSION['status'] . '",
+                                        icon: "' . $_SESSION['status_code'] . '",
+                                        button: "Đồng ý!",
+                                    });
+                                </script>
+                                ';
+                                unset($_SESSION['status']);
+                            }
                             include './pages/product/listProduct.php';
                             break;
                         case 'add':
@@ -153,9 +244,20 @@ ob_start();
                         case 'delete':
                             $product = new product();
                             $id = $_GET['id'];
-                            if (isset($_POST['delete'])) {
-                                $product->delete($id);
+                            try {
+                                if (isset($_POST['delete'])) {
+                                    $product->delete($id);
+                                    $_SESSION['status'] = "Xóa thành công";
+                                    $_SESSION['status_code'] = "success";
+                                    header('Location: index.php?act=product&get=list');
+                                }
+                            } catch (Exception $e) {
+                                // Set an appropriate error message for the user
+                                $_SESSION['status'] = "Không được xóa!";
+                                $_SESSION['status_code'] = "error";
+                                // Redirect to a custom error page
                                 header('Location: index.php?act=product&get=list');
+                                exit();
                             }
                             break;
                         default:
@@ -196,10 +298,8 @@ ob_start();
         <script src="../assets/js/sidebarmenu.js"></script>
         <script src="../assets/js/app.min.js"></script>
         <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-        <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
         <script src="../assets/js/dashboard.js"></script>
-        <script src="../assets/js/sweetalert.js"></script>
-
+        <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
 </body>
 
 </html>

@@ -345,18 +345,7 @@ include './pages/comment.php';
                     }
 
                     ?>
-
-
-
-
-
-
-
-
-
-
                 </div>
-
             </div>
 </section>
 <!-- Swiper JS -->
