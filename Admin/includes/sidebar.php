@@ -65,14 +65,14 @@
                         <span class="hide-menu">Bình luận</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                     <a class="sidebar-link" href="index.php?act=froms" aria-expanded="false">
                         <span>
                             <i class="ti ti-file-description"></i>
                         </span>
                         <span class="hide-menu">Forms</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-small-cap" style="margin-top: 260px;">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
