@@ -5,9 +5,9 @@ class order
     {
         $db = new connect();
         $query = "INSERT INTO orders(code, total, pttt, username_od, phone_od, address_od) VALUES ( '$code', '$total', '$pttt', '$username', '$phone', '$address')";
-        $db->pdo_execute($query);
-        $id = $db->pdo_get_connection();
-        return $id->lastInsertId();
+        // $id = $db->pdo_execute($query);
+        
+        return $db->pdo_lastinsertID($query);
     }
     public function addtocat($id_order, $idpro, $namepro, $img, $price, $quantity)
     {

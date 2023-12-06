@@ -50,6 +50,13 @@ class user
         $result = $db->pdo_execute($query);
         return $result;
     }
+    function register($username, $password, $email)
+    {
+        $db = new connect();
+        $query = "INSERT INTO users(username,`password`,email) VALUES ('$username','$password','$email')";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
     public function update($id, $username, $password, $email, $phone, $address, $avatar, $gender, $role_id)
     {
         $db = new connect();
@@ -62,6 +69,9 @@ class user
       $db = new connect();
       $sql = "DELETE FROM users WHERE id_user = " . $id;
       $result = $db->pdo_execute($sql);
-      return $result;
+      if ($result != null)
+            return true;
+        else
+            return false;
    }
 }
