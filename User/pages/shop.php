@@ -130,7 +130,7 @@ $product = new product();
                                         </li>
                                         
                                     </ul>
-                                    <p class="text-center mb-0">' . number_format($value['price'], 0, ".", ".").  '  <b>vnđ</b></p>   
+                                    <p class="text-center mb-0"><b>' . number_format($value['price'], 0, ".", ".").  '  vnđ</b></p>   
                                 </div>
                         </div>
                     </div>';
