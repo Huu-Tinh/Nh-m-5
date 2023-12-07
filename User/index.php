@@ -118,8 +118,8 @@ https://templatemo.com/tm-559-zay-shop
                                     $order->addtocat($id_order, $item[0], $item[1], $item[2], $item[3], $item[4]);
                                 }
                                 unset($_SESSION['cart']);
-                                $_SESSION['status'] = "Vui lòng đăng nhập!";
-                                $_SESSION['status_code'] = "error";
+                                $_SESSION['status'] = "Thanh toán thành công!";
+                                $_SESSION['status_code'] = "success";
                                 header('location: index.php?act=home');
                             }
                         }
