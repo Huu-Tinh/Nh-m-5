@@ -40,6 +40,9 @@ if (isset($_POST['updateproduct'])) {
     if (empty($_POST['quantity'])) {
         $errors['quantity']['required'] = "Nhập đầy đủ thông tin!";
     }
+    if ($quantity < 1) {
+        $errors['quantity']['min'] = "Nhập số lượng lớn hơn 0!";
+    }
     if (empty($_POST['categori_id'])) {
         $errors['categori_id']['required'] = "Chọn phân quyền!";
     }
@@ -102,6 +105,7 @@ if (isset($_POST['updateproduct'])) {
                         <label for="exampleInputPassword1" class="form-label">Số lượng</label>
                         <input type="number" class="form-control" value="<?= $select['quantity'] ?>" name="quantity" id="exampleInputPassword1">
                         <? echo !empty($errors['quantity']['required']) ? '<p class="text-danger mt-2">' . $errors['quantity']['required'] . '</p>' : '' ?>
+                        <? echo !empty($errors['quantity']['min']) ? '<p class="text-danger mt-2">' . $errors['quantity']['min'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="" class="form-label">Loại</label>

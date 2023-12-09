@@ -2,15 +2,26 @@
 $categori = new categori();
 $name_ct = $_POST['name'] ?? '';
 $note = $_POST['note'] ?? '';
+if (isset($_POST['closs'])) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
 if (isset($_POST['addcategori'])) {
-    if (!empty($_POST['name'])) {
-        $categori->add($name_ct, $note);
-        $_SESSION['status'] = "Thêm thành công";
-        $_SESSION['status_code'] = "success";
+    try {
+        if (!empty($_POST['name'])) {
+            $categori->add($name_ct, $note);
+            $_SESSION['status'] = "Thêm thành công";
+            $_SESSION['status_code'] = "success";
+            header('Location: index.php?act=categori&get=list');
+        }
+        if (empty($_POST['name'])) {
+            $errors['name']['required'] = "Nhập đầy tên loại!";
+        }
+    } catch (Exception $e) {
+        $_SESSION['status'] = "Đã có phân loại này";
+        $_SESSION['status_code'] = "error";
+
+        // Redirect to a custom error page
         header('Location: index.php?act=categori&get=list');
-    }
-    if (empty($_POST['name'])) {
-        $errors['name']['required'] = "Nhập đầy tên loại!";
     }
 }
 
@@ -30,11 +41,10 @@ if (isset($_POST['addcategori'])) {
                         <label for="exampleInputPassword1" class="form-label">Mô tả</label>
                         <input type="text" name="note" value="<?= $note ?>" class="form-control" id="exampleInputPassword1">
                     </div>
-
-                    <button type="submit" name="addcategori" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="closs" class="btn btn-secondary">Hủy</button>
+                    <button type="submit" name="addcategori" class="btn btn-primary">Thêm</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-z

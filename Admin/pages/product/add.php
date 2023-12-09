@@ -36,6 +36,9 @@ if (isset($_POST['addproduct'])) {
     if (empty($_POST['quantity'])) {
         $errors['quantity']['required'] = "Nhập đầy đủ thông tin!";
     }
+    if ($quantity < 1) {
+        $errors['quantity']['min'] = "Nhập số lượng lớn hơn 0!";
+    }
     if (empty($_POST['categori_id'])) {
         $errors['categori_id']['required'] = "Chọn phân quyền!";
     }
@@ -68,39 +71,40 @@ if (isset($_POST['addproduct'])) {
                 <form method="post" class="row">
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">Tên sản phẩm</label>
-                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" value="<?=$name?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['name']['required']) ? '<p class="text-danger mt-2">' . $errors['name']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">Giá</label>
-                        <input type="number" class="form-control" name="price" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="number" class="form-control" name="price" id="exampleInputEmail1" value="<?=$price?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['price']['required']) ? '<p class="text-danger mt-2">' . $errors['price']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh</label>
-                        <input type="file" class="form-control" name="img" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="file" class="form-control" name="img" id="exampleInputEmail1" value="<?=$img?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['img']['required']) ? '<p class="text-danger mt-2">' . $errors['img']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh-1</label>
-                        <input type="file" class="form-control" name="img_1" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="file" class="form-control" name="img_1" id="exampleInputEmail1" value="<?=$img_1?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['img_1']['required']) ? '<p class="text-danger mt-2">' . $errors['img_1']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh-2</label>
-                        <input type="file" class="form-control" name="img_2" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="file" class="form-control" name="img_2" id="exampleInputEmail1" value="<?=$img_2?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['img_2']['required']) ? '<p class="text-danger mt-2">' . $errors['img_2']['required'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">ảnh-3</label>
-                        <input type="file" class="form-control" name="img_3" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="file" class="form-control" name="img_3" id="exampleInputEmail1" value="<?=$img_3?>" aria-describedby="emailHelp">
                         <? echo !empty($errors['img_3']['required']) ? '<p class="text-danger mt-2">' . $errors['img_3']['required'] . '</p>' : '' ?>
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Số lượng</label>
-                        <input type="number" class="form-control" name="quantity" id="exampleInputPassword1">
+                        <input type="number" class="form-control" name="quantity" value="<?=$quantity?>" id="exampleInputPassword1">
                         <? echo !empty($errors['quantity']['required']) ? '<p class="text-danger mt-2">' . $errors['quantity']['required'] . '</p>' : '' ?>
+                        <? echo !empty($errors['quantity']['min']) ? '<p class="text-danger mt-2">' . $errors['quantity']['min'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="" class="form-label">Loại</label>
@@ -122,7 +126,7 @@ if (isset($_POST['addproduct'])) {
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mô tả</label>
-                        <textarea type="text" class="form-control" name="note" id=""></textarea>
+                        <textarea type="text" class="form-control" name="note"></textarea>
 
                     </div>
 
