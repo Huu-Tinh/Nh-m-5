@@ -20,7 +20,42 @@ class product
       $select = "SELECT * from products  ";
       return $db->pdo_query($select);
    }
-
+   function getpr_categori($id)
+   {
+      $db = new connect();
+      $select = "SELECT * from products where categori_id = $id ";
+      return $db->pdo_query($select);
+   }
+   function getpr_aToz()
+   {
+      $db = new connect();
+      $select = "SELECT * from products ORDER BY name_pr ASC";
+      return $db->pdo_query($select);
+   }
+   function getpr_priceAsc()
+   {
+      $db = new connect();
+      $select = "SELECT * from products ORDER BY price ASC";
+      return $db->pdo_query($select);
+   }
+   function getpr_priceDesc()
+   {
+      $db = new connect();
+      $select = "SELECT * from products ORDER BY price DESC";
+      return $db->pdo_query($select);
+   }
+   function getpr_dayAcs()
+   {
+      $db = new connect();
+      $select = "SELECT * from products ORDER BY created_at ASC";
+      return $db->pdo_query($select);
+   }
+   function getpr_dayDesc()
+   {
+      $db = new connect();
+      $select = "SELECT * from products ORDER BY created_at DESC";
+      return $db->pdo_query($select);
+   }
    function listproduct()
    {
       $db = new connect();
@@ -65,4 +100,11 @@ class product
       $result = $db->pdo_query($select);
       return $result;
     }
+   public function search($nameProduct)
+   {
+      $db = new connect();
+      $sql = "SELECT * FROM products WHERE `name_pr` LIKE '%$nameProduct%' ";
+      $result = $db->pdo_query($sql);
+      return $result;
+   }
 }
