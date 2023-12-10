@@ -20,6 +20,7 @@ ob_start();
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <script src="../Admin/assets/js/sweetalert.js"></script>
     <!-- <link rel="stylesheet" href="../login/style.css" /> -->
     <!-- <link rel="stylesheet" href="../login/main.js" />
