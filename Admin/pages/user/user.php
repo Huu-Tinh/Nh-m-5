@@ -64,6 +64,13 @@ class user
         $result = $db->pdo_execute($sql);
         return $result;
     }
+    public function update_info_cart($id, $username, $phone, $address)
+    {
+        $db = new connect();
+        $sql = "UPDATE users SET username = '$username', phone = '$phone', `address` ='$address' WHERE id_user = " . $id;
+        $result = $db->pdo_execute($sql);
+        return $result;
+    }
     public function delete($id)
    {
       $db = new connect();
