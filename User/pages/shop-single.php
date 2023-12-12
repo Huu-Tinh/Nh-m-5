@@ -305,7 +305,7 @@ include './pages/comment.php';
                             $db = new connect();
 
                             // Lấy id của sản phẩm hiện tại
-                            $id_product = $_SESSION['id_product'];
+                            // $id_product = $_SESSION['id_product'];
 
                             // Thực hiện câu truy vấn
                             $select = "SELECT * FROM products  WHERE categori_id =  '$categori_id'";

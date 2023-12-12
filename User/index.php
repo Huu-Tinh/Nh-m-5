@@ -35,7 +35,6 @@ https://templatemo.com/tm-559-zay-shop
 </head>
 
 <body>
-
     <?php
     include("../Admin/includes/pdo.php");
     include("../Admin/pages/product/product.php");
@@ -43,10 +42,20 @@ https://templatemo.com/tm-559-zay-shop
     include("../Admin/pages/comment/comment.php");
     include("../Admin/pages/categori/categori.php");
     include("../Admin/pages/order/order.php");
-
     $product = new product();
     $getProduct = $product->getproduct();
-
+    if (isset($_SESSION['status'])) {
+        echo '
+    <script>
+        swal({
+            title: "' . $_SESSION['status'] . '",
+            icon: "' . $_SESSION['status_code'] . '",
+            button: "Đồng ý!",
+        });
+    </script>
+    ';
+        unset($_SESSION['status']);
+    }
     if (isset($_SESSION['username'])) {
         $selectUser = new user();
         $user = $selectUser->checkId($_SESSION['username']);
@@ -56,22 +65,9 @@ https://templatemo.com/tm-559-zay-shop
     }
     include("./includes/nav.php");
     include("./includes/header.php");
-
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
             case 'home':
-                if (isset($_SESSION['status'])) {
-                    echo '
-                    <script>
-                        swal({
-                            title: "' . $_SESSION['status'] . '",
-                            icon: "' . $_SESSION['status_code'] . '",
-                            button: "Đồng ý!",
-                        });
-                    </script>
-                    ';
-                    unset($_SESSION['status']);
-                }
                 include './pages/home.php';
                 break;
             case 'about':
@@ -86,6 +82,9 @@ https://templatemo.com/tm-559-zay-shop
             case 'shop-single':
                 include './pages/shop-single.php';
                 break;
+            case 'profiles':
+                include './includes/myprofile.php';
+                break;
             case 'delete-comment':
                 include '../Admin/pages/comment/delete-comment.php';
                 break;
@@ -96,18 +95,20 @@ https://templatemo.com/tm-559-zay-shop
                         if (isset($_SESSION['username'])) {
                             include './pages/cart/listCart.php';
                         } else {
-                            $_SESSION['status'] = "Đặt hàng thành công!";
-                            $_SESSION['status_code'] = "success";
-                            header('location: index.php?act=home');
+                            $_SESSION['status'] = "Vui lòng đăng nhập!";
+                            $_SESSION['status_code'] = "error";
+                            header("Location: " . $_SERVER['HTTP_REFERER']);
+                            exit();
                         }
                         break;
                     case 'pay':
+                        ?><div class="loadpay"></div><?
                         $order = new order();
                         if (isset($_POST['addpay'])) {
                             $total = $_POST['total'];
-                            $username = $_POST['username'];
-                            $phone = $_POST['phone'];
-                            $address = $_POST['address'];
+                            $username = $user['username'];
+                            $phone = $user['phone'];
+                            $address = $user['address'];
                             $pttt = $_POST['pttt'];
                             $codepay = "ZCT" . rand(0, 999999);
                             $id_order = $order->addorder($codepay, $total, $pttt, $username, $phone, $address);
@@ -123,6 +124,7 @@ https://templatemo.com/tm-559-zay-shop
                                 header('location: index.php?act=home');
                             }
                         }
+                        ?></div><?
                         break;
                     case 'delete':
                         if (isset($_GET['i'])) {
@@ -156,12 +158,17 @@ https://templatemo.com/tm-559-zay-shop
                                 $price = $_POST['price'];
                                 $img = $_POST['img'];
                                 $size = $_POST['size'];
-                                $quantity = $_POST['quantity'];
+                                $idPro = $product->checkId($id);
                                 // Kiểm tra số lượng
-                                if (isset($_POST['quantity']) && $_POST['quantity'] > 0) {
-                                    $quantity = $_POST['quantity'];
+                                if ($_POST['quantity'] <= $idPro['quantity']) {
+                                    if (isset($_POST['quantity']) && $_POST['quantity'] > 0) {
+                                        $quantity = $_POST['quantity'];
+                                    } else {
+                                        $quantity = 1;
+                                    }
                                 } else {
-                                    $quantity = 1;
+                                    $_SESSION['status'] = "Số lượng sản phẩm không đủ!";
+                                    $_SESSION['status_code'] = "error";
                                 }
                                 // Kiểm tra sp 
                                 $i = 0;
@@ -169,6 +176,11 @@ https://templatemo.com/tm-559-zay-shop
                                 foreach ($_SESSION['cart'] as $item) {
                                     if ($item[1] == $name && $item[5] == $size) {
                                         $_SESSION['cart'][$i][4] += $quantity;
+                                        if ($_SESSION['cart'][$i][4] > $idPro['quantity']) {
+                                            $_SESSION['cart'][$i][4] -= $quantity;
+                                            $_SESSION['status'] = "Số lượng sản phẩm không đủ!";
+                                            $_SESSION['status_code'] = "error";
+                                        }
                                         $check = 1;
                                         break;
                                     }
