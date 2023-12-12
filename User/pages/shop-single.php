@@ -2,6 +2,8 @@
 $product = new product();
 $id = $_GET['id_pr'];
 $select = $product->checkId($id);
+$categori_id = $select['categori_id'];
+$categori = $product->category($categori_id);
 ?>
 
 <!-- Modal -->
@@ -297,12 +299,9 @@ include './pages/comment.php';
 
             <div class="slick-list draggable">
                 <div class="slick-track row">
-
-                    <div class="p-2 pb-3 slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 324px;">
-                        <div class="product-wap card rounded-0">
-                            <?php
-                            foreach ($categori as $row) {
-                                echo '
+                    <?php
+                    foreach ($categori as $row) {
+                        echo '
                     <div class="p-2 pb-3 slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 324px;">
                         <div class="product-wap card rounded-0">
                                 
@@ -340,24 +339,19 @@ include './pages/comment.php';
                                 <p class="text-center mb-0">' . number_format($row['price'], 0, ".", ".") . ' <b>vnđ</b></p>
                             </div>
                             
-                            
-                            </div>
-                    </div>';
-                            }
-
-                            ?>
                         </div>
-                    </div>
+                    </div>';
+                    }
+                    ?>
                 </div>
-                <ul class="slick-dots">
-                    <li class="" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 3" tabindex="-1">1</button></li>
-                    <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide03" aria-label="2 of 3" tabindex="-1">2</button></li>
-                    <li role="presentation" class="slick-active"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide06" aria-label="3 of 3" tabindex="-1">3</button></li>
-                    <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide09" aria-label="4 of 3" tabindex="-1">4</button></li>
-                </ul>
             </div>
-
-
         </div>
+        <ul class="slick-dots">
+            <li class="" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 3" tabindex="-1">1</button></li>
+            <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide03" aria-label="2 of 3" tabindex="-1">2</button></li>
+            <li role="presentation" class="slick-active"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide06" aria-label="3 of 3" tabindex="-1">3</button></li>
+            <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide09" aria-label="4 of 3" tabindex="-1">4</button></li>
+        </ul>
+    </div>
 </section>
 <!-- End Article -->
