@@ -57,7 +57,7 @@
                              </a>
                              <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                                  <form method="post">
-                                     <a href="index.php?pages=profiles" class="dropdown-item">My Profile</a>
+                                     <a href="index.php?act=profiles" class="dropdown-item">My Profile</a>
                                      <a href="index.php?pages=setaccout" class="dropdown-item">Settings</a>
                                      <button type="" name="logout" class="dropdown-item">Log Out</button>
                                  </form>

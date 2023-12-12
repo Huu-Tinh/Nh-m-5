@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <!-- <div class="card w-100 pt-5"> -->
 <form action="index.php?act=carts&get=toCart" method="post">
     <div class="card-body p-4">
@@ -40,7 +41,7 @@
                         echo '
                         <tr class="">
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0">' . ($i+1) . '</p>
+                                <p class="fw-normal mb-0">' . ($i + 1) . '</p>
                             </td>
                             <td class="border-bottom-0">
                                 <p>' . $data[1] . '</p>
@@ -49,19 +50,19 @@
                                 <img class="card" style="width: 130px; height:120px;" src="../Admin/assets/images/products/' . $data[2] . '">
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . number_format($data[5], 0, ".", ".") . '</p>
+                                <p class="fw-normal mb-0 ">' . $data[5] . '</p>
                             </td>
                             <td class="border-bottom-0">
                                 <p class="fw-normal mb-0 ">' . number_format($data[3], 0, ".", ".") . '   </p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . number_format($data[4], 0, ".", ".") . '</p>
+                                <p class="fw-normal mb-0 ">' . $data[4] . '</p>
                             </td>
                             <td class="border-bottom-0">
                                 <p class="fw-normal mb-0 ">' . number_format($data[3] * $data[4], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <a href="index.php?act=carts&get=delete&i=' . ($i+1) . '" class="btn btn-danger m-1">Xoá</a>
+                                <a href="index.php?act=carts&get=delete&i=' . $i . '" class="btn btn-danger m-1">Xoá</a>
                             </td>
                         </tr>
                         ';
@@ -119,7 +120,7 @@
 <!-- Modal -->
 <div class="modal fade" id="Pay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content users">
             <form action="index.php?act=carts&get=pay" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Thông Tin Đặt Hàng</h5>
@@ -129,20 +130,21 @@
                     <div class="row">
                         <div class="col-6">
 
-                            <p>Địa chỉ nhận hàng</p>
+                            <p><i class="bi bi-geo-alt-fill text-success"></i>Địa chỉ nhận hàng</p>
                             <ul class="list-inline pb-3">
-                                <li class="list-inline-item">
-                                    <label for="" class="mt-3">Họ Tên</label>
-                                    <input type="text" value="" class="form-control" name="username">
-                                </li>
-                                <li class="list-inline-item">
-                                    <label for="" class="mt-3">Số điện thoại</label>
-                                    <input type="int" value="" class="form-control" name="phone">
-                                </li>
-                                <li class="list-inline-item">
-                                    <label for="" class="mt-3">Địa chỉ</label>
-                                    <input type="text" value="" class="form-control" name="address">
-                                </li>
+                                <?
+                                if (empty($user['username']) || empty($user['phone']) || empty($user['address'])) { ?>
+                                    <li class="text-danger">Chưa có địa chỉ nhận hàng!</li>
+                                    <li><a class="btn btn-success mt-4" data-bs-toggle="modal" data-bs-target="#info">Thêm thông tin</a></li>
+
+                                <? } else { ?>
+                                    <li>
+                                        <? echo $user['username'] . ' | ' . $user['phone'] ?>
+                                    </li>
+                                    <li><? echo $user['address'] ?></li>
+                                    <li><a class="btn btn-success mt-4" data-bs-toggle="modal" data-bs-target="#info">Đổi địa chỉ</a></li>
+                                <? }
+                                ?>
                             </ul>
                         </div>
                         <div class="col-6">
@@ -169,3 +171,103 @@
         </div>
     </div>
 </div>
+<!-- Modal Đổi thông tin người đặt hàng -->
+<?php
+// $username = $_POST['name'] ?? '';
+// $address = $_POST['address'] ?? '';
+// $phone = $_POST['phone'] ?? '';
+// if (isset($_POST['addinfo'])) {
+//     if (empty($_POST['name'])) {
+//         $errors['name']['required'] = "Nhập đầy đủ họ tên!";
+//     }
+//     if (empty($_POST['phone'])) {
+//         $errors['phone']['required'] = "Nhập đầy đủ số điện thoại!";
+//     }
+//     // if (!preg_match('[0-9]{10}', $phone) && !empty($_POST['phone'])) {
+//     //     $errors['phone']['format'] = "Số điện thoại không đúng định dạng!";
+//     // } 
+//     if (empty($_POST['address'])) {
+//         $errors['address']['required'] = "Nhập đầy đủ địa chỉ!";
+//     }
+//     if (!empty($username) && !empty($address) && !empty($phone)) {
+//         $update_info = $selectUser->update_info_cart($user['id_user'], $username, $phone, $address);
+//         $_SESSION['status'] = "Cập nhật thành công!";
+//         $_SESSION['status_code'] = "success";
+//     }
+// }
+?>
+<div class="modal fade" id="info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content infouser">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông Tin Đặt Hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Tên người nhận</label>
+                    <input type="text" name="name" class="form-control name" value="<?= empty($user['username']) ? '' : $user['username'] ?>">
+                    <? echo !empty($errors['name']['required']) ? '<p class="text-danger mt-2">' . $errors['name']['required'] . '</p>' : '' ?>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Địa chỉ</label>
+                    <input type="text" name="address" value="<?= empty($user['address']) ? '' : $user['address'] ?>" class="form-control address">
+                    <? echo !empty($errors['address']['required']) ? '<p class="text-danger mt-2">' . $errors['address']['required'] . '</p>' : '' ?>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
+                    <input type="number" name="phone" class="form-control phone" value="<?= empty($user['phone']) ? '' : $user['phone'] ?>">
+                    <? echo !empty($errors['phone']['required']) ? '<p class="text-danger mt-2">' . $errors['phone']['required'] . '</p>' : '' ?>
+                    <? echo !empty($errors['phone']['format']) ? '<p class="text-danger mt-2">' . $errors['phone']['format'] . '</p>' : '' ?>
+                </div>
+                <input type="hidden" class="iduser" value="<?= $user['id_user'] ?>">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="addinfo" class="btn btn-success addinfo">Đồng ý!</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function($) {
+        $(document).on("click", ".addinfo", function(event) {
+            event.preventDefault();
+            console.log('xoá thành công');
+            var username = $('.name').val();
+            var address = $('.address').val();
+            var phone = $('.phone').val();
+            var iduser = $('.iduser').val();
+            $.ajax({
+                url: "./includes/ajax.php",
+                method: "POST",
+                data: {
+                    action: "updateinfo",
+                    username: username,
+                    address: address,
+                    phone: phone,
+                    iduser: iduser
+
+                },
+                success: function(result) {
+                    $('.infouser').load(location.href + ' .infouser');
+                    $('.users').load(location.href + ' .users');
+                    $('.loadpay').load(location.href + ' .loadpay');
+                    <?php
+                    $_SESSION['status'] = "Cập nhật thành công!";
+                    $_SESSION['status_code'] = "success";
+                    if (isset($_SESSION['status'])) { ?>
+                        swal({
+                            title: "<?= $_SESSION['status'] ?>",
+                            icon: "<?= $_SESSION['status_code'] ?>",
+                            button: "Đồng ý!",
+                        });
+                    <? }
+                    unset($_SESSION['status']); ?>
+                }
+            });
+        });
+    });
+</script>
