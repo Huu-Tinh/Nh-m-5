@@ -37,32 +37,33 @@
                 <tbody>
                     <?php
                     $i = 0;
-                    foreach ($_SESSION['cart'] as $data) {
+                    $selectCart = $order->gettocart($user['id_user']);
+                    foreach ($selectCart as $data) {
                         echo '
                         <tr class="">
                             <td class="border-bottom-0">
                                 <p class="fw-normal mb-0">' . ($i + 1) . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <p>' . $data[1] . '</p>
+                                <p>' . $data['name_pr'] . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <img class="card" style="width: 130px; height:120px;" src="../Admin/assets/images/products/' . $data[2] . '">
+                                <img class="card" style="width: 130px; height:120px;" src="../Admin/assets/images/products/' . $data['img'] . '">
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . $data[5] . '</p>
+                                <p class="fw-normal mb-0 ">' . $data['size'] . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . number_format($data[3], 0, ".", ".") . '   </p>
+                                <p class="fw-normal mb-0 ">' . number_format($data['price'], 0, ".", ".") . '   </p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . $data[4] . '</p>
+                                <p class="fw-normal mb-0 ">' . $data['quantity_cart'] . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . number_format($data[3] * $data[4], 0, ".", ".") . '</p>
+                                <p class="fw-normal mb-0 ">' . number_format($data['price'] * $data['quantity'], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <a href="index.php?act=carts&get=delete&i=' . $i . '" class="btn btn-danger m-1">Xoá</a>
+                                <a href="index.php?act=carts&get=delete&id=' . $data['id_cart'] . '" class="btn btn-danger m-1">Xoá</a>
                             </td>
                         </tr>
                         ';
@@ -77,8 +78,8 @@
                         <td class="border-bottom-0">
                             <?php
                             $sum = 0;
-                            foreach ($_SESSION['cart'] as $item) {
-                                $sum += $item[3] * $item[4];
+                            foreach ($selectCart as $item) {
+                                $sum += $item['price'] * $item['quantity'];
                             }
                             echo  '<p class="fw-bold text-danger mb-0 ">' . number_format($sum, 0, ".", ".") . ' <sup>vnđ</sup></p>';
 
@@ -150,12 +151,12 @@
                         <div class="col-6">
                             <p>Phương thức thanh toán</p>
                             <div>
-                                <input class="form-check-input" type="radio" name="pttt" value="Thanh toán khi nhận hàng" id="check1">
+                                <input class="form-check-input" type="radio" name="pttt" value="1" id="check1">
                                 <label class="form-check-label" for="check1">
                                     Thanh toán khi nhận hàng
                                 </label>
                             </div>
-                            <input class="form-check-input" type="radio" name="pttt" value="Thanh toán bằng ví" id="check2">
+                            <input class="form-check-input" type="radio" name="pttt" value="2" id="check2">
                             <label class="form-check-label" for="check2">
                                 Thanh toán bằng ví
                             </label>

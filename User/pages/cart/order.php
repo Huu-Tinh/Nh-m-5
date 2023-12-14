@@ -1,30 +1,30 @@
-<div class="card w-100 pt-5">
+<div class="card w-100">
     <div class="card-body p-4">
-        <h5 class="card-title fw-semibold mb-4">Quản lí đơn hàng</h5>
+        <h5 class="text-success logo h2 pb-5">Đơn hàng của tôi</h5>
         <div class="table-responsive">
             <table class="table text-nowrap mb-0 align-middle">
-                <thead class="text-dark fs-4">
+                <thead class="text-dark ">
                     <tr class="">
                         <th class="border-bottom-1  p-0">
-                            <h6 class="fw-semibold fs-4 mb-3">Mã hóa đơn</h6>
+                            <p class="fw-semibold  mb-3">Mã hóa đơn</p>
                         </th>
                         <th class="border-bottom-1  p-0">
-                            <h6 class="fw-semibold fs-4 mb-3 ">Số lượng sản phẩm</h6>
+                            <p class="fw-semibold  mb-3 ">Số lượng sản phẩm</p>
                         </th>
                         <th class="border-bottom-1  p-0">
-                            <h6 class="fw-semibold fs-4 mb-3 ">Tên người nhận</h6>
+                            <p class="fw-semibold  mb-3 ">Tên người nhận</p>
                         </th>
                         <th class="border-bottom-1  p-0">
-                            <h6 class="fw-semibold fs-4 mb-3">Địa chỉ</h6>
+                            <p class="fw-semibold  mb-3">Địa chỉ</p>
                         </th>
                         <th class="border-bottom-1  p-0">
-                            <h6 class="fw-semibold fs-4 mb-3 ">Số điện thoại</h6>
+                            <p class="fw-semibold  mb-3 ">Số điện thoại</p>
                         </th>
                         <th class="border-bottom-1  p-0">
-                            <h6 class="fw-semibold fs-4 mb-3 ">Tổng giá</h6>
+                            <p class="fw-semibold  mb-3 ">Tổng giá</p>
                         </th>
                         <th class="border-bottom-1  p-0">
-                            <h6 class="fw-semibold fs-4 mb-3 ">Ngày đặt</h6>
+                            <p class="fw-semibold  mb-3 ">Trạng thái</p>
                         </th>
                         <th class="border-bottom-1  p-0">
                         </th>
@@ -33,34 +33,36 @@
                 <tbody>
 
                     <?php
-                    $order = new order();
-                    $select = $order->getorder();
+                    $select = $order->get_myorder($user['id_user']);
                     foreach ($select as $data) {
                         echo '
                             <tr>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5">' . $data['code'] . '</h6>
+                                    <p class="fw-semibold mt-5">' . $data['code'] . '</p>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5">' . $data['count'] . '</h6>
+                                    <p class="fw-semibold mt-5">' . $data['count'] . '</p>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5 fs-4">' . $data['username'] . '</h6>
+                                    <p class="fw-semibold mt-5 ">' . $data['username'] . '</p>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold p-0 mt-5 fs-4 text-wrap" style="width: 18rem;">' . $data['address'] . '</h6>
+                                    <p class="fw-semibold p-0 mt-5  text-wrap" style="width: 20rem;">' . $data['address'] . '</p>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5 fs-4">' . $data['phone'] . '</h6>
+                                    <p class="fw-semibold mt-5 ">' . $data['phone'] . '</p>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5 fs-4">' . number_format($data['total'], 0, ".", ".") . '<sup>vnđ</sup></h6>
+                                    <p class="fw-semibold mt-5 ">' . number_format($data['total'], 0, ".", ".") . '</p>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5 fs-4">' . $data['created_at'] . '</h6>
+                                    <span class="badge mt-4 bg-' . ($data['status'] == 1 ? "danger" : "secondary") . ' rounded-3 fw-normal">' . ($data['status'] == 1 ? 'Đã duyệt' : 'Chưa duyệt') . '</span>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <a href="index.php?act=order&get=detailorder&id=' . $data['id'] . '" class="btn btn-success mt-4">Chi tiết</a>
+                                ' . ($data['status'] == 1 || $data['pttt'] != 1 ? '' : '<a href="index.php?act=carts&get=detailorder&id=' . $data['id'] . '" class="btn btn-danger mt-4">Hủy</a>') . '
+                                </td>
+                                <td class="border-bottom-1 p-0">
+                                    <a href="index.php?act=carts&get=detailorder&id=' . $data['id'] . '" class="btn btn-success mt-4">Chi tiết</a>
                                 </td>
                             </tr>
                             ';

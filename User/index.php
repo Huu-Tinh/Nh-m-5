@@ -44,6 +44,7 @@ https://templatemo.com/tm-559-zay-shop
     include("../Admin/pages/categori/categori.php");
     include("../Admin/pages/order/order.php");
     $product = new product();
+    $order = new order();
     $getProduct = $product->getproduct();
     if (isset($_SESSION['status'])) {
         echo '
@@ -60,6 +61,7 @@ https://templatemo.com/tm-559-zay-shop
     if (isset($_SESSION['username'])) {
         $selectUser = new user();
         $user = $selectUser->checkId($_SESSION['username']);
+        $countcart = $order->getcountcart($user['id_user']);
     }
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
@@ -91,6 +93,12 @@ https://templatemo.com/tm-559-zay-shop
                 break;
             case 'carts':
                 switch ($_GET['get']) {
+                    case 'order':
+                        include './pages/cart/order.php';
+                        break;
+                    case 'detailorder':
+                        include './pages/cart/detailorder.php';
+                        break;
                     case 'cart':
                         // Danh sách giỏ hàng
                         if (isset($_SESSION['username'])) {
@@ -102,9 +110,26 @@ https://templatemo.com/tm-559-zay-shop
                             exit();
                         }
                         break;
+                    case 'vnpay':
+                        $id_order = substr($_GET['vnp_TxnRef'], 0, 3);
+                        if ($_GET['vnp_TransactionNo'] != 0) {
+                            $gettocart = $order->gettocart($user['id_user']);
+                            foreach ($gettocart as $item) {
+                                $order->addtocat($id_order, $item['product_id'], $item['name_pr'], $item['img'], $item['price'], $item['quantity_cart']);
+                            }
+                            $order->delete_formcart_user($user['id_user']);
+                            $_SESSION['status'] = "Thanh toán thành công!";
+                            $_SESSION['status_code'] = "success";
+                            header('location: index.php?act=home');
+                        } else {
+                            $_SESSION['status'] = "Bạn đã hủy thanh toán!";
+                            $_SESSION['status_code'] = "error";
+                            header('location: index.php?act=carts&get=cart');
+                        }
+                        break;
                     case 'pay':
-                        ?><div class="loadpay"></div><?
-                        $order = new order();
+    ?><div class="loadpay"></div>
+                        <?
                         if (isset($_POST['addpay'])) {
                             $total = $_POST['total'];
                             $username = $user['username'];
@@ -112,107 +137,117 @@ https://templatemo.com/tm-559-zay-shop
                             $address = $user['address'];
                             $pttt = $_POST['pttt'];
                             $codepay = "ZCT" . rand(0, 999999);
-                            $id_order = $order->addorder($codepay, $total, $pttt, $username, $phone, $address);
-                            echo 'id' . $id_order;
-                            if (isset($_SESSION['cart'])) {
-                                $id_order = $id_order;
-                                foreach ($_SESSION['cart'] as $item) {
-                                    $order->addtocat($id_order, $item[0], $item[1], $item[2], $item[3], $item[4]);
+                            $gettocart = $order->gettocart($user['id_user']);
+                            $id_order = $order->addorder($codepay, $total, $pttt, $username, $phone, $address, $user['id_user']);
+                            if ($countcart['count'] > 0) {
+                                if ($pttt == 1) {
+                                    foreach ($gettocart as $item) {
+                                        $order->addtocat($id_order, $item['product_id'], $item['name_pr'], $item['img'], $item['price'], $item['quantity_cart']);
+                                    }
+                                    $order->delete_formcart_user($user['id_user']);
+                                    $_SESSION['status'] = "Thanh toán thành công!";
+                                    $_SESSION['status_code'] = "success";
+                                    header('location: index.php?act=home');
+                                } else {
+                                    include './pages/cart/vnpay.php';
                                 }
-                                unset($_SESSION['cart']);
-                                $_SESSION['status'] = "Thanh toán thành công!";
-                                $_SESSION['status_code'] = "success";
-                                header('location: index.php?act=home');
+                                // if ($_GET['vnp_TransactionNo'] != 0) {
+                                //     foreach ($gettocart as $item) {
+                                //         $order->addtocat($id_order, $item['product_id'], $item['name_pr'], $item['img'], $item['price'], $item['quantity_cart']);
+                                //     }
+                                //     $order->delete_formcart_user($user['id_user']);
+                                //     $_SESSION['status'] = "Thanh toán thành công!";
+                                //     $_SESSION['status_code'] = "success";
+                                //     header('location: index.php?act=home');
+                                // } else {
+                                //     $_SESSION['status'] = "Bạn đã hủy thanh toán!";
+                                //     $_SESSION['status_code'] = "error";
+                                //     header('location: index.php?act=carts&get=cart');
+                                // } 
                             }
                         }
                         ?></div><?
-                        break;
-                    case 'delete':
-                        if (isset($_GET['i'])) {
-                            array_splice($_SESSION['cart'], $_GET['i'], 1);
-                        } else {
-                            if (isset($_SESSION['cart'])) unset($_SESSION['cart']);
-                        }
-
-                        if (isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0)) {
-
-                            header('location: index.php?act=carts&get=cart');
-                        } else {
-                            header('location: index.php');
-                        }
-
-                        break;
-                    case 'toCart':
-                        if (isset($_SESSION['username'])) {
-                            // Mua tiếp 
-                            if (isset($_POST['continue'])) {
-                                header('location: index.php?act=shop');
-                            }
-                            // Cập nhật giỏ hàng 
-                            if (isset($_POST['updateCart'])) {
-                                header('location: index.php?act=shop');
-                            }
-                            // Thêm giỏ hàng
-                            if (isset($_POST['addcart'])) {
-                                $id = $_POST['id_product'];
-                                $name = $_POST['name'];
-                                $price = $_POST['price'];
-                                $img = $_POST['img'];
-                                $size = $_POST['size'];
-                                $idPro = $product->checkId($id);
-                                // Kiểm tra số lượng
-                                if ($_POST['quantity'] <= $idPro['quantity']) {
-                                    if (isset($_POST['quantity']) && $_POST['quantity'] > 0) {
-                                        $quantity = $_POST['quantity'];
-                                    } else {
-                                        $quantity = 1;
-                                    }
+                                break;
+                            case 'delete':
+                                if (isset($_GET['id'])) {
+                                    $order->delete_idcart($_GET['id']);
+                                    header('location: index.php?act=carts&get=cart');
                                 } else {
-                                    $_SESSION['status'] = "Số lượng sản phẩm không đủ!";
-                                    $_SESSION['status_code'] = "error";
+                                    $order->delete_formcart_user($user['id_user']);
+                                    header('location: index.php?act=shop');
                                 }
-                                // Kiểm tra sp 
-                                $i = 0;
-                                $check = 0;
-                                foreach ($_SESSION['cart'] as $item) {
-                                    if ($item[1] == $name && $item[5] == $size) {
-                                        $_SESSION['cart'][$i][4] += $quantity;
-                                        if ($_SESSION['cart'][$i][4] > $idPro['quantity']) {
-                                            $_SESSION['cart'][$i][4] -= $quantity;
+                                break;
+                            case 'toCart':
+                                if (isset($_SESSION['username'])) {
+                                    // Mua tiếp 
+                                    if (isset($_POST['continue'])) {
+                                        header('location: index.php?act=shop');
+                                    }
+                                    // Cập nhật giỏ hàng 
+                                    if (isset($_POST['updateCart'])) {
+                                        header('location: index.php?act=shop');
+                                    }
+                                    // Thêm giỏ hàng
+                                    if (isset($_POST['addcart'])) {
+                                        $id = $_POST['id_product'];
+                                        $size = $_POST['size'];
+                                        $checkpro = $product->checkId($id);
+                                        $selectCart = $order->getcart();
+                                        $sumquantity = $order->getsum_quantity_cart($user['id_user'], $id);
+                                        // Kiểm tra số lượng
+                                        if (isset($_POST['quantity']) && $_POST['quantity'] > 0) {
+                                            $quantity = $_POST['quantity'];
+                                        } else {
+                                            $quantity = 1;
+                                        }
+                                        // Kiểm tra sp 
+                                        $check = 0;
+                                        if ($quantity < $checkpro['quantity']) {
+                                            foreach ($selectCart as $cart) {
+                                                $sum = $quantity + $sumquantity['sum'];
+                                                if ($sum <= $checkpro['quantity']) {
+                                                    if ($id == $cart['product_id'] && $size == $cart['size']) {
+                                                        $updatecart = $order->updatecart($cart['id_cart'], $quantity + $cart['quantity_cart']);
+                                                        $check = 1;
+                                                        header('location: index.php?act=carts&get=cart');
+                                                    }
+                                                } else {
+                                                    $_SESSION['status'] = "Số lượng sản phẩm không đủ!";
+                                                    $_SESSION['status_code'] = "error";
+                                                    header("Location: " . $_SERVER['HTTP_REFERER']);
+                                                }
+                                            }
+                                            if ($check == 0 && $sum <= $checkpro['quantity']) {
+                                                $addcart = $order->addcart($user['id_user'], $id, $quantity, $size);
+                                                header('location: index.php?act=carts&get=cart');
+                                            }
+                                            // $addcart = $order->addcart($user['id_user'], $id, $quantity, $size);
+                                        } else {
                                             $_SESSION['status'] = "Số lượng sản phẩm không đủ!";
                                             $_SESSION['status_code'] = "error";
+                                            header("Location: " . $_SERVER['HTTP_REFERER']);
                                         }
-                                        $check = 1;
-                                        break;
                                     }
-                                    $i++;
+                                } else {
+                                    $_SESSION['status'] = "Vui lòng đăng nhập!";
+                                    $_SESSION['status_code'] = "error";
+                                    header('location: index.php?act=home');
                                 }
-                                if ($check == 0) {
-                                    $item = array($id, $name, $img, $price, $quantity, $size);
-                                    $_SESSION['cart'][] = $item;
-                                }
-                                header('location: index.php?act=carts&get=cart');
-                            }
-                        } else {
-                            $_SESSION['status'] = "Vui lòng đăng nhập!";
-                            $_SESSION['status_code'] = "error";
-                            header('location: index.php?act=home');
+                                break;
+                            default:
+                                # code...
+                                break;
                         }
                         break;
                     default:
-                        # code...
+                        include './pages/home.php';
                         break;
                 }
-                break;
-            default:
+            } else {
                 include './pages/home.php';
-                break;
-        }
-    } else {
-        include './pages/home.php';
-    }
-    include("./includes/footer.php");
-    foreach ($getProduct as $data) { ?>
+            }
+            include("./includes/footer.php");
+            foreach ($getProduct as $data) { ?>
         <script>
             function decreaseNumber<?= $data['id_product'] ?>() {
                 var numberInput = document.getElementById("myNumber<?= $data['id_product'] ?>");
