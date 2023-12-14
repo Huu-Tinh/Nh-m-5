@@ -56,6 +56,12 @@ class product
       $select = "SELECT * from products ORDER BY created_at DESC";
       return $db->pdo_query($select);
    }
+   function getpr_featured()
+   {
+      $db = new connect();
+      $select = "SELECT * from products ORDER BY created_at ASC limit 3";
+      return $db->pdo_query($select);
+   }
    function listproduct()
    {
       $db = new connect();
@@ -93,13 +99,13 @@ class product
       $result = $db->pdo_execute($sql);
       return $result;
    }
-    function category($categori_id)
-    {
+   function category($categori_id)
+   {
       $db = new connect();
-      $select = "SELECT * from products  where categori_id = ".$categori_id;
+      $select = "SELECT * from products  where categori_id = " . $categori_id;
       $result = $db->pdo_query($select);
       return $result;
-    }
+   }
    public function search($nameProduct)
    {
       $db = new connect();
