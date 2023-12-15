@@ -3,7 +3,7 @@ session_start();
 include '../../Admin/includes/pdo.php';
 include '../../Admin/pages/user/user.php';
 $user = new user();
-$email = $_POST['email'] ?? '';
+$username = $_POST['username'] ?? '';
 $passsword = $_POST['password'] ?? '';
 $email = $_POST['email'] ?? '';
 if (isset($_POST['login'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['login'])) {
 }
 if (isset($_POST['register'])) {
   if (!empty($email) && !empty($passsword) && !empty($passsword)) {
-    $register = $user->register($email, $passsword, $email);
+    $register = $user->register($username, $passsword, $email);
     $_SESSION['status'] = "Đăng ký thành công";
     $_SESSION['status_code'] = "success";
   }
@@ -435,6 +435,7 @@ if (isset($_POST['register'])) {
     border: 1px solid #4bb6b7;
   }
 </style>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <body>
   <div class="container" id="container">
@@ -442,7 +443,7 @@ if (isset($_POST['register'])) {
       <form method="post">
         <h1>Đăng ký</h1>
         <div class="form-control">
-          <input type="text" name="email" required placeholder="Name" />
+          <input type="text" name="username" required placeholder="Name" />
         </div>
         <div class="form-control">
           <input type="email" name="email" required placeholder="Email" />
@@ -520,5 +521,19 @@ if (isset($_POST['register'])) {
   </div>
 </body>
 <script src="main.js"></script>
+<?php
+if (isset($_SESSION['status'])) {
+  echo '
+<script>
+  swal({
+      title: "' . $_SESSION['status'] . '",
+      icon: "' . $_SESSION['status_code'] . '",
+      button: "Đồng ý!",
+  });
+</script>
+';
+  unset($_SESSION['status']);
+}
+?>
 
 </html>

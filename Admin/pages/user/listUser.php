@@ -6,31 +6,31 @@
                 <thead class="text-dark fs-4">
 
                     <tr class="">
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Id</h6>
                         </th>
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Avatar</h6>
                         </th>
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Quyền</h6>
                         </th>
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Tài khoản</h6>
                         </th>
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Mật khẩu</h6>
                         </th>
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Email</h6>
                         </th>
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Số điện thoại</h6>
                         </th>
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Địa chỉ</h6>
                         </th>
-                        <th class="border-bottom-1 p-0">
+                        <th class="border-bottom-1 p-1">
                             <h6 class="fw-semibold mb-3">Giới tính</h6>
                         </th>
                         <th class="border-bottom-1 pt-0">
@@ -45,10 +45,10 @@
                     foreach ($select as $data) {
                         echo '
                         <tr>
-                            <td class="border-bottom-1 p-0">
+                            <td class="border-bottom-1 p-1">
                                 <p class="fw-normal mb-0 me-3">' . $data['id_user'] . '</p>
                             </td>
-                            <td class="border-bottom-1 p-0">
+                            <td class="border-bottom-1 p-1">
                                 <img src="../../assets/images/profile/' . $data['avatar'] . '" class="rounded-circle" style="width: 55px;" alt="">
                             </td>
                             <td class="border-bottom-1 p-2">
@@ -56,22 +56,22 @@
                                     <span class="badge bg-' . ($data['role_id'] == 1 ? "danger" : "secondary") . ' rounded-3 fw-normal">' . ($data['role_id'] == 1 ? "admin" : "user") . '</span>
                                 </div>
                             </td>
-                            <td class="border-bottom-1 p-0">
+                            <td class="border-bottom-1 p-1">
                             <p class="fw-normal mb-0 fs-4">' . $data['username'] . '</p>
                             </td>
-                            <td class="border-bottom-1 p-0">
+                            <td class="border-bottom-1 p-1">
                                 <p class="fw-normal mb-0 fs-4">' . $data['password'] . '</p>
                             </td>
-                            <td class="border-bottom-1 p-0">
+                            <td class="border-bottom-1 p-1">
                                 <p class="fw-normal mb-0 fs-4">' . $data['email'] . '</p>
                             </td>
-                            <td class="border-bottom-1 p-0">
+                            <td class="border-bottom-1 p-1">
                                 <p class="fw-normal mb-0 fs-4">' . $data['phone'] . '</p>
                             </td>
-                            <td class="border-bottom-1 p-0">
+                            <td class="border-bottom-1 p-1">
                                 <p class="fw-normal mb-0 fs-4 text-wrap" style="width: 18rem;">' . $data['address'] . '</p>
                             </td>
-                            <td class="border-bottom-1 p-0">
+                            <td class="border-bottom-1 p-1">
                                 <p class="fw-normal mb-0 fs-4">' . ($data['gender'] == 1 ? 'Nam' : 'Nữ') . '</p>
                             </td>
                             <td>

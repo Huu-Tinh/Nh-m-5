@@ -43,7 +43,7 @@ if (isset($_POST['updateUser'])) {
     if (empty($_POST['role_id'])) {
         $errors['role_id']['required'] = "Chọn phân quyền!";
     }
-    if (!empty($_POST['name']) && !empty($_POST['password']) && !empty($_POST['email']) && !empty($_POST['phone'] && !empty($_POST['gender']))) {
+    if (!empty($_POST['name']) && !empty($_POST['password']) && !empty($_POST['email']) && !empty($_POST['phone'] && !empty($_POST['gender']) && !(!preg_match('/^(0|\+84)\d{9,10}$/', $numberphone)) && !(!filter_var($email, FILTER_VALIDATE_EMAIL)))) {
         $user->update($id, $username, $password, $email, $phone, $address, $avatar, $gender, $role_id);
         $_SESSION['status'] = "Sửa thành công";
         $_SESSION['status_code'] = "success";
@@ -60,8 +60,8 @@ if (isset($_POST['updateUser'])) {
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
                         <input type="email" name="email" value="<?= $select['email'] ?>" class="form-control">
-                        <? echo !empty($errors['phone']['format']) ? '<p class="text-danger mt-2">' . $errors['phone']['format'] . '</p>' : '' ?>
                         <? echo !empty($errors['email']['required']) ? '<p class="text-danger mt-2">' . $errors['email']['required'] . '</p>' : '' ?>
+                        <? echo !empty($errors['email']['invald']) ? '<p class="text-danger mt-2">' . $errors['email']['invald'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Tài khoản</label>
