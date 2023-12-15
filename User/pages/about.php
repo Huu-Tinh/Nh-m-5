@@ -40,8 +40,7 @@
         <div class="col-lg-6 m-auto">
             <h1 class="h1">Dịch Vụ Của Chúng Tôi</h1>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                Lorem ipsum dolor sit amet.
+            Điều quan trọng là có một khách hàng tốt thì sẽ thành công, nhưng đó mới là điều quan trọng để có một khách hàng tốt.
             </p>
         </div>
     </div>
@@ -50,28 +49,28 @@
         <div class="col-md-6 col-lg-3 pb-5">
             <div class="h-100 py-5 services-icon-wap shadow">
                 <div class="h1 text-success text-center"><i class="fa fa-truck fa-lg"></i></div>
-                <h2 class="h5 mt-4 text-center">Delivery Services</h2>
+                <h2 class="h5 mt-4 text-center">Dịch vụ giao hàng</h2>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 pb-5">
             <div class="h-100 py-5 services-icon-wap shadow">
                 <div class="h1 text-success text-center"><i class="fas fa-exchange-alt"></i></div>
-                <h2 class="h5 mt-4 text-center">Shipping & Return</h2>
+                <h2 class="h5 mt-4 text-center">Vận chuyển & Trả lại</h2>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 pb-5">
             <div class="h-100 py-5 services-icon-wap shadow">
                 <div class="h1 text-success text-center"><i class="fa fa-percent"></i></div>
-                <h2 class="h5 mt-4 text-center">Promotion</h2>
+                <h2 class="h5 mt-4 text-center">Khuyến mãi</h2>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 pb-5">
             <div class="h-100 py-5 services-icon-wap shadow">
                 <div class="h1 text-success text-center"><i class="fa fa-user"></i></div>
-                <h2 class="h5 mt-4 text-center">24 Hours Service</h2>
+                <h2 class="h5 mt-4 text-center">Dịch vụ 24 giờ</h2>
             </div>
         </div>
     </div>
@@ -83,10 +82,10 @@
     <div class="container my-4">
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Our Brands</h1>
+                <h1 class="h1">Nhãn hiệu của chúng tôi</h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    Lorem ipsum dolor sit amet.
+                Việc có một bệnh nhân là rất quan trọng và sau đó sẽ là một quá trình hấp thụ mỡ, nhưng tôi sẽ làm như vậy
+                     Khách hàng rất hạnh phúc.
                 </p>
             </div>
             <div class="col-lg-9 m-auto tempaltemo-carousel">
