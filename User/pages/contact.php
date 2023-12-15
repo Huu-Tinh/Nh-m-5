@@ -21,8 +21,7 @@
     <div class="col-md-6 m-auto text-center">
         <h1 class="h1">Liên Hệ</h1>
         <p>
-            Proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            Lorem ipsum dolor sit amet.
+        Họ ra đi, có lỗi với người bỏ bê bổn phận, tâm hồn mềm yếu, đó là lao nhọc. Khách hàng rất hạnh phúc.
         </p>
     </div>
 </div>
