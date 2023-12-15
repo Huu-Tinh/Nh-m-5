@@ -13,7 +13,12 @@ class product
    var $categori_id = null;
 
 
-
+   function getproduct_bestsell()
+   {
+      $db = new connect();
+      $select = "SELECT od.product_id, p.*, c.name_ct, SUM(od.quantity_odt) AS total_quantity FROM orders_detail od JOIN products p ON od.product_id = p.id_product JOIN categories c ON p.categori_id = c.id_categori WHERE MONTH(od.created_at) = MONTH(NOW()) GROUP BY od.product_id, p.name_pr, p.id_product ORDER BY total_quantity DESC LIMIT 3;";
+      return $db->pdo_query($select);
+   }
    function getproduct()
    {
       $db = new connect();
@@ -59,7 +64,7 @@ class product
    function getpr_featured()
    {
       $db = new connect();
-      $select = "SELECT * from products ORDER BY created_at ASC limit 3";
+      $select = "SELECT p.*, c.name_ct FROM products p JOIN categories c ON p.categori_id = c.id_categori ORDER BY p.created_at ASC LIMIT 3";
       return $db->pdo_query($select);
    }
    function listproduct()

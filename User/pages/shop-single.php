@@ -198,25 +198,6 @@ $categori = $product->category($categori_id);
 
                         <br>
                         <br>
-                        <!-- <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <h6>Avaliable Color :</h6>
-                            </li>
-                            <li class="list-inline-item">
-                                <p class="text-muted"><strong>White / Black</strong></p>
-                            </li>
-                        </ul> -->
-                        <!-- 
-                        <h6>Specification:</h6>
-                        <ul class="list-unstyled pb-3">
-                            <li>Lorem ipsum dolor sit</li>
-                            <li>Amet, consectetur</li>
-                            <li>Adipiscing elit,set</li>
-                            <li>Duis aute irure</li>
-                            <li>Ut enim ad minim</li>
-                            <li>Dolore magna aliqua</li>
-                            <li>Excepteur sint</li>
-                        </ul> -->
 
                         <form action="index.php?act=carts&get=toCart" method="post">
                             <input type="hidden" name="product-title" value="Activewear">
@@ -292,14 +273,13 @@ include './pages/comment.php';
 <section class="py-5">
     <div class="container">
         <div class="row text-left p-2 pb-3">
-            <h4>Related Products</h4>
+            <h4>Sản Phẩm Tương Tự</h4>
         </div>
-
         <!--Start Carousel Wrapper-->
-        <div id="carousel-related-product" class="slick-initialized slick-slider slick-dotted">
+        <div id="carousel-related-product" class="slick-initialized slick-slider slick-dotted overflow-auto">
 
-            <div class="slick-list draggable">
-                <div class="slick-track row">
+            <div class="slick-list draggable d-flex flex-nowrap">
+                <div class="d-flex flex-nowrap">
                     <?php
                     foreach ($categori as $row) {
                         echo '
@@ -307,7 +287,7 @@ include './pages/comment.php';
                         <div class="product-wap card rounded-0">
                                 
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../Admin/assets/images/products/' . $row['img'] . '">
+                                <img class="card-img rounded-0 img-fluid" src="../Admin/assets/images/products/' . $row['img'] . '" style="height:305px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html" tabindex="-1"><i class="far fa-heart"></i></a></li>
