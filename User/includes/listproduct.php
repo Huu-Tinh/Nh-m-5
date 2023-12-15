@@ -25,10 +25,14 @@ echo '
                     <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                 </li>
             </ul>
+
             <ul class="list-unstyled  mb-1">
             <li>
             <b>Brand:</b> ' . $value['name_ct'] . '
         </li>
+
+            <p class=" mb-0">Số lượng: ' . number_format($value['quantity'], 0, ".", ".") . '</p>
+
             </ul>
             <p class="text-center mb-0"><b>' . number_format($value['price'], 0, ".", ".") . '<sup>vnđ</sup></b></p>
         </div>
