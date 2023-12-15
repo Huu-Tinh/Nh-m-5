@@ -1,4 +1,3 @@
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <!-- <div class="card w-100 pt-5"> -->
 <form action="index.php?act=carts&get=toCart" method="post">
     <div class="card-body p-4">
@@ -60,7 +59,7 @@
                                 <p class="fw-normal mb-0 ">' . $data['quantity_cart'] . '</p>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="fw-normal mb-0 ">' . number_format($data['price'] * $data['quantity'], 0, ".", ".") . '</p>
+                                <p class="fw-normal mb-0 ">' . number_format($data['price'] * $data['quantity_cart'], 0, ".", ".") . '</p>
                             </td>
                             <td class="border-bottom-0">
                                 <a href="index.php?act=carts&get=delete&id=' . $data['id_cart'] . '" class="btn btn-danger m-1">Xoá</a>
@@ -79,7 +78,7 @@
                             <?php
                             $sum = 0;
                             foreach ($selectCart as $item) {
-                                $sum += $item['price'] * $item['quantity'];
+                                $sum += $item['price'] * $item['quantity_cart'];
                             }
                             echo  '<p class="fw-bold text-danger mb-0 ">' . number_format($sum, 0, ".", ".") . ' <sup>vnđ</sup></p>';
 
@@ -158,7 +157,7 @@
                             </div>
                             <input class="form-check-input" type="radio" name="pttt" value="2" id="check2">
                             <label class="form-check-label" for="check2">
-                                Thanh toán bằng ví
+                                Thanh toán bằng VNpay
                             </label>
                         </div>
                     </div>
@@ -173,30 +172,6 @@
     </div>
 </div>
 <!-- Modal Đổi thông tin người đặt hàng -->
-<?php
-// $username = $_POST['name'] ?? '';
-// $address = $_POST['address'] ?? '';
-// $phone = $_POST['phone'] ?? '';
-// if (isset($_POST['addinfo'])) {
-//     if (empty($_POST['name'])) {
-//         $errors['name']['required'] = "Nhập đầy đủ họ tên!";
-//     }
-//     if (empty($_POST['phone'])) {
-//         $errors['phone']['required'] = "Nhập đầy đủ số điện thoại!";
-//     }
-//     // if (!preg_match('[0-9]{10}', $phone) && !empty($_POST['phone'])) {
-//     //     $errors['phone']['format'] = "Số điện thoại không đúng định dạng!";
-//     // } 
-//     if (empty($_POST['address'])) {
-//         $errors['address']['required'] = "Nhập đầy đủ địa chỉ!";
-//     }
-//     if (!empty($username) && !empty($address) && !empty($phone)) {
-//         $update_info = $selectUser->update_info_cart($user['id_user'], $username, $phone, $address);
-//         $_SESSION['status'] = "Cập nhật thành công!";
-//         $_SESSION['status_code'] = "success";
-//     }
-// }
-?>
 <div class="modal fade" id="info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content infouser">
@@ -236,7 +211,6 @@
     jQuery(document).ready(function($) {
         $(document).on("click", ".addinfo", function(event) {
             event.preventDefault();
-            console.log('xoá thành công');
             var username = $('.name').val();
             var address = $('.address').val();
             var phone = $('.phone').val();

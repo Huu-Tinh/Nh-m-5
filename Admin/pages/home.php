@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <!--  Row 1 -->
+  <h2 class="mb-5">Thống kê</h2>
   <div class="row">
     <div class="row column2 graph margin_bottom_30">
       <div class="col-md-6">

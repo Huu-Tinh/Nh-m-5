@@ -46,7 +46,7 @@ if (isset($_POST['addUser'])) {
             header('Location: index.php?act=user&get=list');
         }
     } catch (Exception $e) {
-        $_SESSION['status'] = "Username đã được sử dụng";
+        $_SESSION['status'] = "Email đã được sử dụng";
         $_SESSION['status_code'] = "error";
 
         // Redirect to a custom error page

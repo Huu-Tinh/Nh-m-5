@@ -27,15 +27,16 @@ ob_start();
     <!-- <link rel="stylesheet" href="../login/main.js" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <!--
-    
-TemplateMo 559 Zay Shop
-
-https://templatemo.com/tm-559-zay-shop
-
--->
+        
+        TemplateMo 559 Zay Shop
+        
+        https://templatemo.com/tm-559-zay-shop
+        
+    -->
 </head>
 
 <body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <?php
     include("../Admin/includes/pdo.php");
     include("../Admin/pages/product/product.php");
@@ -59,8 +60,8 @@ https://templatemo.com/tm-559-zay-shop
     ';
         unset($_SESSION['status']);
     }
+    $selectUser = new user();
     if (isset($_SESSION['username'])) {
-        $selectUser = new user();
         $user = $selectUser->checkId($_SESSION['username']);
         $countcart = $order->getcountcart($user['id_user']);
     }
@@ -112,7 +113,8 @@ https://templatemo.com/tm-559-zay-shop
                         }
                         break;
                     case 'vnpay':
-                        $id_order = substr($_GET['vnp_TxnRef'], 0, 3);
+                        $id_order = $_GET['idorder'];
+                        echo $id_order;
                         if ($_GET['vnp_TransactionNo'] != 0) {
                             $gettocart = $order->gettocart($user['id_user']);
                             foreach ($gettocart as $item) {
@@ -152,19 +154,6 @@ https://templatemo.com/tm-559-zay-shop
                                 } else {
                                     include './pages/cart/vnpay.php';
                                 }
-                                // if ($_GET['vnp_TransactionNo'] != 0) {
-                                //     foreach ($gettocart as $item) {
-                                //         $order->addtocat($id_order, $item['product_id'], $item['name_pr'], $item['img'], $item['price'], $item['quantity_cart']);
-                                //     }
-                                //     $order->delete_formcart_user($user['id_user']);
-                                //     $_SESSION['status'] = "Thanh toán thành công!";
-                                //     $_SESSION['status_code'] = "success";
-                                //     header('location: index.php?act=home');
-                                // } else {
-                                //     $_SESSION['status'] = "Bạn đã hủy thanh toán!";
-                                //     $_SESSION['status_code'] = "error";
-                                //     header('location: index.php?act=carts&get=cart');
-                                // } 
                             }
                         }
                         ?></div><?

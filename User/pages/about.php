@@ -21,11 +21,9 @@
     <div class="container">
         <div class="row align-items-center py-5">
             <div class="col-md-8 text-white">
-                <h1>About Us</h1>
+                <h1>Giới Thiệu</h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Tại đây, chúng tôi tự hào giới thiệu một bộ sưu tập đa dạng và phong cách của các đôi giày hợp thời trang nhất. Với sự đam mê về thời trang và sự chăm sóc tỉ mỉ, chúng tôi đã tạo ra một nền tảng trực tuyến để bạn có thể tìm thấy đôi giày hoàn hảo cho mọi dịp.
                 </p>
             </div>
             <div class="col-md-4">
@@ -40,7 +38,7 @@
 <section class="container py-5">
     <div class="row text-center pt-5 pb-3">
         <div class="col-lg-6 m-auto">
-            <h1 class="h1">Our Services</h1>
+            <h1 class="h1">Dịch Vụ Của Chúng Tôi</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 Lorem ipsum dolor sit amet.

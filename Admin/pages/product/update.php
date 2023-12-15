@@ -6,7 +6,7 @@ $id = $_GET['id'];
 $select = $product->checkid($id);
 $name = $_POST['name'] ?? '';
 $price = $_POST['price'] ?? '';
-$describe = $_POST['describe'] ?? '';
+$describe = $_POST['describe'] ? $_POST['describe'] : $select['describe'];
 $quantity = $_POST['quantity'] ?? '';
 $categori_id = $_POST['categori_id'] ?? '';
 

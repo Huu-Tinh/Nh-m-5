@@ -17,7 +17,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $vnp_TmnCode = "JV7SQI4R"; //Mã định danh merchant kết nối (Terminal Id)
 $vnp_HashSecret = "BJPCWRROJKDBEKJDRVXFODFZHWUSIPKZ"; //Secret key
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "http://du-an1/User/index.php?act=carts&get=vnpay";
+$vnp_Returnurl = "http://du-an1/User/index.php?act=carts&get=vnpay&idorder=$id_order";
 $vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
 $apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 //Config input format
@@ -30,7 +30,7 @@ $vnp_Amount = $total; // Số tiền thanh toán
 $vnp_Idorder = $id_order;
 $vnp_Locale = 'vn'; //Ngôn ngữ chuyển hướng thanh toán
 $vnp_BankCode = 'NCB'; //Mã phương thức thanh toán
-$vnp_IpAddr = $id_order; //IP Khách hàng thanh toán
+$vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //IP Khách hàng thanh toán
 
 $inputData = array(
     "vnp_Version" => "2.1.0",
@@ -45,7 +45,7 @@ $inputData = array(
     "vnp_OrderInfo" => "Thanh toan GD:" + $vnp_TxnRef,
     "vnp_OrderType" => "other",
     "vnp_ReturnUrl" => $vnp_Returnurl,
-    "vnp_TxnRef" => $id_order.$vnp_TxnRef,
+    "vnp_TxnRef" => $vnp_TxnRef,
     "vnp_ExpireDate" => $expire
 );
 if (isset($vnp_BankCode) && $vnp_BankCode != "") {

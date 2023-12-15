@@ -11,7 +11,7 @@ class order
     public function getorder()
     {
         $db = new connect();
-        $query = "SELECT DATE_FORMAT(orders.created_at, '%Y-%m-%d') as created_at, orders.code as code, orders.total as total, orders.username_od as username, orders.address_od as `address`, orders.phone_od as phone, orders.id_order as id, COUNT(orders_detail.order_id) AS count FROM orders INNER JOIN orders_detail ON orders.id_order = orders_detail.order_id GROUP BY orders.id_order";
+        $query = "SELECT orders.status as `status`, orders.created_at as created_at, orders.code as code, orders.total as total, orders.username_od as username, orders.address_od as `address`, orders.phone_od as phone, orders.id_order as id, COUNT(orders_detail.order_id) AS count FROM orders INNER JOIN orders_detail ON orders.id_order = orders_detail.order_id GROUP BY orders.id_order";
         $result = $db->pdo_query($query);
         return $result;
     }
@@ -61,6 +61,13 @@ class order
     {
         $db = new connect();
         $query = "UPDATE tocart SET  quantity_cart = '$quantity' where  id_cart =" . $id;
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+    public function updatestatus($id)
+    {
+        $db = new connect();
+        $query = "UPDATE orders SET  `status` = '1' where  id_order =" . $id;
         $result = $db->pdo_execute($query);
         return $result;
     }

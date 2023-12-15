@@ -70,7 +70,7 @@ class product
    function listproduct()
    {
       $db = new connect();
-      $select = "SELECT * from products as p,categories as c where p.categori_id = c.id_categori";
+      $select = "SELECT p.*,c.name_ct from products as p,categories as c where p.categori_id = c.id_categori";
       $result = $db->pdo_query($select);
       return $result;
    }

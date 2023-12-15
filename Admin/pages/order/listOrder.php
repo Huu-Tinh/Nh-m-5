@@ -9,7 +9,7 @@
                             <h6 class="fw-semibold fs-4 mb-3">Mã hóa đơn</h6>
                         </th>
                         <th class="border-bottom-1  p-0">
-                            <h6 class="fw-semibold fs-4 mb-3 ">Số lượng sản phẩm</h6>
+                            <h6 class="fw-semibold fs-4 mb-3 ">Số lượng</h6>
                         </th>
                         <th class="border-bottom-1  p-0">
                             <h6 class="fw-semibold fs-4 mb-3 ">Tên người nhận</h6>
@@ -39,33 +39,42 @@
                         echo '
                             <tr>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5">' . $data['code'] . '</h6>
+                                    <h6 class="fw-semibold py-3">' . $data['code'] . '</h6>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5">' . $data['count'] . '</h6>
+                                    <h6 class="fw-semibold py-3">' . $data['count'] . '</h6>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5 fs-4">' . $data['username'] . '</h6>
+                                    <h6 class="fw-semibold py-3 fs-4">' . $data['username'] . '</h6>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold p-0 mt-5 fs-4 text-wrap" style="width: 18rem;">' . $data['address'] . '</h6>
+                                    <h6 class="fw-semibold p-0 py-3 fs-4 text-wrap" style="width: 18rem;">' . $data['address'] . '</h6>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5 fs-4">' . $data['phone'] . '</h6>
+                                    <h6 class="fw-semibold py-3 fs-4">' . $data['phone'] . '</h6>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5 fs-4">' . number_format($data['total'], 0, ".", ".") . '<sup>vnđ</sup></h6>
+                                    <h6 class="fw-semibold py-3 fs-4">' . number_format($data['total'], 0, ".", ".") . '</h6>
                                 </td>
                                 <td class="border-bottom-1 p-0">
-                                    <h6 class="fw-semibold mt-5 fs-4">' . $data['created_at'] . '</h6>
+                                    <h6 class="fw-semibold py-3 fs-4 text-wrap" style="width: 6rem;">' . $data['created_at'] . '</h6>
                                 </td>
+                                ';
+                        if ($data['status'] != 1) {
+                            echo '<td class="border-bottom-1 p-0">
+                                    <form method="post"><button name="updatestatus" class="btn btn-warning my-3">Duyệt</button><input type="hidden" name="status" value="' . $data['id'] . '"></form>
+                                    </td>';
+                        }else{
+                            echo'<td class="border-bottom-1 p-0"></td>';
+                        } ?><?
+                            echo '
                                 <td class="border-bottom-1 p-0">
-                                    <a href="index.php?act=order&get=detailorder&id=' . $data['id'] . '" class="btn btn-success mt-4">Chi tiết</a>
+                                    <a href="index.php?act=order&get=detailorder&id=' . $data['id'] . '" class="btn btn-success my-3">Chi tiết</a>
                                 </td>
                             </tr>
                             ';
-                    }
-                    ?>
+                        }
+                            ?>
 
 
 
@@ -74,3 +83,8 @@
         </div>
     </div>
 </div>
+<?php
+if (isset($_POST['updatestatus'])) {
+    $id = $_POST['status'];
+    $updatestauts = $order->updatestatus($id);
+}
