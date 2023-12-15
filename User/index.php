@@ -93,6 +93,27 @@ ob_start();
             case 'delete-comment':
                 include '../Admin/pages/comment/delete-comment.php';
                 break;
+            case 'chanepassword':
+             ?>
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Mật khẩu cũ</label>
+                        <input type="password" name="p0" class="form-control p0">
+                        <? echo !empty($errors['password']['required']) ? '<p class="text-danger mt-2">' . $errors['password']['required'] . '</p>' : '' ?>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Mật khẩu mới</label>
+                        <input type="password" name="p1" class="form-control p1">
+                        <? echo !empty($errors['password']['required']) ? '<p class="text-danger mt-2">' . $errors['password']['required'] . '</p>' : '' ?>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Mật khẩu mới</label>
+                        <input type="password" name="p2" class="form-control p2">
+                        <? echo !empty($errors['password']['required']) ? '<p class="text-danger mt-2">' . $errors['password']['required'] . '</p>' : '' ?>
+                    </div>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#examppass">Đổi mật khẩu</button>
+                </form>
+                <? break;
             case 'carts':
                 switch ($_GET['get']) {
                     case 'order':
@@ -131,7 +152,7 @@ ob_start();
                         }
                         break;
                     case 'pay':
-    ?><div class="loadpay"></div>
+                ?><div class="loadpay"></div>
                         <?
                         if (isset($_POST['addpay'])) {
                             $total = $_POST['total'];

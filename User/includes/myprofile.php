@@ -69,7 +69,7 @@
                         </div>
                         <div class="mt-5">
                             <form action="" method="post">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#examppass">Đổi mật khẩu</button>
+                                <a href="index.php?act=carts&get=chanepassword"> <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#examppass">Đổi mật khẩu</button></a>
                                 <button name="" class="btn btn-success">Đổi thông tin</button>
                             </form>
                         </div>
@@ -122,7 +122,6 @@
             var password0 = $('.p0').val();
             var password1 = $('.p1').val();
             var password2 = $('.p2').val();
-            console.log('sád');
             $.ajax({
                 url: "./includes/ajax.php",
                 method: "POST",

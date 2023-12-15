@@ -14,9 +14,9 @@ echo '
             </div>
         </div>
         <div class="card-body">
-            <a href="index.php?act=shop-single&id_pr=' . $value['id_product'] . '" class="h3 text-decoration-none">' . $value['name_pr'] . '</a>
+            <a href="index.php?act=shop-single&id_pr=' . $value['id_product'] . '" class="h3 text-decoration-none d-inline-block text-truncate" style="max-width: 280px;"><b>' . $value['name_pr'] . '</b></a>
             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                <li>M/L/X/XL</li>
+                <li>38/39/40/41/42</li>
                 <li class="pt-2">
                     <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                     <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
@@ -25,16 +25,12 @@ echo '
                     <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                 </li>
             </ul>
-            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                <li>
-                    <i class="text-warning fa fa-star"></i>
-                    <i class="text-warning fa fa-star"></i>
-                    <i class="text-warning fa fa-star"></i>
-                    <i class="text-muted fa fa-star"></i>
-                    <i class="text-muted fa fa-star"></i>
-                </li>
+            <ul class="list-unstyled  mb-1">
+            <li>
+            <b>Brand:</b> ' . $value['name_ct'] . '
+        </li>
             </ul>
-            <p class="text-center mb-0">' . number_format($value['price'], 0, ".", ".") . '</p>
+            <p class="text-center mb-0"><b>' . number_format($value['price'], 0, ".", ".") . '<sup>vnđ</sup></b></p>
         </div>
     </div>
 </div>';

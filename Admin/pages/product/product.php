@@ -22,7 +22,9 @@ class product
    function getproduct()
    {
       $db = new connect();
-      $select = "SELECT * from products  ";
+      $select = "SELECT  products.*, categories.name_ct
+      FROM products
+      JOIN categories ON products.categori_id = categories.id_categori;";
       return $db->pdo_query($select);
    }
    function getpr_categori($id)
