@@ -25,7 +25,8 @@ echo '
                     <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                 </li>
             </ul>
-            <ul class="list-unstyled d-flex justify-content-center mb-1">
+            <p class=" mb-0">Số lượng: ' . number_format($value['quantity'], 0, ".", ".") . '</p>
+            <ul class="list-unstyled d-flex justify-content-center mb-1">   
                 <li>
                     <i class="text-warning fa fa-star"></i>
                     <i class="text-warning fa fa-star"></i>
