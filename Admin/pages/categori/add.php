@@ -19,8 +19,6 @@ if (isset($_POST['addcategori'])) {
     } catch (Exception $e) {
         $_SESSION['status'] = "Đã có phân loại này";
         $_SESSION['status_code'] = "error";
-
-        // Redirect to a custom error page
         header('Location: index.php?act=categori&get=list');
     }
 }

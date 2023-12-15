@@ -11,7 +11,7 @@ $phone = $_POST['phone'] ?? '';
 $gender = $_POST['gender'] ?? '';
 $avatar = $_POST['avatar'] ? $_POST['avatar'] : $select['avatar'];
 $role_id = $_POST['role_id'] ?? '';
-$phone = preg_replace('/\s+/', '', $phone);
+$numberphone = preg_replace('/[^0-9]/', '', $phone);
 if (isset($_POST['updateUser'])) {
     if (empty($_POST['name'])) {
         $errors['name']['required'] = "Nhập đầy đủ họ tên!";
@@ -28,7 +28,7 @@ if (isset($_POST['updateUser'])) {
     if (empty($_POST['phone'])) {
         $errors['phone']['required'] = "Nhập đầy đủ số điện thoại!";
     }
-    if (!preg_match('/^(0|\+84)\d{9,10}$/', $phone)) {
+    if (!preg_match('/^(0|\+84)\d{9,10}$/', $numberphone)) {
         $errors['phone']['format'] = "Số điện thoại không đúng định dạng!";
     }
     if (empty($_POST['gender'])) {
