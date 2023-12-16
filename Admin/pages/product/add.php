@@ -103,7 +103,7 @@ if (isset($_POST['addproduct'])) {
                     <div class="mb-3 col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Số lượng</label>
                         <input type="number" class="form-control" name="quantity" value="<?=$quantity?>" id="exampleInputPassword1">
-                        <? echo !empty($errors['quantity']['required']) ? '<p class="text-danger mt-2">' . $errors['quantity']['required'] . '</p>' : '' ?>
+                        <!-- <? echo !empty($errors['quantity']['required']) ? '<p class="text-danger mt-2">' . $errors['quantity']['required'] . '</p>' : '' ?> -->
                         <? echo !empty($errors['quantity']['min']) ? '<p class="text-danger mt-2">' . $errors['quantity']['min'] . '</p>' : '' ?>
                     </div>
                     <div class="mb-3 col-md-6">
