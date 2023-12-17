@@ -13,11 +13,18 @@ class product
    var $categori_id = null;
 
 
-
+   function getproduct_bestsell()
+   {
+      $db = new connect();
+      $select = "SELECT od.product_id, p.*, c.name_ct, SUM(od.quantity_odt) AS total_quantity FROM orders_detail od JOIN products p ON od.product_id = p.id_product JOIN categories c ON p.categori_id = c.id_categori WHERE MONTH(od.created_at) = MONTH(NOW()) GROUP BY od.product_id, p.name_pr, p.id_product ORDER BY total_quantity DESC LIMIT 3;";
+      return $db->pdo_query($select);
+   }
    function getproduct()
    {
       $db = new connect();
-      $select = "SELECT * from products  ";
+      $select = "SELECT  products.*, categories.name_ct
+      FROM products
+      JOIN categories ON products.categori_id = categories.id_categori;";
       return $db->pdo_query($select);
    }
    function getpr_categori($id)
@@ -56,10 +63,16 @@ class product
       $select = "SELECT * from products ORDER BY created_at DESC";
       return $db->pdo_query($select);
    }
+   function getpr_featured()
+   {
+      $db = new connect();
+      $select = "SELECT p.*, c.name_ct FROM products p JOIN categories c ON p.categori_id = c.id_categori ORDER BY p.created_at ASC LIMIT 3";
+      return $db->pdo_query($select);
+   }
    function listproduct()
    {
       $db = new connect();
-      $select = "SELECT * from products as p,categories as c where p.categori_id = c.id_categori";
+      $select = "SELECT p.*,c.name_ct from products as p,categories as c where p.categori_id = c.id_categori";
       $result = $db->pdo_query($select);
       return $result;
    }
@@ -93,13 +106,13 @@ class product
       $result = $db->pdo_execute($sql);
       return $result;
    }
-    function category($categori_id)
-    {
+   function category($categori_id)
+   {
       $db = new connect();
-      $select = "SELECT * from products  where categori_id = ".$categori_id;
+      $select = "SELECT * from products  where categori_id = " . $categori_id;
       $result = $db->pdo_query($select);
       return $result;
-    }
+   }
    public function search($nameProduct)
    {
       $db = new connect();

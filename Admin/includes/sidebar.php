@@ -20,7 +20,7 @@
 
                             <i class="ti ti-home-2"></i>
                         </span>
-                        <span class="hide-menu">home</span>
+                        <span class="hide-menu">Trang chủ</span>
                     </a>
                 </li>
 
@@ -29,7 +29,7 @@
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Users</span>
+                        <span class="hide-menu">Người dùng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -38,7 +38,7 @@
                             <!-- <i class="ti ti-alert-circle"></i> -->
                             <i class="ti ti-clipboard-list"></i>
                         </span>
-                        <span class="hide-menu">Categories</span>
+                        <span class="hide-menu">Phân loại</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -46,7 +46,7 @@
                         <span>
                             <i class="ti ti-cards"></i>
                         </span>
-                        <span class="hide-menu">Products</span>
+                        <span class="hide-menu">Sản phẩm</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -54,7 +54,7 @@
                         <span>
                             <i class="ti ti-list"></i>
                         </span>
-                        <span class="hide-menu">Order</span>
+                        <span class="hide-menu">Đơn hàng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

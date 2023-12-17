@@ -14,7 +14,7 @@ if (isset($_POST['addcategori'])) {
             header('Location: index.php?act=categori&get=list');
         }
         if (empty($_POST['name'])) {
-            $errors['name']['required'] = "Nhập đầy tên loại!";
+            $errors['name']['required'] = "Nhập tên loại!";
         }
     } catch (Exception $e) {
         $_SESSION['status'] = "Đã có phân loại này";

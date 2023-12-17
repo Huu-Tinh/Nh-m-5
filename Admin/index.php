@@ -37,7 +37,18 @@ ob_start();
             include './includes/header.php';
         } ?>
             <?php
-
+            if (isset($_SESSION['status'])) {
+                echo '
+                <script>
+                    swal({
+                        title: "' . $_SESSION['status'] . '",
+                        icon: "' . $_SESSION['status_code'] . '",
+                        button: "Đồng ý!",
+                    });
+                </script>
+                ';
+                unset($_SESSION['status']);
+            }
             $action = 'home';
             if (isset($_GET['act'])) {
                 $action = $_GET['act'];
@@ -60,18 +71,7 @@ ob_start();
                 case 'user':
                     switch ($_GET['get']) {
                         case 'list':
-                            if (isset($_SESSION['status'])) {
-                                echo '
-                                <script>
-                                    swal({
-                                        title: "' . $_SESSION['status'] . '",
-                                        icon: "' . $_SESSION['status_code'] . '",
-                                        button: "Đồng ý!",
-                                    });
-                                </script>
-                                ';
-                                unset($_SESSION['status']);
-                            }
+
                             include './assets/js/chart.php';
                             echo '<div id="breakups"></div>';
                             include './pages/user/listUser.php';
@@ -121,18 +121,7 @@ ob_start();
                     switch ($_GET['get']) {
 
                         case 'list':
-                            if (isset($_SESSION['status'])) {
-                                echo '
-                                <script>
-                                    swal({
-                                        title: "' . $_SESSION['status'] . '",
-                                        icon: "' . $_SESSION['status_code'] . '",
-                                        button: "Đồng ý!",
-                                    });
-                                </script>
-                                ';
-                                unset($_SESSION['status']);
-                            }
+
                             include './pages/categori/listCategori.php';
                             break;
                         case 'add':
@@ -174,18 +163,7 @@ ob_start();
                             include './pages/comment/listComment.php';
                             break;
                         case 'detail_comment':
-                            if (isset($_SESSION['status'])) {
-                                echo '
-                                <script>
-                                    swal({
-                                        title: "' . $_SESSION['status'] . '",
-                                        icon: "' . $_SESSION['status_code'] . '",
-                                        button: "Đồng ý!",
-                                    });
-                                </script>
-                                ';
-                                unset($_SESSION['status']);
-                            }
+
                             include './pages/comment/detail_comment.php';
                             break;
                         case 'dalete_comment':
@@ -221,18 +199,7 @@ ob_start();
                 case 'product':
                     switch ($_GET['get']) {
                         case 'list':
-                            if (isset($_SESSION['status'])) {
-                                echo '
-                                <script>
-                                    swal({
-                                        title: "' . $_SESSION['status'] . '",
-                                        icon: "' . $_SESSION['status_code'] . '",
-                                        button: "Đồng ý!",
-                                    });
-                                </script>
-                                ';
-                                unset($_SESSION['status']);
-                            }
+
                             include './pages/product/listProduct.php';
                             break;
                         case 'add':

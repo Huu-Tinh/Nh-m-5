@@ -5,30 +5,30 @@
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr class="">
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Id</h6>
+                        <th class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0 px-2">Id</h6>
                         </th>
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Img</h6>
+                        <th class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0">Img</h6>
                         </th>
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Name</h6>
+                        <th class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0">Name</h6>
                         </th>
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Price</h6>
-                        </th>
-
-
-
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Loại</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Quantity</h6>
+                        <th class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0">Price</h6>
                         </th>
 
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Mô tả</h6>
+
+
+                        <th class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0">Loại</h6>
+                        </th>
+                        <th class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0">Quantity</h6>
+                        </th>
+
+                        <th class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0">Mô tả</h6>
                         </th>
                         <th>
                             <a href="index.php?act=product&get=add" class="btn btn-success m-1">Thêm</a>
@@ -42,28 +42,28 @@
                     foreach ($select as $data) {
                         echo '
                     <tr>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">' . $data['id_product'] . '</h6>
+                        <td class="border-bottom-0 p-0 ">
+                            <h6 class="fw-semibold py-3 mb-0">' . $data['id_product'] . '</h6>
                         </td>
                         </td>
-                        <td class="border-bottom-0">
-                            <img style="width: 140px; height:140px" src="./assets/images/products/' . $data['img'] . '"alt="">
+                        <td class="border-bottom-0 p-0">
+                            <img class="py-2" style="width: 140px; height:140px" src="./assets/images/products/' . $data['img'] . '"alt="">
                         </td>
-                       <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0 fs-4">' . $data['name_pr'] . '</h6>
+                       <td class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0 fs-4 text-wrap" style="width: 18rem;">' . $data['name_pr'] . '</h6>
                         </td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1"> ' . number_format($data['price'], 0, ".", ".") . '</h6>
+                        <td class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-1"> ' . number_format($data['price'], 0, ".", ".") . '</h6>
                             <!-- <span class="fw-normal">Web Designer</span> -->
                        
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">' . $data['name_ct'] . '</h6>
+                        <th class="border-bottom-0 p-0">
+                            <h6 class="fw-semibold py-3 mb-0">' . $data['name_ct'] . '</h6>
                         </th>
-                        <td class="border-bottom-0">
+                        <td class="border-bottom-0 p-0">
                         <p class="mb-0 fw-normal">' . $data['quantity'] . '</p>
                     </td>
-                        <td class="border-bottom-0">
-                            <p class="mb-0 fw-normal">' . $data['describe'] . '</p>
+                        <td class="border-bottom-0 p-0">
+                            <p class="py-3 mb-0 fw-normal text-wrap" style="width: 20rem;">' . $data['describe'] . '</p>
                         </td>
                        
                         <td>

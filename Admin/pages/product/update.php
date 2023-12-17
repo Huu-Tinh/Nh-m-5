@@ -6,7 +6,7 @@ $id = $_GET['id'];
 $select = $product->checkid($id);
 $name = $_POST['name'] ?? '';
 $price = $_POST['price'] ?? '';
-$note = $_POST['describe'] ?? '';
+$describe = $_POST['describe'] ? $_POST['describe'] : $select['describe'];
 $quantity = $_POST['quantity'] ?? '';
 $categori_id = $_POST['categori_id'] ?? '';
 
@@ -128,7 +128,7 @@ if (isset($_POST['updateproduct'])) {
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mô tả</label>
-                        <textarea type="text" class="form-control" value="<?= $select['describe'] ?>" name="note" id=""></textarea>
+                        <textarea type="text" class="form-control" name="describe" id=""></textarea>
                     </div>
 
                     <button type="submit" name="updateproduct" class="btn btn-primary col-1">Sửa</button>

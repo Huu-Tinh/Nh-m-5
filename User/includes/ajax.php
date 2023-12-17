@@ -30,3 +30,15 @@ if ($_POST['action'] == 'updateinfo') {
         $_SESSION['status_code'] = "success";
     }
 }
+if ($_POST['action'] == 'chane_password') {
+    $iduser = $_POST['iduser'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $password0 = $_POST['p0'] ?? '';
+    $password1 = $_POST['p1'] ?? '';
+    $password2 = $_POST['p2'] ?? '';
+    if ($password0 == $password && $password1 == $password2) {
+        $chanepass = $selectUser->chanepassword($iduser, $password2);
+    }else{
+        $errors['password']['required'] = "Mật khẩu không đúng!";
+    }
+}

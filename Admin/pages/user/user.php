@@ -18,10 +18,10 @@ class user
         $select = "select * from users";
         return $db->pdo_query($select);
     }
-    public function checkUser($username, $password)
+    public function checkUser($email, $password)
     {
         $db = new connect();
-        $select = "select * from users where username='$username' and password='$password'";
+        $select = "select * from users where email='$email' and password='$password'";
         $result = $db->pdo_query_one($select);
         if ($result != null)
             return true;
@@ -35,10 +35,10 @@ class user
         $result = $db->pdo_query_one($select);
         return $result;
     }
-    public function userid($username, $password)
+    public function userid($email, $password)
     {
         $db = new connect();
-        $select = "SELECT * from users where username='$username' and `password`='$password'";
+        $select = "SELECT * from users where `email` ='$email' and `password`='$password'";
         $result = $db->pdo_query_one($select);
         return $result;
     }
@@ -64,6 +64,13 @@ class user
         $result = $db->pdo_execute($sql);
         return $result;
     }
+    public function chanepassword($id, $password)
+    {
+        $db = new connect();
+        $sql = "UPDATE users SET `password` = '$password' WHERE `password`='$password' and id_user = " . $id;
+        $result = $db->pdo_execute($sql);
+        return $result;
+    }
     public function update_info_cart($id, $username, $phone, $address)
     {
         $db = new connect();
@@ -72,13 +79,13 @@ class user
         return $result;
     }
     public function delete($id)
-   {
-      $db = new connect();
-      $sql = "DELETE FROM users WHERE id_user = " . $id;
-      $result = $db->pdo_execute($sql);
-      if ($result != null)
+    {
+        $db = new connect();
+        $sql = "DELETE FROM users WHERE id_user = " . $id;
+        $result = $db->pdo_execute($sql);
+        if ($result != null)
             return true;
         else
             return false;
-   }
+    }
 }

@@ -1,19 +1,19 @@
 <?php
 $user = new user();
-$username = $_POST['username'] ?? '';
+$email = $_POST['email'] ?? '';
 $passsword = $_POST['password'] ?? '';
 if (isset($_POST['login'])) {
-  if (empty($_POST['username'])) {
-    $errors['username']['required'] = "Vui lòng nhập tài khoản!";
+  if (empty($_POST['email'])) {
+    $errors['email']['required'] = "Vui lòng nhập email!";
   }
   if (empty($_POST['password'])) {
     $errors['password']['required'] = "Vui lòng nhập mật khẩu!";
   }
-  if (!empty($_POST['username']) && !empty($_POST['password'])) {
+  if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $errors['login']['required'] = "Tài khoản hoặc mật khẩu không đúng!";
   }
-  if ($user->checkUser($username, $passsword)) {
-    $login = $user->userid($username, $passsword);
+  if ($user->checkUser($email, $passsword)) {
+    $login = $user->userid($email, $passsword);
     $_SESSION['admin'] = $login['id_user'];
     header('Location: index.php?act=home');
   }
@@ -33,10 +33,10 @@ if (isset($_POST['login'])) {
               <p class="text-center"></p>
               <form role="form" class="text-start" method="POST">
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Tài khoản</label>
-                  <input type="text" class="form-control" name="username" value="<?= $username ?>">
+                  <label for="exampleInputemail1" class="form-label">email</label>
+                  <input type="text" class="form-control" name="email" value="<?= $email ?>">
                   <? echo !empty($errors['login']['required']) ? '<p class="text-danger mt-2">' . $errors['login']['required'] . '</p>' : '' ?>
-                  <? echo !empty($errors['username']['required']) ? '<p class="text-danger mt-2">' . $errors['username']['required'] . '</p>' : '' ?>
+                  <? echo !empty($errors['email']['required']) ? '<p class="text-danger mt-2">' . $errors['email']['required'] . '</p>' : '' ?>
                 </div>
                 <div class="mb-4">
                   <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>

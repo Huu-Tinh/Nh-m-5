@@ -7,15 +7,15 @@ $username = $_POST['username'] ?? '';
 $passsword = $_POST['password'] ?? '';
 $email = $_POST['email'] ?? '';
 if (isset($_POST['login'])) {
-  if ($user->checkUser($username, $passsword)) {
-    $login = $user->userid($username, $passsword);
+  if ($user->checkUser($email, $passsword)) {
+    $login = $user->userid($email, $passsword);
     $_SESSION['username'] = $login['id_user'];
     header('Location: ../../User');
   } else {
     $errors['required'] = "Tài khoản hoặc mật khẩu sai!";
   }
-  if (empty($username)) {
-    $errors['name']['required'] = "Nhập đầy đủ thông tin!";
+  if (empty($email)) {
+    $errors['email']['required'] = "Nhập đầy đủ thông tin!";
     unset($errors['required']);
   }
   if (empty($passsword)) {
@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
   }
 }
 if (isset($_POST['register'])) {
-  if (!empty($username) && !empty($passsword) && !empty($passsword)) {
+  if (!empty($email) && !empty($passsword) && !empty($passsword)) {
     $register = $user->register($username, $passsword, $email);
     $_SESSION['status'] = "Đăng ký thành công";
     $_SESSION['status_code'] = "success";
@@ -435,6 +435,7 @@ if (isset($_POST['register'])) {
     border: 1px solid #4bb6b7;
   }
 </style>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <body>
   <div class="container" id="container">
@@ -463,8 +464,8 @@ if (isset($_POST['register'])) {
       <form class="" method="post">
         <h1>Đăng nhập</h1>
         <div class="form-control2">
-          <input type="text" class="email-2" name="username" value="<?= $username ?>" placeholder="Username" />
-          <? echo !empty($errors['name']['required']) ? '<small>' . $errors['name']['required'] . '</small>' : '' ?>
+          <input type="text" class="email-2" name="email" value="<?= $email ?>" placeholder="email" />
+          <? echo !empty($errors['email']['required']) ? '<small>' . $errors['email']['required'] . '</small>' : '' ?>
           <? echo !empty($errors['required']) ? '<small>' . $errors['required'] . '</small>' : '' ?>
         </div>
         <div class="form-control2">
@@ -496,10 +497,9 @@ if (isset($_POST['register'])) {
       <div class="overlay">
         <div class="overlay-panel overlay-left">
           <h1 class="title">
-            Hello <br />
-            friends
+            Chào <br />
+            Bạn
           </h1>
-          <p>If you have an account, login here and have fun</p>
           <button class="ghost" id="login">
             Đăngnhập
             <i class="fa-solid fa-arrow-left"></i>
@@ -508,12 +508,9 @@ if (isset($_POST['register'])) {
 
         <div class="overlay-panel overlay-right">
           <h1 class="title">
-            Start your <br />
-            journey now
+
+            Bắt đầu đăng kí ngay bây giờ
           </h1>
-          <p>
-            If you don'n have an account yet, join us and start your journey
-          </p>
           <button class="ghost" id="register">
             Đăng ký
             <i class="fa-solid fa-arrow-right"></i>
@@ -524,5 +521,19 @@ if (isset($_POST['register'])) {
   </div>
 </body>
 <script src="main.js"></script>
+<?php
+if (isset($_SESSION['status'])) {
+  echo '
+<script>
+  swal({
+      title: "' . $_SESSION['status'] . '",
+      icon: "' . $_SESSION['status_code'] . '",
+      button: "Đồng ý!",
+  });
+</script>
+';
+  unset($_SESSION['status']);
+}
+?>
 
 </html>
